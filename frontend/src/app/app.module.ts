@@ -14,6 +14,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { AuthorsCardComponent } from './authors-card/authors-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AdminCategoryComponent } from './admin/admin-category/admin-category.co
     RegisterComponent,
     DashboardComponent,
     SidebarComponent,
-    AdminCategoryComponent
+    AdminCategoryComponent,
+    AuthorsCardComponent
   ],
   imports: [
     BrowserModule,
