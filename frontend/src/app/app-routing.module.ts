@@ -6,10 +6,12 @@ import {BooksComponent} from './books/books.component';
 import {AuthorsComponent } from './authors/authors.component';
 import {RegisterComponent } from './register/register.component';
 import {LoginComponent } from './login/login.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent
   },
   {
@@ -31,7 +33,19 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+  {
+    path: 'admin',
+    component:DashboardComponent,
+    children:[
+      {
+        path: 'categories',
+        component:AdminCategoryComponent
+      }
+    ]
+
+  },
+  
 ];
 
 @NgModule({

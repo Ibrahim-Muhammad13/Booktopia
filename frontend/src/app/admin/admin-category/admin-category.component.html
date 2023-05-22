@@ -1,0 +1,16 @@
+
+<ul>
+    <li *ngFor="let item of categories">
+        {{item.cat_Name}}
+    </li>
+</ul>
+
+<form >
+    <div class="form-group">
+      <label for="cat">Email address</label>
+      <input type="text" class="form-control" id="cat"  placeholder="Enter category">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <button (click)="saveCategory('category example')">add</button>
