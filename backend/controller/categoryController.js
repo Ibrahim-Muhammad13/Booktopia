@@ -5,14 +5,16 @@ function getAllCategories(req, res) {
         if (err) {
           res.json(err);
         }
-        res.json(categories);  
+        res.json({
+            categories
+        }) 
     });
 }
 
 function createCategory(req, res) {
     Category.create({ cat_Name: req.body.cat_Name})
         .then(function(category) {
-            res.json(category);
+            res.json({category});
         })
         .catch(function(err) {
             if (err.name === 'ValidationError') {
