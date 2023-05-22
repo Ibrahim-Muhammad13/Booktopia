@@ -16,6 +16,8 @@ const auther = new mongoose.Schema({
   },
   birthDate: {
     type: Date,
+    required: [true, 'Must enter a last name'],
+
   },
   image: {
     type: String,
@@ -27,4 +29,6 @@ const auther = new mongoose.Schema({
 const autherModel = mongoose.model('auther', auther);
 
 module.exports = autherModel;
+
+
 
