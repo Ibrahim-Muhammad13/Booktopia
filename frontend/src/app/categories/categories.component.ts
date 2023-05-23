@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Category } from '../models/category';
+// import { Category } from '../models/category';
 import { CategoriesService } from '../services/categories.service';
+import { Categories} from '../admin/interfaces/categories'
 
 @Component({
   selector: 'app-categories',
@@ -8,13 +9,15 @@ import { CategoriesService } from '../services/categories.service';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent {
-categories!:Category[]
+categories!:Categories[];
 
-  constructor(private category:CategoriesService) { }
+  constructor(private Categories:CategoriesService) { }
 
   ngOnInit() {
-    this.category.getCategories().subscribe((res:any)=>this.categories=res.categories)
+    this.Categories.getCategories()
+      .subscribe((res: any) => {
+        this.categories = res.categories;
+        console.log(this.categories); // Add this line to check the content of categories
+      });
   }
-
-  
-}
+  }

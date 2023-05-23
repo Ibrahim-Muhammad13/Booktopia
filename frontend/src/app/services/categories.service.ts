@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Category } from '../models/category';
+import { Categories} from '../admin/interfaces/categories'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ getCategories(){
 }
 
 createCategory(cat:string){
-  const category = {cat_Name:cat}
+  const category = {name:cat}
   return this.http.post('http://localhost:3000/admin/category',category).subscribe((res:any)=>console.log(res))
 }
 }
