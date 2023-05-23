@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const books = new mongoose.Schema({
 name: {
     type: String,
@@ -24,3 +23,4 @@ name: {
 const booksModel = mongoose.model('books', books);
 
 module.exports = booksModel;
+
