@@ -1,7 +1,5 @@
 <p>auther works!</p>
-<h1>
-    {{Auther}}
-</h1>
+<h1>auther page </h1> 
 
 
 
@@ -12,10 +10,11 @@
     <li>{{row.image}}</li>
     <button></button>
     <!-- <button routerLink="" (click)="sendId(prodectItem.id)" class="btn btn-primary">show more info</button> -->
-    <button routerLink="update"  class="btn btn-primary">update </button>
-    <button routerLink="delete/{{row._id}}" class="btn btn-primary">delete</button>
+    <button routerLink="update/{{row._id}}"  class="btn btn-primary">update </button>
+    <button (click)="delete(row._id)"  class="btn btn-primary">delete</button>
+    <!-- <button routerLink="delete/{{row._id}}"   class="btn btn-primary">delete</button> -->
 
 <hr>
 </div>
 
-    <button routerLink="add{row.firstName}" class="btn btn-primary">add new auther</button>
+    <button routerLink="add" class="btn btn-primary">add new auther</button>

@@ -17,6 +17,7 @@ import { AdminCategoryComponent } from './admin/admin-category/admin-category.co
 import { AutherComponent } from './admin/auther/auther.component';
 import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SidebarComponent,
     AdminCategoryComponent,
     AutherComponent,
-    AutherUpdateComponent
+    AutherUpdateComponent,
+    AutherAddComponent
   ],
   imports: [
     BrowserModule,

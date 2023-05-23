@@ -11,20 +11,26 @@ export class AutherService {
 getAllauther(){
   return this.http.get('http://localhost:3000/auther')
 }
-getAllautherbyid(){
-  return this.http.get('http://localhost:3000/auther')
+getAllautherbyid(id:any){
+  return this.http.get('http://localhost:3000/auther/'+id)
 }
 
-insertNewauther(auther:any){
-  // const category = {cat_Name:cat}
-  // return this.http.post('http://localhost:3000/admin/category',category).subscribe((res:any)=>console.log(res))
+Newauther(auther:any){
+  console.log(auther)
+  return this.http.post('http://localhost:3000/auther',auther).subscribe((res:any)=>console.log(res))
+
 }
 
-deleteautherby(){
-  return this.http.get('http://localhost:3000/auther')
+deletauther(id:string){
+  return this.http.delete('http://localhost:3000/auther/'+id)
 }
 
-updateauther(){
+updateauther(auther:any,id:any){
+  // return this.http.put('http://localhost:3000/auther')
+
+  console.log(auther)
+  return this.http.put('http://localhost:3000/auther/'+id,auther).subscribe((res:any)=>console.log(res))
+
   
 }
 

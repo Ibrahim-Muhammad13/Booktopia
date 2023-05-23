@@ -3,12 +3,13 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, V
 import { ActivatedRoute } from '@angular/router';
 import { AutherService } from 'src/app/services/auther.service';
 
+
 @Component({
-  selector: 'app-auther-update',
-  templateUrl: './auther-update.component.html',
-  styleUrls: ['./auther-update.component.css']
+  selector: 'app-auther-add',
+  templateUrl: './auther-add.component.html',
+  styleUrls: ['./auther-add.component.css']
 })
-export class AutherUpdateComponent {
+export class AutherAddComponent {
   Auther!:any
 
   
@@ -30,41 +31,45 @@ get lastName(){  return this.rigester.get('LastName')}
 get biarth_date(){  return this.rigester.get('birthDate')}
 get image(){  return this.rigester.get('image')}
 ngOnInit() {
-  let id :number=this.activeRouter.snapshot.params['id']
-      this.auther.getAllautherbyid(id).subscribe(
-  res=>{
-    console.log(res)
-  this.Auther=res
-  // console.log(typeof( this.Auther))
-    this.rigester.patchValue({
-    firstName:this.Auther.firstName ,
-    LastName: this.Auther.LastName,
-    birthDate:this.Auther.birthDate,
+  // let id :number=this.activeRouter.snapshot.params['id']
+  //     this.auther.getAllautherbyid(id).subscribe(
+  // res=>{
+  //   console.log(res)
+  // this.Auther=res
+  // // console.log(typeof( this.Auther))
+  //   this.rigester.patchValue({
+  //   firstName:this.Auther.firstName ,
+  //   lastName: this.Auther.LastName,
+  //   biarth_date:this.Auther.birthDate,
           
-          })
+  //         })
     
-     })}
+  //    })
+}
 
 
      submitlogin( ){
-      // console.log(this.rigester.value)
-      if (this.rigester.value.image==null){
-        this.rigester.value.image=this.Auther.image
-      }
-  let id :number=this.activeRouter.snapshot.params['id']
-      this.auther.updateauther(this.rigester.value,id)
+      console.log(this.rigester.value)
+      this.auther.Newauther(this.rigester.value)
     }
-
-
-  }
-  
+}
 
 
 
 
-  // firstName: 'gerges victor',
-  // LastName: 'gerges@gmail.com',
-  // birthDate
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
