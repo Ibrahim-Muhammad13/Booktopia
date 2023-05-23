@@ -6,8 +6,13 @@ import {BooksComponent} from './books/books.component';
 import {AuthorsComponent } from './authors/authors.component';
 import {RegisterComponent } from './register/register.component';
 import {LoginComponent } from './login/login.component';
-import {DashboardComponent } from './admin/dashboard/dashboard.component';
-import {AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { AutherComponent } from './admin/auther/auther.component';
+import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
+import { AutherAddComponent } from './admin/auther-add/auther-add.component';
+
 
 const routes: Routes = [
   {
@@ -45,11 +50,26 @@ const routes: Routes = [
       {
         path: 'categories',
         component:AdminCategoryComponent
+
+      },
+      {
+        path: 'auther',
+        component:AutherComponent,
+        
+      },
+      {
+        path: 'auther/update/:id',
+        component:AutherUpdateComponent,
+      },
+      {
+        path: 'auther/add',
+        component:AutherAddComponent,
       }
+    
     ]
 
   },
-
+  
 ];
 
 @NgModule({

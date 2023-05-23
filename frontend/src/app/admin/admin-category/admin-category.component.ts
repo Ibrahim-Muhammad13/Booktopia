@@ -1,8 +1,8 @@
-// import { Categories } from './../interfaces/categories';
+
 import { Component } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
-// import { Categories} from 'src/app/admin/interfaces/categories'
+
 
 @Component({
   selector: 'app-admin-category',
@@ -10,8 +10,10 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./admin-category.component.css']
 })
 export class AdminCategoryComponent {
+
   categories:Category[]= [];
   newCategoryName: string = '';
+
 
   constructor(private category:CategoriesService) { }
 

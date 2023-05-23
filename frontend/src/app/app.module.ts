@@ -14,8 +14,12 @@ import { HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
-import { AuthorsCardComponent } from './authors-card/authors-card.component';
-import { FormsModule } from '@angular/forms';
+
+import { AutherComponent } from './admin/auther/auther.component';
+import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AutherAddComponent } from './admin/auther-add/auther-add.component';
+
 
 @NgModule({
   declarations: [
@@ -30,13 +34,21 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     SidebarComponent,
     AdminCategoryComponent,
-    AuthorsCardComponent
+
+    AutherComponent,
+    AutherUpdateComponent,
+    AutherAddComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
+    ReactiveFormsModule
+    
     FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
