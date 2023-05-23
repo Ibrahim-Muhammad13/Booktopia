@@ -1,16 +1,45 @@
-
-<ul>
+<!-- <ul>
     <li *ngFor="let item of categories">
         {{item.cat_Name}}
     </li>
-</ul>
-
+</ul> -->
+<!--
 <form >
     <div class="form-group">
-      <label for="cat">Email address</label>
+      <label for="cat">Categories</label>
       <input type="text" class="form-control" id="cat"  placeholder="Enter category">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
-  <button (click)="saveCategory('category example')">add</button>
+  <button (click)="saveCategory('category example')">add</button> -->
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" *ngIf="!showForm">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Action</th>
+        <th scope="col">Handle</th>
+        <th scope="col" *ngIf="!showForm"><button type="button" class="btn btn-success" (click)="showForm=true">Add</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="showForm; else categoryList">
+        <tr>
+          <input type="text" class="form-control" id="cat" placeholder="Enter Category Name">
+          <td><button type="button" class="btn btn-primary" (click)="saveCategory('newCategoryName')">Save</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="showForm=false">Cancel</button></td>
+          <td></td>
+        </tr>
+      </ng-container>
+      <ng-template #categoryList>
+        <tr *ngFor="let category of categories; let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{category.cat_Name}}</td>
+          <td><button type="button" class="btn btn-primary">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteCategory(i)">Delete</button></td></tr>
+
+      </ng-template>
+    </tbody>
+  </table>
