@@ -24,7 +24,29 @@ function createCategory(req, res) {
         });
 }
 
+function updateCategory(req, res) {
+    Category.updateOne({ _id: req.params.id }, { cat_Name: req.body.cat_Name })
+    .then(function(category){
+        res.json({category});
+    })
+    .catch(function(err){
+        res.json(err.message);
+    })
+}
+
+function deleteCategory(req, res) {
+    Category.deleteOne({ _id: req.params.id })
+    .then(function(category){
+        res.json({category});
+    })
+    .catch(function(err){
+        res.json(err.message);
+    })
+}
+
 module.exports = {
     getAllCategories,
-    createCategory
+    createCategory,
+    updateCategory,
+    deleteCategory
 }
