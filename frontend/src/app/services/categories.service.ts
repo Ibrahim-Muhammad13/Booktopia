@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Categories} from '../admin/interfaces/categories'
 
 @Injectable({
   providedIn: 'root'

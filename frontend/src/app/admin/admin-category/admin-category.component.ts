@@ -1,4 +1,4 @@
-import { Categories } from './../interfaces/categories';
+// import { Categories } from './../interfaces/categories';
 import { Component } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -22,15 +22,8 @@ export class AdminCategoryComponent {
 
 
   saveCategory(cat:string){
-      // const newCategory: Categories = {
-      //   name: this.newCategoryName,
-      // };
-      // this.categories.push(newCategory);
-      // this.newCategoryName = '';
-      // this.showForm = false;
-      console.log(cat);
-      this.category.createCategory(cat);
-
+    console.log(cat);
+    this.category.createCategory(cat);
   }
 
   deleteCategory(index: number) {
