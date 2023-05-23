@@ -1,8 +1,6 @@
-import { Categories } from './../interfaces/categories';
 import { Component } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
-// import { Categories} from 'src/app/admin/interfaces/categories'
 
 @Component({
   selector: 'app-admin-category',
@@ -22,15 +20,14 @@ export class AdminCategoryComponent {
 
 
   saveCategory(cat:string){
-      // const newCategory: Categories = {
-      //   name: this.newCategoryName,
-      // };
-      // this.categories.push(newCategory);
-      // this.newCategoryName = '';
-      // this.showForm = false;
+      const newCategory: Category = {
+        cat_Name: this.newCategoryName,
+      };
+      this.categories.push(newCategory);
+      this.newCategoryName = '';
       console.log(cat);
       this.category.createCategory(cat);
-
+      this.showForm = false;  // to back again to table when save button clicked
   }
 
   deleteCategory(index: number) {
