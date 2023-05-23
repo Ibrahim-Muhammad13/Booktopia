@@ -14,7 +14,7 @@ getCategories(){
 }
 
 createCategory(cat:string){
-  const category = {name:cat}
+  const category = {cat_Name:cat}
   return this.http.post('http://localhost:3000/admin/category',category).subscribe((res:any)=>console.log(res))
 }
 }

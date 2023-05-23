@@ -28,7 +28,7 @@
       <ng-container *ngIf="showForm; else categoryList">
         <tr>
           <input type="text" class="form-control" id="cat" placeholder="Enter Category Name">
-          <td><button type="button" class="btn btn-primary" (click)="saveCategory(newCategoryName)">Save</button></td>
+          <td><button type="button" class="btn btn-primary" (click)="saveCategory('newCategoryName')">Save</button></td>
           <td><button type="button" class="btn btn-danger" (click)="showForm=false">Cancel</button></td>
           <td></td>
         </tr>
@@ -36,7 +36,7 @@
       <ng-template #categoryList>
         <tr *ngFor="let category of categories; let i = index">
           <th scope="row">{{i + 1}}</th>
-          <td>{{category.name}}</td>
+          <td>{{category.cat_Name}}</td>
           <td><button type="button" class="btn btn-primary">Edit</button></td>
           <td><button type="button" class="btn btn-danger" (click)="deleteCategory(i)">Delete</button></td></tr>
 
