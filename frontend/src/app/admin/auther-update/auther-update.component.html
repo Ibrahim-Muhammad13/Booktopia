@@ -1,2 +1,212 @@
-<p>auther-update works!</p>
-<h1>ejme ,</h1>
+<h1></h1>
+<form [formGroup]="rigester" (ngSubmit)="submitlogin()">
+
+
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input  type="text" class="form-control"  [class.is-invalid]="name?.invalid && name?.touched"   [class.is-valid]="name?.valid" id="name" aria-describedby="nameHelp"  formControlName="name" name="full name" > 
+      
+      <div id="nameHelp" class="form-text text-danger" *ngIf="rigester.controls['name'].touched && rigester.controls['name'].invalid">
+     <span *ngIf="rigester.controls['name'].errors?.['required']">
+        this filed is requerd
+     </span>
+      <span *ngIf="rigester.controls['name'].errors?.['pattern']">
+        name must no contain space
+     </span>
+    </div> 
+</div>
+
+
+
+
+
+
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input  type="email" class="form-control " id="email" aria-describedby="emailHelp"  formControlName="email" > 
+        
+        <div id="emailHelp" class="form-text text-danger" *ngIf="rigester.controls['email'].touched && rigester.controls['email'].invalid">
+       <span *ngIf="rigester.controls['email'].errors?.['required']">
+          this filed is requerd
+       </span>
+
+       <span *ngIf="rigester.controls['email'].errors?.['email']">
+        this filed is email 
+     </span>
+      </div> 
+      </div>
+
+
+
+
+
+<!-- start array number  -->
+<!-- <div formArrayName="phoneNo">
+
+   <div class="mb-3" *ngFor="let phone of phoneNo.controls  let i =index">
+      <label for="number"+{{i}} class="form-label">number phone {{i}}</label>
+      <input  type="text" class="form-control" id="nmber"+{{i}} aria-describedby="namberHelp"  [formControlName]="i" name="umber " > 
+  <button  class="btn btn-primary" >add</button> -->
+      <!-- <div id="nameHelp" class="form-text text-danger" *ngIf="rigester.controls['name'].touched && rigester.controls['name'].invalid">
+     <span *ngIf="rigester.controls['name'].errors?.['required']">
+        this filed is requerd
+     </span>
+      <span *ngIf="rigester.controls['name'].errors?.['pattern']">
+        name must no contain space
+     </span>
+    </div>  -->
+<!-- </div>
+
+
+
+
+
+</div> -->
+<!-- endarray number -->
+
+
+
+
+
+
+
+
+
+    <div class="mb-3">
+        <label for="username" class="form-label">username</label>
+        <input  type="text" class="form-control" id="username" aria-describedby="usernameHelp"  formControlName="username" > 
+        
+        <div id="usernameHelp" class="form-text text-danger" *ngIf="username?.touched && username?.invalid">
+         <!-- <div id="usernameHelp" class="form-text text-danger" *ngIf="rigester.controls['username'].touched && rigester.controls['username'].invalid"> -->
+            <span *ngIf="username?.errors?.['required']">
+               this filed is requerd
+            </span>
+             <span *ngIf="username?.errors?.['pattern']">
+               name must no contain space
+            </span>
+      </div> 
+</div>
+
+
+
+<!--start  //adress form control -->
+
+
+
+
+<div  formGroupName="address" >
+    <div class="mb-3">
+        <label for="name" class="form-label">city</label>
+        <input  type="text" class="form-control" id="city" aria-describedby="cityHelp"  formControlName="city" name="city " > 
+        
+        <!-- <div id="nameHelp" class="form-text text-danger" *ngIf="rigester.controls['name'].touched && rigester.controls['name'].invalid">
+       <span *ngIf="rigester.controls['name'].errors?.['required']">
+          this filed is requerd
+       </span>
+        <span *ngIf="rigester.controls['name'].errors?.['pattern']"> 
+          name must no contain space
+       </span>
+      </div>  -->
+  </div>
+  
+
+
+
+
+  <div class="mb-3">
+    <label for="name" class="form-label">postalcode</label>
+    <input  type="number" class="form-control" id="postalcode" aria-describedby="postalcodeHelp"  formControlName="postalcode" name="postalcode " > 
+    
+    <!-- <div id="nameHelp" class="form-text text-danger" *ngIf="rigester.controls['name'].touched && rigester.controls['name'].invalid">
+   <span *ngIf="rigester.controls['name'].errors?.['required']">
+      this filed is requerd
+   </span>
+    <span *ngIf="rigester.controls['name'].errors?.['pattern']">
+      name must no contain space
+   </span>
+  </div>  -->
+</div>
+
+
+
+
+<div class="mb-3">
+    <label for="name" class="form-label">street</label>
+    <input  type="text" class="form-control" id="street" aria-describedby="streetHelp"  formControlName="street" name="street " > 
+    
+    <!-- <div id="nameHelp" class="form-text text-danger" *ngIf="rigester.controls['name'].touched && rigester.controls['name'].invalid">
+   <span *ngIf="rigester.controls['name'].errors?.['required']">
+      this filed is requerd
+   </span>
+    <span *ngIf="rigester.controls['name'].errors?.['pattern']">
+      name must no contain space
+   </span>
+  </div>  -->
+</div>
+
+
+
+
+
+</div>
+
+
+<!--start  //adress form control -->
+
+    
+
+
+
+    <div class="mb-3">
+      <label for="Password" class="form-label">Password</label>
+      <input  type="password" class="form-control" id="Password" formControlName="password"> 
+
+      <div id="password" class="form-text text-danger" *ngIf="password?.touched">
+        <span *ngIf="rigester.controls['password'].errors?.['required']">
+           this filed is requerd
+        </span>
+        <span *ngIf="rigester.controls['password'].errors?.['pattern']">
+            this filed is pattern andMust contain at least one  number and one uppercase and lowercase letter,and spacial character @#$%^&*()_+|,.>/? and at least 8 or more characters 
+         </span>
+ 
+    </div>
+</div>
+
+ 
+
+
+<div class="mb-3">
+    <label for="Password" class="form-label">confirm Password</label>
+    <input  type="password" class="form-control" id="confirmPassword" formControlName="confilmpassword"> 
+
+    <div id="confirmpassword" class="form-text text-danger" *ngIf="rigester.controls['confilmpassword'].touched && rigester.controls['confilmpassword'].invalid">
+      <span *ngIf="rigester.controls['confilmpassword'].errors?.['required']">
+         this filed is requerd
+      </span>
+      <span *ngIf="rigester.controls['confilmpassword'].errors?.['confirmassword']">
+          this filed is  confirm password 
+       </span>
+
+  </div>
+</div>
+
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary" >Submit</button>
+    <!-- <button type="submit" class="btn btn-primary" [disabled]="rigester.invalid">Submit</button> -->
+  </form> 
+
+
+  <!-- [disabled]="rigester.invalid" -->
+
+
+
+
+  <div>
+     {{rigester.value|json}}
+  </div>

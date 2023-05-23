@@ -16,6 +16,8 @@ import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AutherComponent } from './admin/auther/auther.component';
 import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import { AutherUpdateComponent } from './admin/auther-update/auther-update.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
