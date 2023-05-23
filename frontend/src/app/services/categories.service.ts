@@ -16,4 +16,13 @@ createCategory(cat:string){
   const category = {cat_Name:cat}
   return this.http.post('http://localhost:3000/admin/category',category).subscribe((res:any)=>console.log(res))
 }
+
+deleteCategory(catId: number) {
+  return this.http.delete(`http://localhost:3000/admin/category/${catId}`);
+}
+
+updateCategory(catId: number, cat: string) {
+  const category = { cat_Name: cat };
+  return this.http.put(`http://localhost:3000/admin/category/${catId}`, category).subscribe((res:any)=>console.log(res));
+}
 }
