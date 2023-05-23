@@ -11,7 +11,11 @@ import { AuthorsComponent } from './authors/authors.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule} from '@angular/common/http';
-
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
+import { AutherComponent } from './admin/auther/auther.component';
+import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +25,12 @@ import { HttpClientModule} from '@angular/common/http';
     BooksComponent,
     AuthorsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent,
+    SidebarComponent,
+    AdminCategoryComponent,
+    AutherComponent,
+    AutherUpdateComponent
   ],
   imports: [
     BrowserModule,
