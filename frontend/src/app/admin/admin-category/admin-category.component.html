@@ -21,9 +21,17 @@
         <tr *ngFor="let category of categories; let i = index">
           <th scope="row">{{i + 1}}</th>
           <td>{{category.cat_Name}}</td>
-          <td><button type="button" class="btn btn-primary">Edit</button></td>
-          <td><button type="button" class="btn btn-danger" (click)="deleteCategory(i)">Delete</button></td></tr>
+          <td><button type="button" class="btn btn-primary" (click)="updateCategory(category); showForm=true">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteCategory(category)">Delete</button></td></tr>
 
       </ng-template>
+      <!-- <ng-template #categoryList>
+        <tr *ngFor= "let category of categories; let i = index">
+          <th scope="row">{{ i+1}}</th>
+          <td>{{ category.cat_Name }}</td>
+          <td><button type="button" class="btn btn-primary" (click)="updateCategory(category)">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteCategory(category)">Delete</button></td>
+        </tr>
+      </ng-template> -->
     </tbody>
   </table>

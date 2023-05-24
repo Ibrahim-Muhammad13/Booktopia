@@ -26,21 +26,15 @@ export class AdminCategoryComponent {
     this.category.createCategory(cat);
   }
 
-  deleteCategory(index: number) {
-    this.categories.splice(index, 1);
-  }
-
   items!: Category[];
   newItem: Category = {
-
     cat_Name: '',
   };
+
   showForm = false;
 
   addItem() {
-
     this.items.push(this.newItem);
-
     this.showForm = false;
   }
 
@@ -49,6 +43,24 @@ export class AdminCategoryComponent {
     this.showForm = false;
   }
 
+
+  deleteCategory(category: Category) {
+    const catId: string | undefined = category._id;
+    if (catId !== undefined) {
+      this.category.deleteCategory(catId).subscribe((res: any) => {
+        // Update the categories array after successful deletion
+        if (res.success) {
+          const index = this.categories.indexOf(category);
+          if (index !== -1) {
+            this.categories.splice(index, 1);
+          }}});} }
+
+  updateCategory(category: Category) {
+    const catId: string | undefined = category._id;
+    const updatedCatName: string | undefined = category.cat_Name;
+    if (catId !== undefined && updatedCatName !== undefined) {
+      this.category.updateCategory(catId, updatedCatName)
+    }}
 }
 
 
