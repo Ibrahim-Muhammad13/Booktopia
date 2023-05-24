@@ -11,21 +11,21 @@ export class CategoriesService {
 
   constructor(private http: HttpClient) { }
 
-  getCategories(): Observable<any> {
-    return this.http.get('http://localhost:3000/admin/category');
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>('http://localhost:3000/admin/category');
   }
 
-  createCategory(cat: string): Observable<any> {
+  createCategory(cat: string): Observable<Category[]>{
     const category = { cat_Name: cat };
-    return this.http.post('http://localhost:3000/admin/category', category);
+    return this.http.post<Category[]>('http://localhost:3000/admin/category', category);
   }
 
-  deleteCategory(catId: number): Observable<any> {
-    return this.http.delete('http://localhost:3000/admin/category/' + catId);
+  deleteCategory(catId: number): Observable<Category[]> {
+    return this.http.delete<Category[]>('http://localhost:3000/admin/category/' + catId);
   }
 
-  updateCategory(catId: number, cat: string): Observable<any> {
+  updateCategory(catId: number, cat: string): Observable<Category[]>{
     const category = { cat_Name: cat };
-    return this.http.put(`http://localhost:3000/admin/category/` + catId, category);
+    return this.http.put<Category[]>(`http://localhost:3000/admin/category/` + catId, category);
   }
 }
