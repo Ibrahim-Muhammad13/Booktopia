@@ -10,12 +10,12 @@ import { CategoriesService } from 'src/app/services/categories.service';
 export class AdminCategoryComponent {
   categories:Category[]= [];
   newCategoryName: string = '';
+  showForm = false;
 
   constructor(private category:CategoriesService) { }
 
   ngOnInit() {
     this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
-
   }
 
 
@@ -25,21 +25,34 @@ export class AdminCategoryComponent {
       };
       this.categories.push(newCategory);
       this.newCategoryName = '';
+      this.category.createCategory(this.newCategoryName);
       console.log(cat);
       this.category.createCategory(cat);
       this.showForm = false;  // to back again to table when save button clicked
+
+
   }
 
   deleteCategory(index: number) {
     this.categories.splice(index, 1);
   }
+  // deleteCategory(category: Category) {
+  //   const catId: string | undefined = category._id;
+  //   if (catId !== undefined) {
+  //     this.category.deleteCategory(catId).subscribe((res: any) => {
+  //       // Update the categories array after successful deletion
+  //       if (res.success) {
+  //         const index = this.categories.indexOf(category);
+  //         if (index !== -1) {
+  //           this.categories.splice(index, 1);
+  //         }}});} }
+
 
   items!: Category[];
   newItem: Category = {
 
     cat_Name: '',
   };
-  showForm = false;
 
   addItem() {
 

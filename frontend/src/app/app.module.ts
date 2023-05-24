@@ -15,7 +15,8 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AuthorsCardComponent } from './authors-card/authors-card.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CategoryValidationPipe } from './pipes/category-validation.pipe';
 
 @NgModule({
   declarations: [
@@ -30,13 +31,15 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     SidebarComponent,
     AdminCategoryComponent,
-    AuthorsCardComponent
+    AuthorsCardComponent,
+    CategoryValidationPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
