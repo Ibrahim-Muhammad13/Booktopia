@@ -33,27 +33,14 @@ export class AdminCategoryComponent {
 
 
   saveCategory(){
-          console.log(this.categories);
-      // const newCategory: Category = {
-      //   cat_Name: this.newCategoryName,
-      // };
-      // this.categories.push(newCategory);
-      // this.newCategoryName = '';
-      // this.category.createCategory(this.newCategoryName);
-      // console.log(cat);
-      // this.category.createCategory(cat);
-      // this.showForm = false;  // to back again to table when save button clicked
-
+      console.log(this.categories);
       const newCategory: Category = {
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
       this.categories.push(newCategory);
       this.newCategoryName = '';
       this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
-      // this.categoryForm.reset();
       this.category.createCategory(newCategory);
-
-
       this.showForm = false; // to back again to table when save button clicked
     }
 
