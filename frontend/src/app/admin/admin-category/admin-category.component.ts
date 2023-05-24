@@ -1,8 +1,8 @@
-// import { Categories } from './../interfaces/categories';
+
 import { Component } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
-// import { Categories} from 'src/app/admin/interfaces/categories'
+
 
 @Component({
   selector: 'app-admin-category',
@@ -20,7 +20,6 @@ export class AdminCategoryComponent {
 
   }
 
-
   saveCategory(cat:string){
     console.log(cat);
     this.category.createCategory(cat);
@@ -28,6 +27,7 @@ export class AdminCategoryComponent {
 
   items!: Category[];
   newItem: Category = {
+    _id :'',
     cat_Name: '',
   };
 
@@ -43,24 +43,14 @@ export class AdminCategoryComponent {
     this.showForm = false;
   }
 
+  DeleteCategory(catId:string) {
+    console.log(catId);
+    this.category.deleteCategory(catId)
+    }
 
-  deleteCategory(category: Category) {
-    const catId: string | undefined = category._id;
-    if (catId !== undefined) {
-      this.category.deleteCategory(catId).subscribe((res: any) => {
-        // Update the categories array after successful deletion
-        if (res.success) {
-          const index = this.categories.indexOf(category);
-          if (index !== -1) {
-            this.categories.splice(index, 1);
-          }}});} }
-
-  updateCategory(category: Category) {
-    const catId: string | undefined = category._id;
-    const updatedCatName: string | undefined = category.cat_Name;
-    if (catId !== undefined && updatedCatName !== undefined) {
-      this.category.updateCategory(catId, updatedCatName)
-    }}
+  UpdateCategory(catId:string,cat:string) {
+    this.category.updateCategory(catId,cat)
+  }
 }
 
 
