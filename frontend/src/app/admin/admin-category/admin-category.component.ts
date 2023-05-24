@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-category',
@@ -11,41 +12,54 @@ export class AdminCategoryComponent {
   categories:Category[]= [];
   newCategoryName: string = '';
   showForm = false;
+  categoryForm!: FormGroup;
 
-  constructor(private category:CategoriesService) { }
+  // constructor(private category:CategoriesService) { }
+
+  constructor(private fb : FormBuilder, private category:CategoriesService){
+    this.categoryForm = this.fb.group({
+      categoryName: [null, [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(20),
+        Validators.pattern(/^[^0-9].*/)
+      ]]
+      });
+  }
 
   ngOnInit() {
-    this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
+    this.category.getCategories().subscribe((res:any)=>this.categories=res.categories); // Fix the property name here
   }
 
 
-  saveCategory(cat:string){
+  saveCategory(){
+          console.log(this.categories);
+      // const newCategory: Category = {
+      //   cat_Name: this.newCategoryName,
+      // };
+      // this.categories.push(newCategory);
+      // this.newCategoryName = '';
+      // this.category.createCategory(this.newCategoryName);
+      // console.log(cat);
+      // this.category.createCategory(cat);
+      // this.showForm = false;  // to back again to table when save button clicked
+
       const newCategory: Category = {
-        cat_Name: this.newCategoryName,
+        cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
       this.categories.push(newCategory);
       this.newCategoryName = '';
-      this.category.createCategory(this.newCategoryName);
-      console.log(cat);
-      this.category.createCategory(cat);
-      this.showForm = false;  // to back again to table when save button clicked
+      this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
+      // this.categoryForm.reset();
+      this.category.createCategory(newCategory);
 
 
-  }
+      this.showForm = false; // to back again to table when save button clicked
+    }
 
   deleteCategory(index: number) {
     this.categories.splice(index, 1);
   }
-  // deleteCategory(category: Category) {
-  //   const catId: string | undefined = category._id;
-  //   if (catId !== undefined) {
-  //     this.category.deleteCategory(catId).subscribe((res: any) => {
-  //       // Update the categories array after successful deletion
-  //       if (res.success) {
-  //         const index = this.categories.indexOf(category);
-  //         if (index !== -1) {
-  //           this.categories.splice(index, 1);
-  //         }}});} }
 
 
   items!: Category[];
