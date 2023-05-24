@@ -14,8 +14,7 @@ export class AdminCategoryComponent {
   showForm = false;
   categoryForm!: FormGroup;
 
-  // constructor(private category:CategoriesService) { }
-
+  
   constructor(private fb : FormBuilder, private category:CategoriesService){
     this.categoryForm = this.fb.group({
       categoryName: [null, [
@@ -37,7 +36,6 @@ export class AdminCategoryComponent {
       const newCategory: Category = {
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
-
       this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
       this.category.createCategory(newCategory);
       this.categories.push(newCategory);  //push to ui whithout refresh
@@ -45,21 +43,18 @@ export class AdminCategoryComponent {
       this.showForm = false; // to back again to table when save button clicked
     }
 
-  deleteCategory(index: number) {
-    this.categories.splice(index, 1);
-  }
+    deleteCategory(index: number) {
+      this.categories.splice(index, 1); // delete from table ui only
+    }
 
 
   items!: Category[];
   newItem: Category = {
-
     cat_Name: '',
   };
 
   addItem() {
-
     this.items.push(this.newItem);
-
     this.showForm = false;
   }
 
