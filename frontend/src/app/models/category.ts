@@ -1,5 +1,4 @@
 export interface Category {
-
-    _id?: string;
+    _id:string;
     cat_Name: string;
 }

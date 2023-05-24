@@ -1,4 +1,5 @@
-  <table class="table">
+
+ <table class="table">
     <thead>
       <tr>
         <th scope="col" *ngIf="!showForm">ID</th>
@@ -21,10 +22,11 @@
         <tr *ngFor="let category of categories; let i = index">
           <th scope="row">{{i + 1}}</th>
           <td>{{category.cat_Name}}</td>
-          <td><button type="button" class="btn btn-primary">Edit</button></td>
-          <td><button type="button" class="btn btn-danger" (click)="deleteCategory(i)">Delete</button></td></tr>
+          <td><button type="button" class="btn btn-primary" (click)="UpdateCategory(category._id,newCategoryName); showForm=true">Edit</button></td>
+          <td><button type="button" class="btn btn-danger" (click)="DeleteCategory(category._id)">Delete</button></td></tr>
 
       </ng-template>
+      
     </tbody>
-  </table>
 
+  </table> 
