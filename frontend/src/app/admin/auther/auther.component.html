@@ -4,13 +4,16 @@
 
 
 <div *ngFor="let row of Auther">
-    <li>{{row.firstName}}</li>
-    <li>{{row.LastName}}</li>
-    <li>{{row.birthDate}}</li>
-    <li>{{row.image}}</li>
-    <button></button>
+    <li>first name  {{row.firstName}}</li>
+    <li>last name{{row.LastName}}</li>
+    <li>biarth data {{row.birthDate}}</li>
+    <!-- <li>{{row.image}}</li> -->
+    <li><img [src]="row.image" [alt]="row.firstName"></li>
     <!-- <button routerLink="" (click)="sendId(prodectItem.id)" class="btn btn-primary">show more info</button> -->
+    <br>
     <button routerLink="update/{{row._id}}"  class="btn btn-primary">update </button>
+    <br>
+    <br>
     <button (click)="delete(row._id)"  class="btn btn-primary">delete</button>
     <!-- <button routerLink="delete/{{row._id}}"   class="btn btn-primary">delete</button> -->
 
