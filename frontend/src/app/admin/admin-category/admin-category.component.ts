@@ -28,7 +28,7 @@ export class AdminCategoryComponent {
   }
 
   ngOnInit() {
-    this.category.getCategories().subscribe((res:any)=>this.categories=res.categories); // Fix the property name here
+    this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
   }
 
 
