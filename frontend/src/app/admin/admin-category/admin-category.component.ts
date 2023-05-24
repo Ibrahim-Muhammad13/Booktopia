@@ -10,8 +10,10 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./admin-category.component.css']
 })
 export class AdminCategoryComponent {
+
   categories:Category[]= [];
   newCategoryName: string = '';
+
 
   constructor(private category:CategoriesService) { }
 

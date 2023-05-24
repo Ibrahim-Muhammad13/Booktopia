@@ -14,7 +14,7 @@ async function getting (res){
     const respons=  await auther.find()    
   // const respons=  await usermodel.find({firstName:"John"})    
     console.log(respons)
-    res.status(201).json("come with get id method by id "+respons )
+    res.status(201).json(respons)
   } catch (e) {
     res.status(500).json(e)
   }}
@@ -27,7 +27,7 @@ const respons=await auther.findById(id)
     // const respons=  await auther.find()    
 
     console.log(respons)
-    res.status(201).json("come with get one id method by id "+respons )
+    res.status(201).json(respons )
   } catch (e) {
     res.status(500).json(e)
     }}

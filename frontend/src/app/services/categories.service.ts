@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,6 @@ updateCategory(catId: string, cat: string) {
   return this.http.put(`http://localhost:3000/admin/category/`+catId, category).subscribe((res:any)=>console.log(res));
 }
 
+
 }
+

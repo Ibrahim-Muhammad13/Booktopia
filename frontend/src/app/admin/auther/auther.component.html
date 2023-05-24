@@ -1,0 +1,20 @@
+<p>auther works!</p>
+<h1>auther page </h1> 
+
+
+
+<div *ngFor="let row of Auther">
+    <li>{{row.firstName}}</li>
+    <li>{{row.LastName}}</li>
+    <li>{{row.birthDate}}</li>
+    <li>{{row.image}}</li>
+    <button></button>
+    <!-- <button routerLink="" (click)="sendId(prodectItem.id)" class="btn btn-primary">show more info</button> -->
+    <button routerLink="update/{{row._id}}"  class="btn btn-primary">update </button>
+    <button (click)="delete(row._id)"  class="btn btn-primary">delete</button>
+    <!-- <button routerLink="delete/{{row._id}}"   class="btn btn-primary">delete</button> -->
+
+<hr>
+</div>
+
+    <button routerLink="add" class="btn btn-primary">add new auther</button>
