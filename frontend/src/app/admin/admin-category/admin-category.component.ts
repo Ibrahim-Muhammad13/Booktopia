@@ -29,7 +29,7 @@ export class AdminCategoryComponent {
 
   items!: Category[];
   newItem: Category = {
-    _id :'',
+    _id : 0,
     cat_Name: '',
   };
 
@@ -45,12 +45,12 @@ export class AdminCategoryComponent {
     this.showForm = false;
   }
 
-  DeleteCategory(catId:string) {
+  DeleteCategory(catId:number) {
     console.log(catId);
     this.category.deleteCategory(catId)
     }
 
-  UpdateCategory(catId:string,cat:string) {
+  UpdateCategory(catId:number,cat:string) {
     this.category.updateCategory(catId,cat)
   }
 }

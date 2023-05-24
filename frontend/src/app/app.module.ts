@@ -19,7 +19,7 @@ import { AutherComponent } from './admin/auther/auther.component';
 import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
-
+import {AuthorsCardComponent} from './authors-card/authors-card.component';
 
 @NgModule({
   declarations: [
@@ -34,18 +34,17 @@ import { AutherAddComponent } from './admin/auther-add/auther-add.component';
     DashboardComponent,
     SidebarComponent,
     AdminCategoryComponent,
-
     AutherComponent,
     AutherUpdateComponent,
-    AutherAddComponent
-
+    AutherAddComponent,
+    AuthorsCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
 
-    ReactiveFormsModule
+    ReactiveFormsModule,
     
     FormsModule
 

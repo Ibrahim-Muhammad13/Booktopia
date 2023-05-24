@@ -18,11 +18,11 @@ createCategory(cat:string){
   return this.http.post('http://localhost:3000/admin/category',category).subscribe((res:any)=>console.log(res))
 }
 
-deleteCategory(catId: string) {
-  return this.http.delete('http://localhost:3000/admin/category/' +catId);
+deleteCategory(catId: number) {
+  return this.http.delete('http://localhost:3000/admin/category/'+catId).subscribe();
 }
 
-updateCategory(catId: string, cat: string) {
+updateCategory(catId: number, cat: string) {
   const category = { cat_Name: cat };
   return this.http.put(`http://localhost:3000/admin/category/`+catId, category).subscribe((res:any)=>console.log(res));
 }
