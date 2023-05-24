@@ -15,7 +15,7 @@ const auther = new mongoose.Schema({
     maxLength: [20,"maximm lengh is 20" ],
   },
   birthDate: {
-    type: Date,
+    type: String,
     required: [true, 'Must enter a last name'],
 
   },
