@@ -37,10 +37,11 @@ export class AdminCategoryComponent {
       const newCategory: Category = {
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
-      this.categories.push(newCategory);
-      this.newCategoryName = '';
+
       this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
       this.category.createCategory(newCategory);
+      this.categories.push(newCategory);  //push to ui whithout refresh
+      this.categoryForm.controls['categoryName'].setValue(''); //empty the input field
       this.showForm = false; // to back again to table when save button clicked
     }
 
