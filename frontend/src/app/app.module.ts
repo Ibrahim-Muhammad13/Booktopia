@@ -37,9 +37,7 @@ import {AuthorsCardComponent} from './authors-card/authors-card.component';
     DashboardComponent,
     SidebarComponent,
     AdminCategoryComponent,
-   
-    CategoryValidationPipe
-
+    CategoryValidationPipe,
     AutherComponent,
     AutherUpdateComponent,
     AutherAddComponent,

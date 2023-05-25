@@ -19,6 +19,7 @@ export class CategoriesService {
 
   createCategory(cat: string): Observable<Category[]>{
     const category = { cat_Name: cat };
+    console.log(category);
     return this.http.post<Category[]>('http://localhost:3000/admin/category', category);
   }
 

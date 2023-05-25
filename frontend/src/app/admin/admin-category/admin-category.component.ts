@@ -14,10 +14,10 @@ import { Subscription } from 'rxjs';
 export class AdminCategoryComponent implements OnDestroy {
   categories: Category[] = [];
   newCategoryName: string = '';
-
   showForm = false;
   categoryForm!: FormGroup;
-
+  selectedCategory: Category | null = null;
+  subscription: Subscription | undefined;
   
   constructor(private fb : FormBuilder, private category:CategoriesService){
     this.categoryForm = this.fb.group({
@@ -43,28 +43,29 @@ export class AdminCategoryComponent implements OnDestroy {
   }
 
 
-  saveCategory(cat:String){
+  saveCategory(cat:string){
       const newCategory: Category = {
+        _id:0,
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
      this.category.createCategory(cat).subscribe((res: any) => {
-//       this.fetchCategories();
-//       this.cancelForm();
+        this.fetchCategories();
+      this.cancelForm();
     });
       this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
-      this.category.createCategory(newCategory);
       this.categories.push(newCategory);  //push to ui whithout refresh
       this.categoryForm.controls['categoryName'].setValue(''); //empty the input field
       this.showForm = false; // to back again to table when save button clicked
     }
 
-//     deleteCategory(index: number) {
-//       this.categories.splice(index, 1); // delete from table ui only
-//     }
+    deleteCategoryFromTabel(index: number) {
+      this.categories.splice(index, 1); // delete from table ui only
+    }
 
 
   items!: Category[];
   newItem: Category = {
+    _id: 0,
     cat_Name: '',
   };
 
@@ -72,7 +73,7 @@ export class AdminCategoryComponent implements OnDestroy {
     this.items.push(this.newItem);
     this.showForm = false;
 
-  
+  }
 
   editCategory(category: Category) {
     this.selectedCategory = category;
@@ -83,12 +84,13 @@ export class AdminCategoryComponent implements OnDestroy {
 
   updateCategory(catId: number, cat: string) {
     this.category.updateCategory(catId, cat).subscribe((res: any) => {
-      this.fetchCategories();
+       this.fetchCategories();
       this.cancelForm();
     });
   }
 
-  deleteCategory(catId: number) {
+  deleteCategory(catId: number, i: number) {
+    this.deleteCategoryFromTabel(i);
     console.log(catId);
     this.category.deleteCategory(catId).subscribe((res: any) => {
       this.fetchCategories();
@@ -109,6 +111,7 @@ export class AdminCategoryComponent implements OnDestroy {
     }
   }
 
-  showForm = false;
+
   isNewCategory = false;
 }
+
