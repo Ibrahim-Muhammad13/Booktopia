@@ -1,0 +1,79 @@
+<h1></h1>
+<form [formGroup]="rigester"method=post  enctype="multipart/form-data" (ngSubmit)="submitlogin($event)">
+
+
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input  type="text" class="form-control"  [class.is-invalid]="firstName?.invalid && firstName?.touched"   [class.is-valid]="firstName?.valid" id="name" aria-describedby="nameHelp"  formControlName="firstName" name="full name" > 
+      
+      <div id="nameHelp" class="form-text text-danger" *ngIf="firstName?.touched && firstName?.invalid">
+     <span *ngIf="firstName?.errors?.['required']">
+        this filed is requerd
+     </span>
+      <span *ngIf="firstName?.errors?.['minlength']">
+     min lengh is 4
+     </span>
+    </div> 
+</div>
+
+
+
+<div class="mb-3">
+   <label for="lastname" class="form-label">last name</label>
+   <input  type="text" class="form-control"  [class.is-invalid]="lastName?.invalid && lastName?.touched"   [class.is-valid]="lastName?.valid" id="name" aria-describedby="lastnameHelp"  formControlName=LastName name="lastname" > 
+   
+   <div id="lastnameHelp" class="form-text text-danger" *ngIf="lastName?.touched && lastName?.invalid">
+  <span *ngIf="lastName?.errors?.['required']">
+     this filed is requerd
+  </span>
+   <span *ngIf="lastName?.errors?.['minlength']">
+     min lengh is 4
+  </span>
+ </div> 
+</div>
+
+
+
+
+
+<div class="mb-3">
+   <label for="barth" class="form-label">barth date</label>
+   <input  type="datetime" class="form-control"  [class.is-invalid]="biarth_date?.invalid && biarth_date?.touched"   [class.is-valid]="biarth_date?.valid" id="biarth_date" aria-describedby="biarth_dateHelp"  formControlName=birthDate name="biarth_date" > 
+   
+   <div id="biarth_dateHelp" class="form-text text-danger" *ngIf="biarth_date?.touched && biarth_date?.invalid">
+  <span *ngIf="biarth_date?.errors?.['required']">
+     this filed is requerd
+  </span>
+ </div> 
+</div>
+
+
+
+<div class="mb-3">
+   <label for="image" class="form-label">image</label>
+   <input  type="file" class="form-control"  [class.is-invalid]="image?.invalid && image?.touched"   [class.is-valid]="image?.valid" id="biarth_date" aria-describedby="imageHelp"  formControlName=image name="image" > 
+   
+   <div id="imageHelp" class="form-text text-danger" *ngIf="image?.touched && image?.invalid">
+  <span *ngIf="image?.errors?.['required']">
+     this filed is requerd
+  </span>
+ </div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+    <button type="submit" class="btn btn-primary" >Submit</button>
+    <!-- <button type="submit" class="btn btn-primary" [disabled]="rigester.invalid">Submit</button> -->
+  </form> 
+
+  <div>
+     {{rigester.value|json}}
+  </div>

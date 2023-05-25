@@ -14,9 +14,15 @@ import { HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
-import { AuthorsCardComponent } from './authors-card/authors-card.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { CategoryValidationPipe } from './pipes/category-validation.pipe';
+
+import { AutherComponent } from './admin/auther/auther.component';
+import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AutherAddComponent } from './admin/auther-add/auther-add.component';
+import {AuthorsCardComponent} from './authors-card/authors-card.component';
+
 
 @NgModule({
   declarations: [
@@ -31,8 +37,14 @@ import { CategoryValidationPipe } from './pipes/category-validation.pipe';
     DashboardComponent,
     SidebarComponent,
     AdminCategoryComponent,
-    AuthorsCardComponent,
+   
     CategoryValidationPipe
+
+    AutherComponent,
+    AutherUpdateComponent,
+    AutherAddComponent,
+    AuthorsCardComponent
+
   ],
   imports: [
     BrowserModule,
@@ -40,6 +52,7 @@ import { CategoryValidationPipe } from './pipes/category-validation.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

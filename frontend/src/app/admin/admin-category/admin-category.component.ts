@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+
+
+import { Component, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-category',
   templateUrl: './admin-category.component.html',
   styleUrls: ['./admin-category.component.css']
 })
-export class AdminCategoryComponent {
-  categories:Category[]= [];
+export class AdminCategoryComponent implements OnDestroy {
+  categories: Category[] = [];
   newCategoryName: string = '';
+
   showForm = false;
   categoryForm!: FormGroup;
 
@@ -26,16 +30,27 @@ export class AdminCategoryComponent {
       });
   }
 
+ 
   ngOnInit() {
-    this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
+    this.fetchCategories();
+
+  }
+
+  fetchCategories() {
+    this.subscription = this.category.getCategories().subscribe((res: any) => {
+      this.categories = res.categories;
+    });
   }
 
 
-  saveCategory(){
-      console.log(this.categories);
+  saveCategory(cat:String){
       const newCategory: Category = {
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
+     this.category.createCategory(cat).subscribe((res: any) => {
+//       this.fetchCategories();
+//       this.cancelForm();
+    });
       this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
       this.category.createCategory(newCategory);
       this.categories.push(newCategory);  //push to ui whithout refresh
@@ -43,9 +58,9 @@ export class AdminCategoryComponent {
       this.showForm = false; // to back again to table when save button clicked
     }
 
-    deleteCategory(index: number) {
-      this.categories.splice(index, 1); // delete from table ui only
-    }
+//     deleteCategory(index: number) {
+//       this.categories.splice(index, 1); // delete from table ui only
+//     }
 
 
   items!: Category[];
@@ -56,16 +71,44 @@ export class AdminCategoryComponent {
   addItem() {
     this.items.push(this.newItem);
     this.showForm = false;
+
+  
+
+  editCategory(category: Category) {
+    this.selectedCategory = category;
+    this.newCategoryName = category.cat_Name;
+    this.showForm = true;
+    this.isNewCategory = false;
+  }
+
+  updateCategory(catId: number, cat: string) {
+    this.category.updateCategory(catId, cat).subscribe((res: any) => {
+      this.fetchCategories();
+      this.cancelForm();
+    });
+  }
+
+  deleteCategory(catId: number) {
+    console.log(catId);
+    this.category.deleteCategory(catId).subscribe((res: any) => {
+      this.fetchCategories();
+    });
+
   }
 
   cancelForm() {
+    this.selectedCategory = null;
     this.newCategoryName = '';
     this.showForm = false;
+    this.isNewCategory = false;
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  showForm = false;
+  isNewCategory = false;
 }
-
-
-
-
-
