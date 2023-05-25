@@ -33,17 +33,8 @@ app.use('/user', userRouter);
 app.use('/books', booksRouter);
 
 
-
-// app.post('/upload', upload.single('url'), function (req, res) {
-//    console.log(req.file)
-//    console.log("djd")
-//    console.log( req.body)
-//    res.send("done")
-// });
-
-
-
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+module.exports = app;
