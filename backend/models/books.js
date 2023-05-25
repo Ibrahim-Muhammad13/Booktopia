@@ -8,7 +8,7 @@ name: {
     type: Number,
   },
   authorId: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'auther',
   },
   categoryId: {
