@@ -1,0 +1,28 @@
+<p>admin-book works!</p>
+
+<div *ngFor="let item of books">
+    <div>{{item.name}}</div>
+<button  class="btn btn-warning">edit</button>
+<button  class="btn btn-danger">delete</button>
+</div>
+
+<form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">name</label>
+      <input [(ngModel)]="bookName" name="name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" name="rate" class="form-label">rate</label>
+      <input [(ngModel)]="rate" name="rate" type="number" class="form-control" id="exampleInputPassword1">
+    </div>
+    <select  [(ngModel)]="autherId" name="author" class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option *ngFor="let auther of authers" value={{auther._id}}>{{auther.firstName}} {{auther.LastName}}</option>
+      </select>
+      <select  [(ngModel)]="categoryId" name="cat" class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option *ngFor="let cat of categories" value={{cat._id}}>{{cat.cat_Name}}</option>
+      </select>
+    <button (click)="addBook()" type="submit" class="btn btn-primary">Submit</button>
+  </form>

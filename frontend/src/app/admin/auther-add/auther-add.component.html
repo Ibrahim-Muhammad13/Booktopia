@@ -1,12 +1,12 @@
 <p>auther-add works!</p>
 <h1></h1>
-<form [formGroup]="rigester"  enctype="multipart/form-data" (ngSubmit)="submitlogin()">
+<form [formGroup]="rigester"  enctype="multipart/form-data" (ngSubmit)="submitlogin($event)">
 
 
 
     <div class="mb-3">
       <label for="name" class="form-label">Full Name</label>
-      <input  type="text" class="form-control"  [class.is-invalid]="firstName?.invalid && firstName?.touched"   [class.is-valid]="firstName?.valid" id="name" aria-describedby="nameHelp"  formControlName="firstName" name="full name" > 
+      <input  type="text" class="form-control"  [class.is-invalid]="firstName?.invalid && firstName?.touched"   [class.is-valid]="firstName?.valid" id="name" aria-describedby="nameHelp"  formControlName="firstName" name="firstName" > 
       
       <div id="nameHelp" class="form-text text-danger" *ngIf="firstName?.touched && firstName?.invalid">
      <span *ngIf="firstName?.errors?.['required']">
@@ -22,7 +22,7 @@
 
 <div class="mb-3">
    <label for="lastname" class="form-label">last name</label>
-   <input  type="text" class="form-control"  [class.is-invalid]="lastName?.invalid && lastName?.touched"   [class.is-valid]="lastName?.valid" id="name" aria-describedby="lastnameHelp"  formControlName=LastName name="lastname" > 
+   <input  type="text" class="form-control"  [class.is-invalid]="lastName?.invalid && lastName?.touched"   [class.is-valid]="lastName?.valid" id="name" aria-describedby="lastnameHelp"  formControlName=LastName name="LastName" > 
    
    <div id="lastnameHelp" class="form-text text-danger" *ngIf="lastName?.touched && lastName?.invalid">
   <span *ngIf="lastName?.errors?.['required']">
@@ -40,7 +40,7 @@
 
 <div class="mb-3">
    <label for="barth" class="form-label">barth date</label>
-   <input  type="datetime" class="form-control"  [class.is-invalid]="biarth_date?.invalid && biarth_date?.touched"   [class.is-valid]="biarth_date?.valid" id="biarth_date" aria-describedby="biarth_dateHelp"  formControlName=birthDate name="biarth_date" > 
+   <input  type="datetime" class="form-control"  [class.is-invalid]="biarth_date?.invalid && biarth_date?.touched"   [class.is-valid]="biarth_date?.valid" id="biarth_date" aria-describedby="biarth_dateHelp"  formControlName=birthDate name="birthDate" > 
    
    <div id="biarth_dateHelp" class="form-text text-danger" *ngIf="biarth_date?.touched && biarth_date?.invalid">
   <span *ngIf="biarth_date?.errors?.['required']">

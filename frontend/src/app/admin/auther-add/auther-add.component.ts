@@ -48,9 +48,12 @@ ngOnInit() {
 }
 
 
-     submitlogin( ){
-      console.log(this.rigester.value)
-      this.auther.Newauther(this.rigester.value)
+     submitlogin( e:any){
+      console.log(e.target)
+      let fd =new FormData(e.target)
+      // console.log(this.rigester.value)
+      this.auther.Newauther(fd)
+      // this.auther.Newauther(this.rigester.value)
     }
 }
 

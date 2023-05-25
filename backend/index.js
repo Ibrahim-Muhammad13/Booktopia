@@ -12,7 +12,7 @@ const userRouter = require('./routes/user');
 const booksRouter = require('./routes/books');
 
 // const Authentication=require("./routes/");
-
+app.use('/images/',express.static('images'))
 app.use(express.json());
 app.use(cors({
   origin: '*'

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Category } from '../models/category';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +16,10 @@ export class CategoriesService {
     return this.http.get<Category[]>('http://localhost:3000/admin/category');
   }
 
+
   createCategory(cat: string): Observable<Category[]>{
     const category = { cat_Name: cat };
+    console.log(category);
     return this.http.post<Category[]>('http://localhost:3000/admin/category', category);
   }
 

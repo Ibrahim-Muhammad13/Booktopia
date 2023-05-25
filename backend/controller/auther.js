@@ -3,7 +3,7 @@ const auther = require("../models/author");// for database
 async function creation (data, res){
   try {
     const respons=  await auther.create(data)
-
+    // res.status(201).json(data)
     res.status(201).json("create accout seccessful "+respons )
   } catch (e) {
     res.status(500).json(e)
@@ -35,6 +35,8 @@ const respons=await auther.findById(id)
 async function edit (id,data,res){
   try {
    const respons=  await auther.findByIdAndUpdate(id,data)    
+  //  console.log(data)
+
     res.status(201).json("come with updata method by id "+respons )
     } catch (e) {
     res.status(500).json(e)

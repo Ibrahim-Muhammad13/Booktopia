@@ -3,7 +3,7 @@ async function creation (data, res){
   try {
     const respons=  await books.create(data)
 
-    res.status(201).json("create accout seccessful "+respons )
+    res.status(201).json(respons )
   } catch (e) {
     res.status(500).json(e)
   }}
@@ -11,7 +11,7 @@ async function creation (data, res){
 async function getting (res){
   try {
     const respons=  await books.find()    
-    res.status(201).json("come with git all by id "+respons )
+    res.status(201).json(respons)
   } catch (e) {
     res.status(500).json("error")
   }}
@@ -42,8 +42,8 @@ async function remove (id,res){
     res.status(500).json("error")
 }}
 
-      module.exports={
-        creation,getting,gettingbyId,remove,edit
-        // ,gettingbyid,edit ,remove
-            // add,edit,remove,parse2 ,checked,show
-        }
+module.exports={
+  creation,getting,gettingbyId,remove,edit
+  // ,gettingbyid,edit ,remove
+      // add,edit,remove,parse2 ,checked,show
+  }

@@ -15,11 +15,15 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 
+import { CategoryValidationPipe } from './pipes/category-validation.pipe';
+
 import { AutherComponent } from './admin/auther/auther.component';
 import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import {AuthorsCardComponent} from './authors-card/authors-card.component';
+import { AdminBookComponent } from './admin/admin-book/admin-book.component';
+
 
 @NgModule({
   declarations: [
@@ -34,19 +38,20 @@ import {AuthorsCardComponent} from './authors-card/authors-card.component';
     DashboardComponent,
     SidebarComponent,
     AdminCategoryComponent,
+    CategoryValidationPipe,
     AutherComponent,
     AutherUpdateComponent,
     AutherAddComponent,
-    AuthorsCardComponent
+    AuthorsCardComponent,
+    AdminBookComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
-    ReactiveFormsModule,
-    
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
