@@ -46,13 +46,14 @@ ngOnInit() {
      })}
 
 
-     submitlogin( ){
-      // console.log(this.rigester.value)
+     submitlogin(e:any){
+      let fd =new FormData(e.target)
       if (this.rigester.value.image==null){
         this.rigester.value.image=this.Auther.image
       }
   let id :number=this.activeRouter.snapshot.params['id']
-      this.auther.updateauther(this.rigester.value,id)
+      this.auther.updateauther(fd,id)
+      // this.auther.updateauther(this.rigester.value,id)
     }
 
 
