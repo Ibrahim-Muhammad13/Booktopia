@@ -1,28 +1,106 @@
-<p>admin-book works!</p>
+<div class="container">
+  <div class="row">
+    <div class="table-container">
+      <form>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Book Name</th>
+              <th scope="col" *ngIf="showForm">Rate</th>
+              <th scope="col" *ngIf="showForm">Author Name</th>
+              <th scope="col" *ngIf="showForm">Category Name</th>
 
-<div *ngFor="let item of books">
-    <div>{{item.name}}</div>
-<button  class="btn btn-warning">edit</button>
-<button  class="btn btn-danger">delete</button>
+              <th scope="col">Action</th>
+              <th scope="col" class="d-flex justify-content-end" *ngIf="!showForm">
+                <button type="button" class="btn btn-success" (click)="showForm=true; isNewCategory=true">Add</button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="showForm; else bookList">
+              <tr>
+                <td>
+                  <input
+                    [(ngModel)]="bookName"
+                    name="name"
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                  />
+                </td>
+                <td>
+                  <input
+                    [(ngModel)]="rate"
+                    name="rate"
+                    type="number"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                  />
+                </td>
+                <td>
+                  <select
+                    [(ngModel)]="autherId"
+                    name="author"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Choose Your Auther Name</option>
+                    <option
+                      *ngFor="let auther of authers"
+                      value="{{ auther._id }}"
+                    >
+                      {{ auther.firstName }} {{ auther.LastName }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <select
+                    [(ngModel)]="categoryId"
+                    name="cat"
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Choose Your Category Name</option>
+                    <option
+                      *ngFor="let cat of categories"
+                      value="{{ cat._id }}"
+                    >
+                      {{ cat.cat_Name }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <ng-container *ngIf="isNewCategory">
+                    <button (click)="addBook()" type="submit" class="btn btn-primary me-3">Save</button>
+                  </ng-container>
+                  <ng-container *ngIf="!isNewCategory">
+                    <button type="button" class="btn btn-primary me-1" (click)="selectedCategory && updateBook(selectedCategory._id)">Update</button>
+                  </ng-container>
+                  <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+                </td>
+              </tr>
+            </ng-container>
+
+            <ng-template #bookList>
+              <tr *ngFor="let category of categories; let i = index">
+                <td scope="row">{{category.cat_Name}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary me-4" (click)="editCategory(category)">Edit</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteCategory(category._id,i)">Delete</button>
+                </td>
+              </tr>
+          </ng-template>
+
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
 </div>
-
-<form>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">name</label>
-      <input [(ngModel)]="bookName" name="name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" name="rate" class="form-label">rate</label>
-      <input [(ngModel)]="rate" name="rate" type="number" class="form-control" id="exampleInputPassword1">
-    </div>
-    <select  [(ngModel)]="autherId" name="author" class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option *ngFor="let auther of authers" value={{auther._id}}>{{auther.firstName}} {{auther.LastName}}</option>
-      </select>
-      <select  [(ngModel)]="categoryId" name="cat" class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option *ngFor="let cat of categories" value={{cat._id}}>{{cat.cat_Name}}</option>
-      </select>
-    <button (click)="addBook()" type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<!--  (click)="editCategory(category)" -->
+<!-- (click)="deleteCategory(category._id,i)" -->
+<!--  <th scope="col" *ngIf="showForm">
+        <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+      </th>
+-->

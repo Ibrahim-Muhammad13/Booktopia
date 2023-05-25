@@ -1,6 +1,4 @@
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
-
 import { Component, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
