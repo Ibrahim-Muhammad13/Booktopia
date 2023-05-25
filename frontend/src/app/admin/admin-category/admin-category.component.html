@@ -1,32 +1,45 @@
 
- <table class="table">
-    <thead>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" *ngIf="!showForm">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Action</th>
+      <th scope="col">Handle</th>
+      <th scope="col" *ngIf="!showForm">
+        <button type="button" class="btn btn-success" (click)="showForm=true; isNewCategory=true">Add</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngIf="showForm; else categoryList">
       <tr>
-        <th scope="col" *ngIf="!showForm">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Action</th>
-        <th scope="col">Handle</th>
-        <th scope="col" *ngIf="!showForm"><button type="button" class="btn btn-success" (click)="showForm=true">Add</button></th>
+        <td>
+          <input type="text" class="form-control" name="category" [(ngModel)]="newCategoryName" id="cat"
+            placeholder="Enter Category Name">
+        </td>
+        <td *ngIf="isNewCategory">
+          <button type="button" class="btn btn-primary" (click)="saveCategory(newCategoryName)">Save</button>
+        </td>
+        <td *ngIf="!isNewCategory">
+          <button type="button" class="btn btn-primary" (click)="selectedCategory && updateCategory(selectedCategory._id, newCategoryName)">Update</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngIf="showForm; else categoryList">
-        <tr>
-          <input type="text" class="form-control" name="category" [(ngModel)]="newCategoryName"  id="cat" placeholder="Enter Category Name">
-          <td><button type="button" class="btn btn-primary" (click)="saveCategory(newCategoryName)">Save</button></td>
-          <td><button type="button" class="btn btn-danger" (click)="showForm=false">Cancel</button></td>
-          <td></td>
-        </tr>
-      </ng-container>
-      <ng-template #categoryList>
-        <tr *ngFor="let category of categories; let i = index">
-          <th scope="row">{{i + 1}}</th>
-          <td>{{category.cat_Name}}</td>
-          <td><button type="button" class="btn btn-primary" (click)="UpdateCategory(category._id,newCategoryName); showForm=true">Edit</button></td>
-          <td><button type="button" class="btn btn-danger" (click)="DeleteCategory(category._id)">Delete</button></td></tr>
-
-      </ng-template>
-      
-    </tbody>
-
-  </table> 
+    </ng-container>
+    <ng-template #categoryList>
+      <tr *ngFor="let category of categories; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ category.cat_Name }}</td>
+        <td>
+          <button type="button" class="btn btn-primary" (click)="editCategory(category)">Edit</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" (click)="deleteCategory(category._id)">Delete</button>
+        </td>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>
