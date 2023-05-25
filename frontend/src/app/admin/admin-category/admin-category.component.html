@@ -1,45 +1,58 @@
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" *ngIf="!showForm">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Action</th>
-      <th scope="col">Handle</th>
-      <th scope="col" *ngIf="!showForm">
-        <button type="button" class="btn btn-success" (click)="showForm=true; isNewCategory=true">Add</button>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngIf="showForm; else categoryList">
-      <tr>
-        <td>
-          <input type="text" class="form-control" name="category" [(ngModel)]="newCategoryName" id="cat"
-            placeholder="Enter Category Name">
-        </td>
-        <td *ngIf="isNewCategory">
-          <button type="button" class="btn btn-primary" (click)="saveCategory(newCategoryName)">Save</button>
-        </td>
-        <td *ngIf="!isNewCategory">
-          <button type="button" class="btn btn-primary" (click)="selectedCategory && updateCategory(selectedCategory._id, newCategoryName)">Update</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
-        </td>
-      </tr>
-    </ng-container>
-    <ng-template #categoryList>
-      <tr *ngFor="let category of categories; let i = index">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ category.cat_Name }}</td>
-        <td>
-          <button type="button" class="btn btn-primary" (click)="editCategory(category)">Edit</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-danger" (click)="deleteCategory(category._id)">Delete</button>
-        </td>
-      </tr>
-    </ng-template>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="table-container">
+      <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" *ngIf="!showForm">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+            <th scope="col" *ngIf="!showForm">
+              <button type="button" class="btn btn-success" (click)="showForm = true">Add</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="showForm; else categoryList">
+            <tr>
+              <td>
+                <input type="text" class="form-control" formControlName="categoryName"
+                [ngClass]="{'is-invalid': categoryForm.controls['categoryName'].invalid && (categoryForm.controls['categoryName'].dirty || categoryForm.controls['categoryName'].touched)}"
+                required
+                minlength="4"
+                maxlength="20"
+                pattern="^[^0-9].*"
+                id="cat" placeholder="Enter Category Name">
+              <div *ngIf="categoryForm.controls['categoryName'].invalid && (categoryForm.controls['categoryName'].dirty || categoryForm.controls['categoryName'].touched)"
+                class="invalid-feedback">
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['required']">Category name is required.</div>
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['minlength'] && !categoryForm.controls['categoryName'].errors?.['pattern']">Category name must be at least 4 characters.</div>
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['maxlength']">Category name can't be more than 20 characters.</div>
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['pattern'] && categoryForm.controls['categoryName'].errors?.['minlength']">Category name can't start with a number.</div>
+              </div>
+              </td>
+              <td>
+                <button type="submit" class="btn btn-primary me-4" [disabled]="categoryForm.controls['categoryName'].invalid || !categoryForm.controls['categoryName'].dirty">Save</button>
+                <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+              </td>
+
+            </tr>
+          </ng-container>
+          <ng-template #categoryList>
+              <tr *ngFor="let category of categories; let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{category.cat_Name}}</td>
+                <td>
+                  <button type="button" class="btn btn-primary me-4">Edit</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteCategory(i)">Delete</button>
+                </td>
+              </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </form>
+    </div>
+  </div>
+</div>

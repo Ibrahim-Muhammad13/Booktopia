@@ -1,3 +1,5 @@
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+
 
 import { Component, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/models/category';
@@ -12,13 +14,26 @@ import { Subscription } from 'rxjs';
 export class AdminCategoryComponent implements OnDestroy {
   categories: Category[] = [];
   newCategoryName: string = '';
-  selectedCategory: Category | null = null;
-  subscription: Subscription | undefined;
 
-  constructor(private category: CategoriesService) {}
+  showForm = false;
+  categoryForm!: FormGroup;
 
+  
+  constructor(private fb : FormBuilder, private category:CategoriesService){
+    this.categoryForm = this.fb.group({
+      categoryName: [null, [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(20),
+        Validators.pattern(/^[^0-9].*/)
+      ]]
+      });
+  }
+
+ 
   ngOnInit() {
     this.fetchCategories();
+
   }
 
   fetchCategories() {
@@ -27,13 +42,37 @@ export class AdminCategoryComponent implements OnDestroy {
     });
   }
 
-  saveCategory(cat: string) {
-    console.log(cat);
-    this.category.createCategory(cat).subscribe((res: any) => {
-      this.fetchCategories();
-      this.cancelForm();
+
+  saveCategory(cat:String){
+      const newCategory: Category = {
+        cat_Name: this.categoryForm.controls['categoryName']?.value,
+      };
+     this.category.createCategory(cat).subscribe((res: any) => {
+//       this.fetchCategories();
+//       this.cancelForm();
     });
-  }
+      this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
+      this.category.createCategory(newCategory);
+      this.categories.push(newCategory);  //push to ui whithout refresh
+      this.categoryForm.controls['categoryName'].setValue(''); //empty the input field
+      this.showForm = false; // to back again to table when save button clicked
+    }
+
+//     deleteCategory(index: number) {
+//       this.categories.splice(index, 1); // delete from table ui only
+//     }
+
+
+  items!: Category[];
+  newItem: Category = {
+    cat_Name: '',
+  };
+
+  addItem() {
+    this.items.push(this.newItem);
+    this.showForm = false;
+
+  
 
   editCategory(category: Category) {
     this.selectedCategory = category;
@@ -54,6 +93,7 @@ export class AdminCategoryComponent implements OnDestroy {
     this.category.deleteCategory(catId).subscribe((res: any) => {
       this.fetchCategories();
     });
+
   }
 
   cancelForm() {

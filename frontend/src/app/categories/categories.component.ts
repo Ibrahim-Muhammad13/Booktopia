@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoriesService } from '../services/categories.service';
-// import { Categories} from '../admin/interfaces/categories'
+
 
 @Component({
   selector: 'app-categories',
