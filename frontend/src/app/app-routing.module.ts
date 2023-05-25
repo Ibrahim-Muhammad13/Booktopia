@@ -12,6 +12,7 @@ import { AdminCategoryComponent } from './admin/admin-category/admin-category.co
 import { AutherComponent } from './admin/auther/auther.component';
 import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
+import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,9 @@ const routes: Routes = [
       {
         path: 'auther/add',
         component:AutherAddComponent,
+      },{
+        path: 'books',
+        component:AdminBookComponent,
       }
     
     ]
