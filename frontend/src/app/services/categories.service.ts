@@ -23,12 +23,12 @@ export class CategoriesService {
     return this.http.post<Category[]>('http://localhost:3000/admin/category', category);
   }
 
-  deleteCategory(catId: number): Observable<Category[]> {
-    return this.http.delete<Category[]>('http://localhost:3000/admin/category/' + catId);
-  }
-
   updateCategory(catId: number, cat: string): Observable<Category[]>{
     const category = { cat_Name: cat };
     return this.http.put<Category[]>(`http://localhost:3000/admin/category/` + catId, category);
+  }
+
+  deleteCategory(catId: number): Observable<Category[]> {
+    return this.http.delete<Category[]>('http://localhost:3000/admin/category/' + catId);
   }
 }

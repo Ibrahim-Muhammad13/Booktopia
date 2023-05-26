@@ -1,3 +1,4 @@
+<h1 class="p-2">Admin Books</h1>
 <div class="container">
   <div class="row">
     <div class="table-container">
@@ -9,10 +10,9 @@
               <th scope="col" *ngIf="showForm">Rate</th>
               <th scope="col" *ngIf="showForm">Author Name</th>
               <th scope="col" *ngIf="showForm">Category Name</th>
-
               <th scope="col">Action</th>
-              <th scope="col" class="d-flex justify-content-end" *ngIf="!showForm">
-                <button type="button" class="btn btn-success" (click)="showForm=true; isNewCategory=true">Add</button>
+              <th scope="col" class="d-flex justify-content-end">
+                <button type="button" class="btn btn-success" (click)="showForm=true; isNewBook=true">Add</button>
               </th>
             </tr>
           </thead>
@@ -41,15 +41,9 @@
                 <td>
                   <select
                     [(ngModel)]="autherId"
-                    name="author"
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
+                    name="author" class="form-select" aria-label="Default select example">
                     <option selected>Choose Your Auther Name</option>
-                    <option
-                      *ngFor="let auther of authers"
-                      value="{{ auther._id }}"
-                    >
+                    <option *ngFor="let auther of authers" value="{{ auther._id }}">
                       {{ auther.firstName }} {{ auther.LastName }}
                     </option>
                   </select>
@@ -63,19 +57,18 @@
                   >
                     <option selected>Choose Your Category Name</option>
                     <option
-                      *ngFor="let cat of categories"
-                      value="{{ cat._id }}"
-                    >
-                      {{ cat.cat_Name }}
+                      *ngFor="let category of categories"
+                      value="{{ category._id }}">
+                      {{ category.cat_Name }}
                     </option>
                   </select>
                 </td>
                 <td>
-                  <ng-container *ngIf="isNewCategory">
+                  <ng-container *ngIf="isNewBook">
                     <button (click)="addBook()" type="submit" class="btn btn-primary me-3">Save</button>
                   </ng-container>
-                  <ng-container *ngIf="!isNewCategory">
-                    <button type="button" class="btn btn-primary me-1" (click)="selectedCategory && updateBook(selectedCategory._id)">Update</button>
+                  <ng-container *ngIf="!isNewBook">
+                    <button type="button" class="btn btn-primary me-1" (click)="selectedBook && updateBook(selectedBook._id, newBookName)">Update</button>
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
@@ -83,11 +76,11 @@
             </ng-container>
 
             <ng-template #bookList>
-              <tr *ngFor="let category of categories; let i = index">
-                <td scope="row">{{category.cat_Name}}</td>
+              <tr *ngFor="let book of books; let i = index">
+                <td scope="row">{{book.name}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary me-4" (click)="editCategory(category)">Edit</button>
-                  <button type="button" class="btn btn-danger" (click)="deleteCategory(category._id,i)">Delete</button>
+                  <button type="button" class="btn btn-primary me-4" (click)="editBook(book)" >Edit</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteBook(book._id,i)">Delete</button>
                 </td>
               </tr>
           </ng-template>
@@ -98,6 +91,8 @@
     </div>
   </div>
 </div>
+
+
 <!--  (click)="editCategory(category)" -->
 <!-- (click)="deleteCategory(category._id,i)" -->
 <!--  <th scope="col" *ngIf="showForm">
