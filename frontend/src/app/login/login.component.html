@@ -1,1 +1,31 @@
-<p>login works!</p>
+<h1> Login</h1>
+    <form #login="ngForm" (ngSubmit)="submitlogin(login.value)">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address </label>
+      <input #email="ngModel" ngModel name="email"  type="email" class="form-control input" id="email" aria-describedby="emailHelp"   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"> 
+      <div id="emailHelp" class="form-text text-danger" *ngIf="email.touched && email.invalid">
+     <span *ngIf="email.errors?.['required']">
+        this filed is requerd
+     </span>
+     <span *ngIf="email.errors?.['pattern']">
+      this filed is email 
+   </span>
+    </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="Password" class="form-label">Password</label>
+      <input ngModel name="password" #password="ngModel" type="password" class="form-control input" id="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"> 
+
+      <div id="password" class="form-text text-danger" *ngIf="password.touched && password.invalid">
+        <span *ngIf="password.errors?.['required']">
+           this filed is requerd
+        </span>
+        <span *ngIf="password.errors?.['pattern']">
+            this filed is pattern andMust contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters
+         </span>
+ 
+       </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="login.invalid">Submit</button>
+  </form> 
