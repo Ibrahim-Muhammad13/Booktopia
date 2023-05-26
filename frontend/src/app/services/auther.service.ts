@@ -24,14 +24,10 @@ Newauther(auther:any){
 deletauther(id:string){
   return this.http.delete('http://localhost:3000/auther/'+id)
 }
-
-updateauther(auther:any,id:any){
-  // return this.http.put('http://localhost:3000/auther')
-
-  console.log(auther)
-  return this.http.put('http://localhost:3000/auther/'+id,auther).subscribe((res:any)=>console.log(res))
-
-  
+updateauther(auther: any, id: any) {
+  console.log(auther);
+  return this.http.put('http://localhost:3000/auther/' + id, auther);
 }
+
 
 }
