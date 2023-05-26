@@ -7,7 +7,6 @@ import { Injectable } from '@angular/core';
 export class AutherService {
 
   constructor(private http:HttpClient) { }
-
 getAllauther(){
   return this.http.get('http://localhost:3000/auther')
 }
