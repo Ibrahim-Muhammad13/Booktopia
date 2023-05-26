@@ -38,7 +38,7 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   this.getauthers();
   this.getcategories();
   this.fetchBooks();
-  
+
   }
   getauthers(){
     this.auther.getAllauther().subscribe((res:any)=>this.authers=res);

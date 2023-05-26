@@ -1,4 +1,5 @@
 <h1 class="p-2">Admin Books</h1>
+
 <div class="container">
   <div class="row">
     <div class="table-container">
@@ -10,8 +11,9 @@
               <th scope="col" *ngIf="showForm">Rate</th>
               <th scope="col" *ngIf="showForm">Author Name</th>
               <th scope="col" *ngIf="showForm">Category Name</th>
+
               <th scope="col">Action</th>
-              <th scope="col" class="d-flex justify-content-end">
+              <th scope="col" class="d-flex justify-content-end" *ngIf="!showForm">
                 <button type="button" class="btn btn-success" (click)="showForm=true; isNewBook=true">Add</button>
               </th>
             </tr>
