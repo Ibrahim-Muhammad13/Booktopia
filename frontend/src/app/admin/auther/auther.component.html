@@ -1,23 +1,31 @@
-<p>auther works!</p>
-<h1>auther page </h1> 
 
-
-
-<div *ngFor="let row of Auther">
-    <li>first name  {{row.firstName}}</li>
-    <li>last name{{row.LastName}}</li>
-    <li>biarth data {{row.birthDate}}</li>
-    <!-- <li>{{row.image}}</li> -->
-    <li><img [src]="row.image" [alt]="row.firstName"></li>
-    <!-- <button routerLink="" (click)="sendId(prodectItem.id)" class="btn btn-primary">show more info</button> -->
-    <br>
-    <button routerLink="update/{{row._id}}"  class="btn btn-primary">update </button>
-    <br>
-    <br>
-    <button (click)="delete(row._id)"  class="btn btn-primary">delete</button>
-    <!-- <button routerLink="delete/{{row._id}}"   class="btn btn-primary">delete</button> -->
-
-<hr>
-</div>
-
-    <button routerLink="add" class="btn btn-primary">add new auther</button>
+    <div class="container">
+        <h1>Author Page</h1>
+      
+        <table class="table table-bordered" style="border-color: black;">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Birth Date</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of Auther">
+              <td>{{row.firstName}}</td>
+              <td>{{row.LastName}}</td>
+              <td>{{row.birthDate}}</td>
+              <td><img [src]="row.image" [alt]="row.firstName" class="author-image"></td>
+              <td>
+                <button routerLink="update/{{row._id}}" class="btn btn-primary ">Update</button>
+                <button (click)="delete(row._id)" class="btn btn-danger m-2">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <button routerLink="add" class="btn btn-success">Add New Author</button>
+      </div>
+      

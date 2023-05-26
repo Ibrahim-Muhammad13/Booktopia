@@ -22,6 +22,7 @@ import { AutherUpdateComponent } from './admin/auther-update/auther-update.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import {AuthorsCardComponent} from './authors-card/authors-card.component';
+import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {AuthorsCardComponent} from './authors-card/authors-card.component';
     AutherComponent,
     AutherUpdateComponent,
     AutherAddComponent,
-    AuthorsCardComponent
+    AuthorsCardComponent,
+    AdminBookComponent
 
   ],
   imports: [

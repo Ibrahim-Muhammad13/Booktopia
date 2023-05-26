@@ -39,6 +39,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
 
 
 
+<<<<<<< HEAD
 // app.use(session({
 //   secret: 'keyboard cat',
 //   resave: false,
@@ -70,6 +71,10 @@ app.use('/auth', auth);
 app.use((req,res)=>{
   res.status(404).send("page not foned")
 })
+=======
+>>>>>>> bdd3baa77b0045777bfc3d04b641000e62aea732
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+module.exports = app;

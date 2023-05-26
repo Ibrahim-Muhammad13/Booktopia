@@ -18,7 +18,7 @@ export class AdminCategoryComponent implements OnDestroy {
   categoryForm!: FormGroup;
   selectedCategory: Category | null = null;
   subscription: Subscription | undefined;
-  
+
   constructor(private fb : FormBuilder, private category:CategoriesService){
     this.categoryForm = this.fb.group({
       categoryName: [null, [
@@ -30,7 +30,7 @@ export class AdminCategoryComponent implements OnDestroy {
       });
   }
 
- 
+
   ngOnInit() {
     this.fetchCategories();
 
@@ -48,20 +48,22 @@ export class AdminCategoryComponent implements OnDestroy {
         _id:0,
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
-     this.category.createCategory(cat).subscribe((res: any) => {
+      this.category.createCategory(cat).subscribe((res: any) => {
         this.fetchCategories();
       this.cancelForm();
     });
-      this.category.createCategory(this.categoryForm.controls['categoryName']?.value);
       this.categories.push(newCategory);  //push to ui whithout refresh
       this.categoryForm.controls['categoryName'].setValue(''); //empty the input field
       this.showForm = false; // to back again to table when save button clicked
     }
 
     deleteCategoryFromTabel(index: number) {
-      this.categories.splice(index, 1); // delete from table ui only
+      const categoryId = this.categories[index]._id;
+      this.categories.splice(index, 1); // delete from table ui
+      this.category.deleteCategory(categoryId).subscribe((res: any) => {
+        this.fetchCategories();
+      });
     }
-
 
   items!: Category[];
   newItem: Category = {
@@ -83,9 +85,10 @@ export class AdminCategoryComponent implements OnDestroy {
   }
 
   updateCategory(catId: number, cat: string) {
-    this.category.updateCategory(catId, cat).subscribe((res: any) => {
-       this.fetchCategories();
-      this.cancelForm();
+    const newCategoryName = this.categoryForm.controls['categoryName'].value;
+    this.category.updateCategory(catId, newCategoryName).subscribe((res: any) => {
+    this.fetchCategories();
+    this.cancelForm();
     });
   }
 

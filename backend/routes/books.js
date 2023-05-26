@@ -2,7 +2,7 @@ const express= require ("express");
 require("dotenv").config();
 const router=express.Router();
 const controller=require("../controller/bookscontroller")
-const bcrypt= require ("bcrypt");
+// const bcrypt= require ("bcrypt");
 const jwt=require("jsonwebtoken");
 const { body, validationResult } = require('express-validator');
 const auth = require("../middlware/auth");
@@ -26,7 +26,7 @@ router.post('/',
 [
   body('name',"plz must lenth =3 or more").isLength({ min: 3 }),  
 ],(req, res) => {
-
+const errors = validationResult(req);
   if(errors.isEmpty()){
     controller.creation(req.body,res)
     }
@@ -40,8 +40,7 @@ router.put( '/:id',
   body('name',"plz must lenth =3 or more").isLength({ min: 3 }),
 ],
 (req, res) => {
-
-
+  const errors = validationResult(req);
   if(errors.isEmpty()){
     const {id} =req.params
     const data= req.body
