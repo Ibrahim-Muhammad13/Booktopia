@@ -40,8 +40,6 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   this.getcategories();
 
 
-
-
   }
   saveBook() {
     const newBook: Book = {
@@ -68,75 +66,6 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   getcategories(){
   this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
   }
-
-
-  items!: Book[];
-  newItem!: Book
-  addItem() {
-    this.items.push(this.newItem);
-    this.showForm = false;
-  }
-  // addBook(){
-  //   this.book.addBook(this.bookName,this.autherId,this.categoryId,this.rate)
-  //   this.getbooks();
-  //   this.bookName = '';
-  //   this.rate = 0;
-  //   this.autherId = '';
-  //   this.categoryId = 0;
-  //   this.cancelForm();
-  // }
-  // addBook() {
-  //   this.book.addBook(this.bookName, this.autherId, this.categoryId, this.rate)
-  //     .subscribe((res: any) => {
-  //       console.log('Book added successfully');
-  //       const newBook: Book = {
-  //         _id: res.book._id,
-  //         name: this.bookName,
-  //         rate: this.rate,
-  //         authorId: this.autherId,
-  //         categoryId: this.categoryId,
-  //         image: '',
-  //       };
-  //       this.books.push(newBook); // add the new book to the array
-  //       this.bookName = ''; // reset the form fields
-  //       this.rate = 0;
-  //       this.autherId = '';
-  //       this.categoryId = 0;
-  //       this.showForm = false; // show the table again
-  //       this.fetchBooks();
-  //       this.cancelForm();
-  //     }, (err: any) => {
-  //       console.error(err); // handle error
-  //     });
-  // }
-
-  addBook() {
-    console.log('Book name:', this.bookName);
-    console.log('Author ID:', this.autherId);
-    console.log('Category ID:', this.categoryId);
-    console.log('Rate:', this.rate);
-    this.book.addBook(this.bookName, this.autherId, this.categoryId, this.rate)
-  }
-
-  // addBook(name:string,autherId:string,categoryId:number,rate:number){
-  //   const newBook: Book = {
-  //     _id:0,
-  //     name: this.bookForm.controls['bookName']?.value,
-  //     rate: this.bookForm.controls['rate']?.value,
-  //     authorId: this.bookForm.controls['autherId']?.value,
-  //     categoryId:this.bookForm.controls['categoryId']?.value,
-  //     image: this.bookForm.controls['image']?.value,
-  //   };
-  //   this.book.addBook(name,autherId,categoryId,rate);
-  // //   .subscribe((res: any) => {
-  // //   this.fetchBooks();
-  // //   this.cancelForm();
-  // // });
-  //   this.books.push(newBook);  //push to ui whithout refresh
-  //   this.bookForm.controls['categoryName'].setValue(''); //empty the input field
-  //   this.showForm = false; // to back again to table when save button clicked
-  // }
-
 
   editBook(book: Book) {
     this.selectedBook = book;
@@ -199,4 +128,3 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     }
     }
 }
-
