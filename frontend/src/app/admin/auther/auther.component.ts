@@ -27,12 +27,12 @@ res=>{
 
   }
 
-  delete(id:string){
-    this.auther.deletauther(id).subscribe()
-  this.auther.getAllauther().subscribe(res=>{
-    this.Auther=res
-})
-}
+  delete(id: string) {
+    this.auther.deletauther(id).subscribe(() => {
+      this.Auther = this.Auther.filter((author: any) => author._id !== id);
+    });
+  }
+  
 
   // console.log(x)
 
