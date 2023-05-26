@@ -36,23 +36,28 @@ router.post("/login",
 [body('email',"this is not email").isEmail(),
 body('password' ,'this length leen 8 ').isLength({ min: 8 })]
 ,async(req, res) => {
+
 try {
   const errors=validationResult(req);
   if(errors.isEmpty()){
     const { email, password} = req.body;
     const user = await User.findOne({ email });
+    //  return res.json("done");
+
     if (user && (await bcrypt.compare(password, user.password))) {
+    //  return res.json("done");
+
         Type=user.Type
       const token = jwt.sign(
         {Type, email },
         process.env.TOKEN_KEY
       );
        user.token = token;
-     return res.status(200).json(user+user.token);
+     return res.json(user+user.token);
     }
-    res.status(400).send("Invalid  no user found in data base ");
+    res.json("Invalid  no user found in data base ");
   }
-  else{ return res.json(errors) }
+//   else{ return res.json(errors) }
 
 } catch (err) {
   console.log(err);
