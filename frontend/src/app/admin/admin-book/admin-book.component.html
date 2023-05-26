@@ -20,14 +20,7 @@
             <ng-container *ngIf="showForm; else bookList">
               <tr>
                 <td>
-                  <input
-                    [(ngModel)]="bookName"
-                    name="name"
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                  />
+                  <input [(ngModel)]="newBookName" name="name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                 </td>
                 <td>
                   <input
@@ -65,10 +58,12 @@
                 </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <button (click)="addBook()" type="submit" class="btn btn-primary me-3">Save</button>
+                    <button (click)="saveBook()" type="button" class="btn btn-primary me-3">Save</button>
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
                     <button type="button" class="btn btn-primary me-1" (click)="selectedBook && updateBook(selectedBook._id, newBookName)">Update</button>
+
+
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
@@ -80,7 +75,8 @@
                 <td scope="row">{{book.name}}</td>
                 <td>
                   <button type="button" class="btn btn-primary me-4" (click)="editBook(book)" >Edit</button>
-                  <button type="button" class="btn btn-danger" (click)="deleteBook(book._id,i)">Delete</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteBook(book._id, i)">Delete</button>
+
                 </td>
               </tr>
           </ng-template>
@@ -93,9 +89,3 @@
 </div>
 
 
-<!--  (click)="editCategory(category)" -->
-<!-- (click)="deleteCategory(category._id,i)" -->
-<!--  <th scope="col" *ngIf="showForm">
-        <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
-      </th>
--->
