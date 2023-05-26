@@ -24,6 +24,9 @@ const user = new mongoose.Schema(
       type: String,
       minLength: [8, 'Password must be more than 6 characters'],
     },
+    Type:{
+    type:Boolean 
+    }
   },
   // { _id: false }
 );

@@ -1,1 +1,86 @@
-<p>register works!</p>
+<div class="body">
+    <h1 >Form register </h1>
+    <form class="form" [formGroup]="rigester" (ngSubmit)="submitlogin()">
+   
+
+    <div class="mb-3 fullname">
+      <label for="name" class="form-label col-xs-2">Full Name:</label>
+      <input  type="text" class=" form-control form-control-lg col-xs-9"  [class.is-invalid]="fullname?.invalid && fullname?.touched"   [class.is-valid]="fullname?.valid" id="fullname" aria-describedby="fullnameHelp"  formControlName="fullname" name="fullname" > 
+      
+      <div id="fullnameHelp" class="form-text text-danger" *ngIf="rigester.controls['fullname'].touched && rigester.controls['fullname'].invalid">
+     <span *ngIf="rigester.controls['fullname'].errors?.['required']">
+        this filed is requerd
+     </span>
+      <span *ngIf="rigester.controls['fullname'].errors?.['pattern']">
+        name must no contain space
+     </span>
+     <span *ngIf="rigester.controls['fullname'].errors?.['minlength']">
+      name must  4  character or more
+   </span>
+    </div> 
+</div>
+
+    
+        <div class="mb-3 email">
+            <label for="email" class="form-label">Email     :</label>
+            <input  type="email" class="form-control  form-control-lg"  [class.is-invalid]="email?.invalid && email?.touched"   [class.is-valid]="email?.valid" id="email" aria-describedby="emailHelp"  formControlName="email" > 
+            
+            <div id="emailHelp" class="form-text text-danger" *ngIf="rigester.controls['email'].touched && rigester.controls['email'].invalid">
+           <span *ngIf="rigester.controls['email'].errors?.['required']">
+              this filed is requerd
+           </span>
+    
+           <span *ngIf="rigester.controls['email'].errors?.['email']">
+            this filed is email 
+         </span>
+          </div> 
+     </div>
+    
+    
+    
+    
+    
+   
+   
+    
+    
+        <div class="mb-3 fullname">
+          <label for="Password" class="form-label">Password</label>
+          <input  type="password" class="form-control form-control-lg" id="Password"  [class.is-invalid]="rigester.controls['password'].invalid && rigester.controls['password'].touched"   [class.is-valid]="rigester.controls['password'].valid" formControlName="password"> 
+    
+          <div id="password" class="form-text text-danger" *ngIf="password?.touched">
+            <span *ngIf="rigester.controls['password'].errors?.['required']">
+               this filed is requerd
+            </span>
+            <span *ngIf="rigester.controls['password'].errors?.['pattern']">
+                this filed is pattern andMust contain at least one  number and one uppercase and lowercase letter,and spacial character @#$%^&*()_+|,.>/? and at least 8 or more characters 
+             </span>
+     
+        </div>
+    </div>
+    
+     
+    
+    
+    <div class="mb-3 fullname">
+        <label for="Password" class="form-label">confirm Password</label>
+        <input  type="password" class="form-control form-control-lg" id="confirmPassword"  [class.is-invalid]="rigester.controls['confilmpassword'].invalid && rigester.controls['confilmpassword'].touched"   [class.is-valid]="rigester.controls['confilmpassword'].valid" formControlName="confilmpassword"> 
+    
+        <div id="confirmpassword" class="form-text text-danger" *ngIf="rigester.controls['confilmpassword'].touched && rigester.controls['confilmpassword'].invalid">
+          <span *ngIf="rigester.controls['confilmpassword'].errors?.['required']">
+             this filed is requerd
+          </span>
+          <span *ngIf="rigester.controls['confilmpassword'].errors?.['confirmassword']">
+              this filed is  confirm password 
+           </span>
+    
+      </div>
+    </div>
+    
+    
+    
+        <!-- <button type="submit" class="btn btn-primary  form-control-lg submit" >Submit</button> -->
+        <button type="submit" class="btn btn-primary  form-control-lg" [disabled]="rigester.invalid">Submit</button>
+      </form> 
+      <button  class="btn btn-primary" routerLink="" (click)="loginGoogle()"> login with google dont work now </button>
+    </div>
