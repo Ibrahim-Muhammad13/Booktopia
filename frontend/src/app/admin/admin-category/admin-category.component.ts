@@ -1,6 +1,4 @@
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
-
 import { Component, OnDestroy } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -43,13 +41,13 @@ export class AdminCategoryComponent implements OnDestroy {
   }
 
 
-  saveCategory(cat:string){
+  saveCategory(book:string){
       const newCategory: Category = {
         _id:0,
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
-      this.category.createCategory(cat).subscribe((res: any) => {
-        this.fetchCategories();
+      this.category.createCategory(book).subscribe((res: any) => {
+      this.fetchCategories();
       this.cancelForm();
     });
       this.categories.push(newCategory);  //push to ui whithout refresh
@@ -74,7 +72,6 @@ export class AdminCategoryComponent implements OnDestroy {
   addItem() {
     this.items.push(this.newItem);
     this.showForm = false;
-
   }
 
   editCategory(category: Category) {

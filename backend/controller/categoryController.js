@@ -14,7 +14,7 @@ function getAllCategories(req, res) {
 function createCategory(req, res) {
     Category.create({ cat_Name: req.body.cat_Name})
         .then(function(category) {
-            res.json({category});
+            res.status(201).json({category});
         })
         .catch(function(err) {
             if (err.name === 'ValidationError') {
