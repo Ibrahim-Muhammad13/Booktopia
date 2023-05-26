@@ -37,7 +37,7 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   this.getbooks();
   this.getauthers();
   this.getcategories();
-  this.fetchBooks();
+ 
   
   }
   getauthers(){
@@ -49,20 +49,10 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   getcategories(){
   this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
   }
-  fetchBooks() {
-    this.book.getBooks().subscribe((res: any) => this.books = res.books);
-  }
+  
 
   items!: Book[];
-  newItem: Book = {
-    _id: 0,
-    name: '',
-    rate: 0,
-    authorId: '',
-    categoryId:0,
-    image: ''
-  };
-
+  newItem!: Book
   addItem() {
     this.items.push(this.newItem);
     this.showForm = false;
@@ -106,32 +96,7 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     console.log('Author ID:', this.autherId);
     console.log('Category ID:', this.categoryId);
     console.log('Rate:', this.rate);
-    this.book.addBook(this.bookName, this.autherId, this.categoryId, this.rate).subscribe(
-      (res: any) => {
-        console.log('Book added successfully');
-        const newBook: Book = {
-          _id: res.book._id,
-          name: this.bookName,
-          rate: this.rate,
-          authorId: this.autherId,
-          categoryId: this.categoryId,
-          image: '',
-        };
-        this.bookName = ''; // reset the form fields
-        this.rate = 0;
-        this.autherId = '';
-        this.categoryId = 0;
-
-        this.books.push(newBook); // add the new book to the array
-        this.bookForm.controls['bookName'].setValue(''); //empty the input field
-        this.showForm = false; // show the table again
-        this.fetchBooks();
-        this.cancelForm();
-      },
-      (err: any) => {
-        console.error(err); // handle error
-      }
-    );
+    this.book.addBook(this.bookName, this.autherId, this.categoryId, this.rate)  
   }
 
   // addBook(name:string,autherId:string,categoryId:number,rate:number){
@@ -164,10 +129,7 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   updateBook(bookId: number, book: string) {
     const newBookName = this.bookForm.controls['bookName'].value;
     console.log(newBookName);
-    this.book.updateBook(bookId, newBookName).subscribe((res: any) => {
-      this.fetchBooks();
-      this.cancelForm();
-    });
+    this.book.updateBook(bookId, newBookName)
   }
 
 
@@ -176,7 +138,7 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     const bookId = this.books[index]._id;
     this.books.splice(index, 1); // delete from table ui
     this.book.deleteBook(bookId).subscribe((res: any) => {
-    this.fetchBooks();
+    this.getbooks();
     });
   }
 
@@ -186,7 +148,7 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     console.log(bookId);
     console.log('Book deleted successfully');
     this.category.deleteCategory(bookId).subscribe((res: any) => {
-      this.fetchBooks();
+      this.getbooks();
     },(err: any) => {
           console.error(err);
     });

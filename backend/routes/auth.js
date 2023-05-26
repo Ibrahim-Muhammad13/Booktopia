@@ -1,7 +1,7 @@
 const express= require ("express");
 require("dotenv").config();
 const { body, validationResult } = require('express-validator');
-const bcrypt= require ("bcrypt");
+// const bcrypt= require ("bcrypt");
 const router=express.Router();
 const jwt=require("jsonwebtoken");
 const  User=require("../models/user")
@@ -17,8 +17,8 @@ router.post("/register",[
     const Type=false    
     const oldUser = await User.findOne({ email });
       if (oldUser) {return res.json("User Already Exist. Please Login");}
-      encryptedPassword = await bcrypt.hash(password, 10);
-      const user = await User.create({fullname,email,password: encryptedPassword,Type});
+      // encryptedPassword = await bcrypt.hash(password, 10);
+      const user = await User.create({fullname,email,password: password,Type});
       res.status(201).json(user);
      }
   else{
