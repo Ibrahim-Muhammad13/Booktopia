@@ -3,7 +3,6 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, V
 import { ActivatedRoute } from '@angular/router';
 import { AutherService } from 'src/app/services/auther.service';
 
-
 @Component({
   selector: 'app-auther-add',
   templateUrl: './auther-add.component.html',
