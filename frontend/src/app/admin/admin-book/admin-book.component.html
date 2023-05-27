@@ -1,5 +1,4 @@
 <h1 class="p-2">Admin Books</h1>
-
 <div class="container">
   <div class="row">
     <div class="table-container">
@@ -11,9 +10,8 @@
               <th scope="col" *ngIf="showForm">Rate</th>
               <th scope="col" *ngIf="showForm">Author Name</th>
               <th scope="col" *ngIf="showForm">Category Name</th>
-
               <th scope="col">Action</th>
-              <th scope="col" class="d-flex justify-content-end" *ngIf="!showForm">
+              <th scope="col" class="d-flex justify-content-end">
                 <button type="button" class="btn btn-success" (click)="showForm=true; isNewBook=true">Add</button>
               </th>
             </tr>
@@ -22,7 +20,14 @@
             <ng-container *ngIf="showForm; else bookList">
               <tr>
                 <td>
-                  <input [(ngModel)]="newBookName" name="name" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                  <input
+                    [(ngModel)]="bookName"
+                    name="name"
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                  />
                 </td>
                 <td>
                   <input
@@ -60,12 +65,10 @@
                 </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <button (click)="saveBook()" type="button" class="btn btn-primary me-3">Save</button>
+                    <button (click)="addBook()" type="submit" class="btn btn-primary me-3">Save</button>
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
-                    <button type="button" class="btn btn-primary me-1" (click)="selectedBook && updateBook(selectedBook._id, newBookName)">Update</button>
-
-
+                    <button type="button" class="btn btn-primary me-1" (click)="selectedBook && updateBook(selectedBook._id, newBookName, selectedBook.rate, selectedBook.authorId, selectedBook.categoryId)">Update</button>
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
@@ -78,16 +81,15 @@
                 <td>
                   <button type="button" class="btn btn-primary me-4" (click)="editBook(book)" >Edit</button>
                   <button type="button" class="btn btn-danger" (click)="deleteBook(book._id, i)">Delete</button>
-
                 </td>
               </tr>
           </ng-template>
-
           </tbody>
         </table>
       </form>
     </div>
   </div>
 </div>
+
 
 

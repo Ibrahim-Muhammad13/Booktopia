@@ -14,20 +14,19 @@ export class BookService {
     return this.http.get<Book[]>('http://localhost:3000/books');
   }
 
-  
-  addBook(bookName: string, authorId: string, categoryId: number, rate: number){
-    const newBook = { name: bookName, authorId: authorId, categoryId: categoryId, rate: rate };
+  addBook(bookName: string,  rate: number,authorId: number, categoryId: number){
+    const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
+    // console.log(newBook);
     return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
   }
 
-  updateBook(bookId: number, name: string): Observable<any> {
-    const book = { name: name };
-    return this.http.put<any>(`http://localhost:3000/books/${bookId}`, book);
+  updateBook(bookId: number, name: string, rate: number, authorId: number, categoryId: number) {
+    const book = { name: name, rate: rate, authorId: authorId, categoryId: categoryId };
+    return this.http.put(`http://localhost:3000/books/${bookId}`, book);
   }
-  
 
   deleteBook(bookId: number): Observable<Book[]> {
-    return this.http.delete<Book[]>('http://localhost:3000/admin/books' + bookId);
+    return this.http.delete<Book[]>('http://localhost:3000/books/' + bookId);
   }
 
 }

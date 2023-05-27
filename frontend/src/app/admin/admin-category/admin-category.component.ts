@@ -55,14 +55,6 @@ export class AdminCategoryComponent implements OnDestroy {
       this.showForm = false; // to back again to table when save button clicked
     }
 
-    deleteCategoryFromTabel(index: number) {
-      const categoryId = this.categories[index]._id;
-      this.categories.splice(index, 1); // delete from table ui
-      this.category.deleteCategory(categoryId).subscribe((res: any) => {
-        this.fetchCategories();
-      });
-    }
-
   items!: Category[];
   newItem: Category = {
     _id: 0,
@@ -89,13 +81,22 @@ export class AdminCategoryComponent implements OnDestroy {
     });
   }
 
+
+  deleteCategoryFromTabel(index: number) {
+    const categoryId = this.categories[index]._id;
+    this.categories.splice(index, 1); // delete from table ui
+    this.category.deleteCategory(categoryId).subscribe((res: any) => {
+      this.fetchCategories();
+    });
+  }
+
+
   deleteCategory(catId: number, i: number) {
     this.deleteCategoryFromTabel(i);
     console.log(catId);
     this.category.deleteCategory(catId).subscribe((res: any) => {
       this.fetchCategories();
     });
-
   }
 
   cancelForm() {
