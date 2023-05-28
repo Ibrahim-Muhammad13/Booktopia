@@ -9,26 +9,32 @@ const adminRouter = require('./routes/admin');
 const autherRouter = require('./routes/auther');
 const userRouter = require('./routes/user');
 const booksRouter = require('./routes/books');
-const authRouter = require('./routes/AuthenticationRouter');
 const auth = require('./routes/auth');
+const cookieSession = require('cookie-session')
 app.use('/images/',express.static('images'))
 app.use(express.json());
 app.use(cors({
   origin: '*'
 }));
+// httpNodeCors: {
+//   origin: "*",
+//   methods: "GET,PUT,POST,DELETE"
+// },
 
 
+app.use(cookieSession({
+  name: 'session',
+  secret: 'my-secret-key',
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
+const passport = require('passport')
+require('./config/passport')
+require('./config/passpordfacebook')
+require('./config/passpordgoogle')
+app.use(passport.initialize())
+app.use(passport.session())
 
-// const passportSetup = require('./routes/AuthenticationRouter');
-// const passport = require('passport');
-// const session = require('express-session');
-// const cookieSession = require('cookie-session');
-// const cookieParser = require('cookie-parser');
-// app.use(cookieParser())
-
-
-// const port = 3000;
 
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
@@ -38,32 +44,10 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
 });
 
 
-
-// app.use(session({
-//   secret: 'keyboard cat',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { secure: true }
-// }))
-
-
-
-// app.use(cookieSession({
-//   maxAge: 24 * 60 * 60 * 1000,
-//   keys: [',input']
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-
-
-
-
 app.use('/admin', adminRouter);
 app.use('/auther', autherRouter);
 app.use('/user', userRouter);
 app.use('/books', booksRouter);
-// app.use('/auth', authRouter);
 app.use('/auth', auth);
 
 

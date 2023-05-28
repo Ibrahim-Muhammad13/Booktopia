@@ -13,7 +13,9 @@ export class BookService {
   getBooks(): Observable<Book[]>{
     return this.http.get<Book[]>('http://localhost:3000/books');
   }
-
+getBooksBycategoryId(catId:number){
+    return this.http.get('http://localhost:3000/books/cat/'+catId);
+  }
   addBook(bookName: string,  rate: number,authorId: number, categoryId: number){
     const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
     // console.log(newBook);

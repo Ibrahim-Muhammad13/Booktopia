@@ -13,6 +13,7 @@ import { AutherComponent } from './admin/auther/auther.component';
 import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import { AdminBookComponent } from './admin/admin-book/admin-book.component';
+import { CategoryBooksComponent } from './category-books/category-books.component';
 
 
 const routes: Routes = [
@@ -23,10 +24,9 @@ const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent
-  },
-  {
-    path: 'categories/categories',
-    component: CategoriesComponent
+  },{
+    path: 'category/:id',
+    component:CategoryBooksComponent
   },
   {
     path: 'books',

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Category } from '../models/category';
+import { BookService } from '../services/book.service';
 import { CategoriesService } from '../services/categories.service';
 
 
@@ -17,7 +18,10 @@ categories!:Category[];
     this.Categories.getCategories()
       .subscribe((res: any) => {
         this.categories = res.categories;
-        console.log(this.categories); // Add this line to check the content of categories
       });
   }
-  }
+
+
+ 
+
+}

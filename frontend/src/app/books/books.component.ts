@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Book } from '../models/book';
 import { BookService } from '../services/book.service';
 
@@ -20,4 +20,8 @@ books!:Book[]
   getbooks(){
   this.book.getBooks().subscribe((res:any)=>this.books=res)
   }
+
+  // filterBooksByCategory(catId: number) {
+  //   this.books.filter((book: Book) => book.categoryId === catId);
+  // }
 }

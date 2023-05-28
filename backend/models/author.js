@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const auther = new mongoose.Schema({
+  id_auther: {
+    type: Number,
+  },
   firstName: {
     type: String,
     required: [true, 'Must enter a first name'],
@@ -24,7 +27,12 @@ const auther = new mongoose.Schema({
     required: [true, 'Must enter a image'],
 
   },
-});
+},
+);
+
+
+auther.plugin(AutoIncrement,{inc_amount:1,inc_field: 'id_auther'});
+
 
 const autherModel = mongoose.model('auther', auther);
 
