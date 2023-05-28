@@ -11,8 +11,8 @@
 
     <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{category.cat_Name}}</h5>
-          <!-- You can add more content here if needed -->
+
+          <a [routerLink]="['/category',category._id]"><h5 class="card-title">{{category.cat_Name}}</h5></a>
         </div>
       </div>
     </div>

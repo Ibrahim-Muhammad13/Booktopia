@@ -14,27 +14,19 @@ export class BookService {
     return this.http.get<Book[]>('http://localhost:3000/books');
   }
 
-  // addBook(bookName: string, authorId: string, categoryId: number, rate: number): Observable<any>  {
-  //   const newBook = { name: bookName, authorId: authorId, categoryId: categoryId, rate: rate };
-  //   return this.http.post('http://localhost:3000/books', newBook);
-  //     // handle success
-  //     console.log('Book added successfully');
-  //   }, (err: any) => {
-  //     // handle error
-  //     console.error(err);
-  //   });
-  // }
+  getBooksBycategoryId(catId:number){
+    return this.http.get('http://localhost:3000/books/cat/'+catId);
+  }  
   addBook(bookName: string, authorId: string, categoryId: number, rate: number){
     const newBook = { name: bookName, authorId: authorId, categoryId: categoryId, rate: rate };
-    console.log(newBook);
-    // return this.http.post<Book[]>('http://localhost:3000/books', newBook).subscribe((res:andy)=>console.log(res));
     return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
   }
 
-  updateBook(bookId: number, name: string){
+  updateBook(bookId: number, name: string): Observable<any> {
     const book = { name: name };
-    return this.http.put(`http://localhost:3000/admin/books` + bookId, book).subscribe((res: any)=>console.log(res));
+    return this.http.put<any>(`http://localhost:3000/books/${bookId}`, book);
   }
+  
 
   deleteBook(bookId: number): Observable<Book[]> {
     return this.http.delete<Book[]>('http://localhost:3000/admin/books' + bookId);

@@ -18,6 +18,10 @@ router.get('/:id',(req, res) => {
 
 });
 
+router.get('/cat/:id',(req, res) => {
+  const {id} =req.params
+  controller.getBooksByCatId (id,res)
+})
 
 //Title mainSpeaker speakers  students
 
