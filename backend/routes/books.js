@@ -6,7 +6,7 @@ const controller=require("../controller/bookscontroller")
 const jwt=require("jsonwebtoken");
 const { body, validationResult } = require('express-validator');
 const auth = require("../middlware/auth");
-
+const uplaod =require("../upload")
 router.get('/',(req, res) => {
   controller.getting(res)
 
@@ -29,7 +29,7 @@ router.get('/cat/:id',(req, res) => {
 router.post('/',
 [
   body('name',"plz must lenth =3 or more").isLength({ min: 3 }),  
-],(req, res) => {
+],uplaod.any(),(req, res) => {
 const errors = validationResult(req);
   if(errors.isEmpty()){
      controller.creation(req.body,res)
