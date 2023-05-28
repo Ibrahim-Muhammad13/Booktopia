@@ -13,8 +13,10 @@ export class BookService {
   getBooks(): Observable<Book[]>{
     return this.http.get<Book[]>('http://localhost:3000/books');
   }
+  getBookById(id:any): Observable<Book[]>{
+    return this.http.get<Book[]>('http://localhost:3000/books'+id);
+  }
 
-  
   addBook(bookName: string, authorId: string, categoryId: number, rate: number){
     const newBook = { name: bookName, authorId: authorId, categoryId: categoryId, rate: rate };
     return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));

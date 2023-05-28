@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+   <h2 class="my-3">Author Details</h2>
+   
+<div class="card my-4">
+  <div class="row">
+    <div class="col-md-4"*ngIf="author">
+      <img [src]="author.image" style="width:100%; height:auto;">
+    </div>
+    <div class="card-body col-md-8"*ngIf="author">
+      <h3>{{author.firstName}}</h3>
+      <p>{{author.LastName}}</p>
+      <p>{{author.birthDate}}</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="card my-4">
+    <div class="row">
+      <div class="col-md-4"*ngIf="book">
+        <img [src]="book.image" style="width:100%; height:auto;">
+      </div>
+      <div class="card-body col-md-8"*ngIf="book">
+        <h3>{{book.name}}</h3>
+        <p>{{book.rate}}</p>
+      </div>
+    </div>
+  </div>
