@@ -10,7 +10,7 @@ async function creation (data, res){
 
 async function getting (res){
   try {
-    const respons=  await books.find()    
+    const respons=  await books.find().populate("authorId").populate("categoryId");    
     res.status(201).json(respons)
   } catch (e) {
     res.status(500).json("error")
@@ -20,15 +20,24 @@ async function gettingbyId (id,res){
 
   try {
     const respons=  await books.find({_id:id})   ;    
-    res.status(201).json("come with get one id method by id "+respons )
+    res.status(201).json(respons )
   } catch (e) {
     res.status(500).json("error")
     }}
 
-async function edit (id,data,res){
+async function getBooksByCatId (id,res){
+  try {
+    const respons=  await books.find({categoryId:id})   ;    
+    res.status(201).json(respons )
+  } catch (e) {
+    res.status(500).json("error")
+}}
+    
+
+    async function edit (id,data,res){
   try {
    const respons=  await books.findByIdAndUpdate(id,data)    
-    res.status(201).json("come with updata method by id "+respons )
+    res.status(201).json(respons )
     } catch (e) {
     res.status(500).json("error")
   }}
@@ -43,7 +52,7 @@ async function remove (id,res){
 }}
 
 module.exports={
-  creation,getting,gettingbyId,remove,edit
+  creation,getting,gettingbyId,remove,edit,getBooksByCatId
   // ,gettingbyid,edit ,remove
       // add,edit,remove,parse2 ,checked,show
   }

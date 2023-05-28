@@ -14,8 +14,15 @@ export class RegisterComponent {
    console.log(respone)
 
   }
+  logingithub(){
+    console.log("done google")
+  }
+  loginfacebook(){
+    console.log("done google")
+  }
   loginGoogle(){
     console.log("done google")
+    this.auth.google()
   }
 
  constructor(private fb:FormBuilder ,private auth:AuthService){ 

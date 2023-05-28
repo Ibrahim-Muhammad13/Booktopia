@@ -16,24 +16,21 @@ export class AuthService {
     return this.http.get('http://localhost:3000/auther/'+id)
   }
   
+
   register(data:any){
     return this.http.post('http://localhost:3000/auth/register',data).subscribe((res:any)=>console.log(res))
-  
   }
-
-
   login(data:any){
     // console.log(data)
     return this.http.post('http://localhost:3000/auth/login',data).subscribe((res:any)=>{console.log( res)})
     // return this.http.post('http://localhost:3000/auth/login',data).subscribe((res:any)=>{return res})
-
   }
   
-  deletauther(id:string){
-    return this.http.delete('http://localhost:3000/auther/'+id)
+  google(){
+    return this.http.get('http://localhost:3000/auth/facebook').subscribe((res:any)=>{console.log( res)})
   }
   
-  updateauther(auther:any,id:any){
+  github(auther:any,id:any){
     // return this.http.put('http://localhost:3000/auther')
   
     console.log(auther)

@@ -54,7 +54,7 @@ export class AutherAddComponent {
     event.preventDefault();
     let fd = new FormData(event.target as HTMLFormElement);
     this.auther.Newauther(fd);
-    this.router.navigate(['admin/auther']);
+    // this.router.navigate(['admin/auther']);
   }
 
 }

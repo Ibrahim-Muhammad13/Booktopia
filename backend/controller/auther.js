@@ -3,8 +3,9 @@ const auther = require("../models/author");// for database
 async function creation (data, res){
   try {
     const respons=  await auther.create(data)
+    res.status(201).json(respons)
     // res.status(201).json(data)
-    res.status(201).json("create accout seccessful "+respons )
+    // res.status(201).json("create accout seccessful "+respons )
   } catch (e) {
     res.status(500).json(e)
   }}
