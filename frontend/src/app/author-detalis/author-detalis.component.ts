@@ -13,16 +13,84 @@ import {  BookService } from '../services/book.service';
 export class AuthorDetailsComponent implements OnInit {
   author: Author | undefined;
   authorId: string | undefined;
- book : Book | undefined;
-// book : Book[] =[
-//   { '_id':1,
-//   'name': 'mohamed',
-//   'rate': 2.3,
-//   'authorId': 'ahmed',
-//   'categoryId':5,
-//   'image': 'string',}
+ books: Book[] =[
+  { '_id':1,
+  'name': 'mohamed',
+  'rate': 2.3,
+  'authorId': 5,
+  'categoryId':5,
+  'image': '../../assets/images/book2.png'
+},
+
+  { 
+    '_id':2,
+  'name': 'mohamed',
+  'rate': 4.1,
+  'authorId': 5,
+  'categoryId':5,
+  'image': '../../assets/images/book2.png'
+},
+
+  { 
+    '_id':3,
+  'name': 'mohamed',
+  'rate': 5,
+  'authorId': 5,
+  'categoryId':5,
+  'image': '../../assets/images/book2.png'
+},
+{ '_id':1,
+'name': 'mohamed',
+'rate': 3,
+'authorId': 5,
+'categoryId':5,
+'image': '../../assets/images/book2.png'
+},
+
+{ 
+  '_id':2,
+'name': 'mohamed',
+'rate': 3.3,
+'authorId': 5,
+'categoryId':5,
+'image': '../../assets/images/book2.png'
+},
+
+{ 
+  '_id':3,
+'name': 'mohamed',
+'rate': 2.3,
+'authorId': 5,
+'categoryId':5,
+'image': '../../assets/images/book2.png'
+},
+{ '_id':1,
+  'name': 'mohamed',
+  'rate': 1.3,
+  'authorId': 5,
+  'categoryId':5,
+  'image': '../../assets/images/book2.png'
+},
+
+  { 
+    '_id':2,
+  'name': 'mohamed',
+  'rate': 4.3,
+  'authorId': 5,
+  'categoryId':5,
+  'image': '../../assets/images/book2.png'
+},
+
+  { 
+    '_id':3,
+  'name': 'mohamed',
+  'rate': 3.5,
+  'authorId': 5,
+  'categoryId':5,
+  'image': '../../assets/images/book2.png'
+}
  
-//]
+ ];
 
 
   constructor(private route: ActivatedRoute,private authorService: AutherService, private bookService:  BookService) { }
@@ -37,7 +105,6 @@ export class AuthorDetailsComponent implements OnInit {
   getAuthorDetails() {
     if (this.authorId) {
       this.authorService.getAllautherbyid(this.authorId).subscribe((res: any) => {this.author = res;});
-      this.bookService.getBookById(this.authorId).subscribe((res: any) => {this.book = res;});
     }
   }
 }

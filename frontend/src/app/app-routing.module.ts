@@ -17,6 +17,7 @@ import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
 import { authGuard } from './guard/auth.guard';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,11 @@ const routes: Routes = [
     path: 'books',
     component: BooksComponent
   },
+  {
+    path: 'book/:id',
+    component: BookDetailsComponent
+  },
+
   {
     path: 'authors',
     component: AuthorsComponent
@@ -67,7 +73,7 @@ const routes: Routes = [
       {
         path: 'auther',
         component:AutherComponent,
-        
+
       },
       {
         path: 'auther/update/:id',
@@ -80,11 +86,11 @@ const routes: Routes = [
         path: 'books',
         component:AdminBookComponent,
       }
-    
+
     ]
 
   },
-  
+
 ];
 
 @NgModule({

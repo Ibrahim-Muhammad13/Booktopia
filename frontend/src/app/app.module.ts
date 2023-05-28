@@ -26,6 +26,10 @@ import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 import { AuthorDetailsComponent } from './author-detalis/author-detalis.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { AuthorBookDetailsComponent } from './author-book-details/author-book-details.component';
+import { StarRatingPipe } from './pipes/star-rating.pipe';
+
 
 
 
@@ -51,6 +55,11 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     AuthorDetailsComponent,
     CategoryBooksComponent,
     AdminLoginComponent,
+    BookDetailsComponent,
+
+    AuthorBookDetailsComponent,
+    StarRatingPipe,
+
 
   ],
   imports: [
