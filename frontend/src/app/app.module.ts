@@ -23,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import {AuthorsCardComponent} from './authors-card/authors-card.component';
 import { AdminBookComponent } from './admin/admin-book/admin-book.component';
+import { AuthorDetailsComponent } from './author-detalis/author-detalis.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
+
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { CategoryBooksComponent } from './category-books/category-books.componen
     AutherAddComponent,
     AuthorsCardComponent,
     AdminBookComponent,
+    AuthorDetailsComponent,
     CategoryBooksComponent,
 
   ],

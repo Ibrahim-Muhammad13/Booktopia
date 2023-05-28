@@ -13,12 +13,18 @@ export class BookService {
   getBooks(): Observable<Book[]>{
     return this.http.get<Book[]>('http://localhost:3000/books');
   }
-getBooksBycategoryId(catId:number){
+  
+  getBooksBycategoryId(catId:number){
     return this.http.get('http://localhost:3000/books/cat/'+catId);
   }
+  getBookById(id:any): Observable<Book[]>{
+    return this.http.get<Book[]>('http://localhost:3000/books'+id);
+  }
+
   addBook(bookName: string,  rate: number,authorId: number, categoryId: number){
     const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
     // console.log(newBook);
+
     return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
   }
 
