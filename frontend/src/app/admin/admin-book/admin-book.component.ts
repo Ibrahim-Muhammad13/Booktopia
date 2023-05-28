@@ -6,7 +6,7 @@ import { AutherService } from 'src/app/services/auther.service';
 import { BookService } from 'src/app/services/book.service';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { Subscription ,Observer } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
 
@@ -19,10 +19,11 @@ export class AdminBookComponent {
   books!:Book[]
   authers!:Author[]
   categories!:Category[]
-  bookName!:string
-  autherId!:string
-  categoryId!:number
+  bookName:string = '';
   rate!:number
+  autherId!:number
+  categoryId!:number
+
 
   showForm = false;
   selectedBook: Book | null = null;
@@ -38,21 +39,6 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   this.getbooks();
   this.getauthers();
   this.getcategories();
- 
-  
-  }
-  saveBook() {
-    const newBook: Book = {
-      _id: 0,
-      name: this.bookName,
-      rate: this.rate,
-      authorId: this.autherId,
-      categoryId: this.categoryId,
-      image: ''
-    };
-    this.books.push(newBook);
-    this.cancelForm();
-    this.book.addBook(this.bookName, this.autherId, this.categoryId, this.rate)
   }
 
   getauthers(){
@@ -66,7 +52,37 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   getcategories(){
   this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
   }
-  
+
+
+  items!: Book[];
+  newItem!: Book;
+
+
+  addItem() {
+    this.items.push(this.newItem);
+    this.showForm = false;
+  }
+
+
+  addBook() {
+    console.log('Book name:', this.bookName);
+    console.log('Author ID:', this.autherId);
+    console.log('Category ID:', this.categoryId);
+    console.log('Rate:', this.rate);
+    const newBook: Book = {
+      _id: 0,
+      name: this.bookName,
+      rate: this.rate,
+      authorId: this.autherId,
+      categoryId: this.categoryId,
+      image: ''
+    };
+    this.books.push(newBook);
+    this.book.addBook(this.bookName, this.rate, this.autherId, this.categoryId)
+    this.cancelForm();
+  }
+
+
   editBook(book: Book) {
     this.selectedBook = book;
     this.newBookName = book.name;
@@ -74,18 +90,18 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     this.isNewBook = false;
   }
 
-  
-  updateBook(bookId: number, bookName: string) {
+
+  updateBook(bookId: number, bookName: string, rate: number, authorId: number, categoryId: number) {
     const updatedBook: Book = {
       _id: bookId,
       name: bookName,
       rate: this.rate,
       authorId: this.autherId,
-      categoryId: this.categoryId,
+      categoryId: categoryId,
       image: ''
     };
-  
-    this.book.updateBook(bookId, bookName).subscribe({
+
+    this.book.updateBook(bookId, bookName, rate, authorId, categoryId).subscribe({
       next: (res: any) => {
         console.log('Book updated successfully:', res);
         // Find the index of the updated book in the array
@@ -94,32 +110,36 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
           // Update the book in the array
           this.books[index] = updatedBook;
         }
-        this.cancelForm();
       },
       error: (err: any) => {
         console.error(err);
       }
     });
   }
-  
-  
-  
-  
+
+
+  deleteBookFromTable(index: number) {
+    const bookId = this.books[index]._id;
+    this.books.splice(index, 1);  // delete from table ui
+    this.book.deleteBook(bookId).subscribe((res: any) => {
+      console.log('Book deleted successfully:', res);
+    });
+  }
 
   deleteBook(bookId: number, index: number) {
     this.deleteBookFromTable(index);
-    this.book.deleteBook(bookId)
   }
-  
-  deleteBookFromTable(index: number) {
-    this.books.splice(index, 1); 
-  }
-  
+
+
   cancelForm() {
     this.selectedBook = null;
     this.newBookName = '';
     this.showForm = false;
     this.isNewBook = false;
+    this.bookName = '';
+    this.rate = 0;
+    this.autherId = 0;
+    this.categoryId = 0;
   }
 
   ngOnDestroy() {
@@ -128,4 +148,3 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     }
     }
 }
-
