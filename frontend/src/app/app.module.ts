@@ -24,6 +24,7 @@ import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import {AuthorsCardComponent} from './authors-card/authors-card.component';
 import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { CategoryBooksComponent } from './category-books/category-books.componen
     AuthorsCardComponent,
     AdminBookComponent,
     CategoryBooksComponent,
+    BookDetailsComponent,
 
   ],
   imports: [
