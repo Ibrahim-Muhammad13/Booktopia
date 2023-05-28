@@ -1,10 +1,12 @@
 
-// const express= require ("express");
-// require("dotenv").config();
-// const { body, validationResult } = require('express-validator');
+const express= require ("express");
+require("dotenv").config();
+const { body, validationResult } = require('express-validator');
+const passport = require('passport')
+
 // // const bcrypt= require ("bcrypt");
 // // const helper=require("../healper2.js")
-// const router=express.Router();
+const router=express.Router();
 // // const User = require("../model/studentModel");
 // const jwt=require("jsonwebtoken");
 
@@ -81,67 +83,7 @@
 // s
 
 
-// const passport=require('passport');
-// const Google =require('passport-google-oauth20').Strategy;
-// const keys=require('../keys');
 
-
-
-
-// // router.use(passport.initialize());
-// // router.use(passport.session());
-
-
-
-// // const GoogleStrategy = require('passport-google-oauth20');
-
-
-
-
-// passport.serializeUser((user, done) => {
-//   console.log(user);
-//   done(null, user.id);
-// });
-
-// passport.deserializeUser((id, done) => {
-//   // User.findById(id).then((user) => {
-//     user={
-//       "googleId": "32454579",
-//       "username": "dxgfchgvjbnm,s"
-//   }
-//       done(null, user);
-//   // });
-// });
-
-
-
-
-
-// passport.use(new Google({
-//   callbackURL:'/auth/google/cb'
-//   ,clientID:'879012351654-gclat1q65jpr0uunr9n5hckvi77vhqcp.apps.googleusercontent.com',
-//   // ,clientID:keys.Google.clientID,
-//   clientSecret:'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'
-//  },
-//  (accessToken, refreshToken, profile, done) => {
-//   // passport callback function
-//   console.log('passport callback function fired:');
-//   console.log(profile);
-//   user={
-//     "googleId": profile.id,
-//     "username": profile.displayName
-// }
-//   done(null,user);
-// })
-// );
-// // ()=>{}))
-
-
-// router.get("/google", passport.authenticate('google',
-// {
-//   scope:['profile']
-// }
-// ));
 
 
 // router.get("/google/cb",passport.authenticate('google'),(req, res) => {
@@ -156,4 +98,81 @@
 // //   res.status(200).send("Welcome 🙌 ");
 // // });
 
-// // module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// auth with github
+router.get('/github', passport.authenticate('github', {
+    scope: ['user']
+  }))
+
+  router.get('/github/cb', passport.authenticate('github'), (req,res) =>{
+    console.log( req.user)
+    res.json(req.user)
+
+  })
+
+  router.get('/facebook', passport.authenticate('facebook'))
+
+
+router.get('/google/cb', passport.authenticate('facebook'), (req,res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+  res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+    res.json(req.user)
+  
+})
+  
+router.get('/google', passport.authenticate('google',{
+  
+    scope: ['profile']
+  }))
+
+
+//   router.get('/google', (req, res) => {
+    // res.json("req.use")
+//   })
+
+router.get("/google/coolback",passport.authenticate('google'),(req, res) => {
+// console.log(req)
+  res.json(req.user);
+});
+
+
+module.exports = router
