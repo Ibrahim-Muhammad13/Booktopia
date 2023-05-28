@@ -6,6 +6,7 @@ import {BooksComponent} from './books/books.component';
 import {AuthorsComponent } from './authors/authors.component';
 import {RegisterComponent } from './register/register.component';
 import {LoginComponent } from './login/login.component';
+import {AuthorDetailsComponent} from './author-detalis/author-detalis.component';
 
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'author-details/:id',
+     component: AuthorDetailsComponent
   },
   {
     path: 'admin',

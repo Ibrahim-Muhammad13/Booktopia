@@ -18,7 +18,7 @@ async function creation (data, res){
 async function getting (res){
   try {
     const respons=  await user.find()    
-    res.status(201).json("come with get all method by id "+respons )
+    res.status(201).json(respons )
   } catch (e) {
     res.status(500).json(e)
   }}
