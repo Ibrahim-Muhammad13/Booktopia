@@ -15,6 +15,8 @@ import { AutherUpdateComponent } from './admin/auther-update/auther-update.compo
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
+import { authGuard } from './guard/auth.guard';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 
 const routes: Routes = [
@@ -48,9 +50,13 @@ const routes: Routes = [
   {
     path: 'author-details/:id',
      component: AuthorDetailsComponent
+  },{
+    path: 'admin/login',
+    component:AdminLoginComponent
   },
   {
     path: 'admin',
+    canActivate:[authGuard],
     component:DashboardComponent,
     children:[
       {

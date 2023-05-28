@@ -41,18 +41,20 @@ try {
   if(errors.isEmpty()){
     const { email, password} = req.body;
     const user = await User.findOne({ email });
+    console.log(user)
     if (user && password== user.password) {
+      
         Type=user.Type
       const token = jwt.sign(
         {Type, email },
         process.env.TOKEN_KEY
       );
        user.token = token;
-     return res.json(user+user.token);
+     return res.json({user:user,token:user.token});
     }
     res.json("Invalid  no user found in data base ");
   }
-//   else{ return res.json(errors) }
+   else{ return res.json(errors) }
 
 } catch (err) {
   console.log(err);

@@ -25,6 +25,7 @@ import {AuthorsCardComponent} from './authors-card/authors-card.component';
 import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 import { AuthorDetailsComponent } from './author-detalis/author-detalis.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 
 
@@ -49,6 +50,7 @@ import { CategoryBooksComponent } from './category-books/category-books.componen
     AdminBookComponent,
     AuthorDetailsComponent,
     CategoryBooksComponent,
+    AdminLoginComponent,
 
   ],
   imports: [
