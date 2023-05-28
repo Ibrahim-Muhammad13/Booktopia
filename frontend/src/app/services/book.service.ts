@@ -22,9 +22,10 @@ getBooksBycategoryId(catId:number){
     return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
   }
 
-  updateBook(bookId: number, name: string, rate: number, authorId: number, categoryId: number) {
-    const book = { name: name, rate: rate, authorId: authorId, categoryId: categoryId };
-    return this.http.put(`http://localhost:3000/books/${bookId}`, book);
+  updateBook(bookId: number, Name: string, rate: number, authorId: number, categoryId: number) {
+    const book = { name: Name, rate: rate, authorId: authorId, categoryId: categoryId };
+    console.log("this book",book);
+    return this.http.put('http://localhost:3000/books/'+bookId, book);
   }
 
   deleteBook(bookId: number): Observable<Book[]> {
