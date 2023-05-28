@@ -1,7 +1,7 @@
 const express= require ("express");
 require("dotenv").config();
 const { body, validationResult } = require('express-validator');
-// const bcrypt= require ("bcrypt");
+const passport = require('passport')
 const router=express.Router();
 const jwt=require("jsonwebtoken");
 const  User=require("../models/user")
@@ -17,7 +17,6 @@ router.post("/register",[
     const Type=false    
     const oldUser = await User.findOne({ email });
       if (oldUser) {return res.json("User Already Exist. Please Login");}
-      // encryptedPassword = await bcrypt.hash(password, 10);
       const user = await User.create({fullname,email,password: password,Type});
       res.status(201).json(user);
      }
@@ -42,11 +41,7 @@ try {
   if(errors.isEmpty()){
     const { email, password} = req.body;
     const user = await User.findOne({ email });
-    //  return res.json("done");
-
-    if (user && (await bcrypt.compare(password, user.password))) {
-    //  return res.json("done");
-
+    if (user && password== user.password) {
         Type=user.Type
       const token = jwt.sign(
         {Type, email },
@@ -64,6 +59,45 @@ try {
 }
 });
 
+
+
+
+
+
+
+
+// auth with github
+router.get('/github', passport.authenticate('github', {
+  scope: ['user']
+}))
+
+router.get('/github/cb', passport.authenticate('github'), (req,res) =>{
+  console.log( req.user)
+  res.json(req.user)
+
+})
+
+router.get('/facebook', passport.authenticate('facebook'))
+
+
+router.get('/google/cb', passport.authenticate('facebook'), (req,res) => {
+res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); // If needed
+res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+  res.json(req.user)
+
+})
+
+router.get('/google', passport.authenticate('google',{
+  scope: ['profile']
+}))
+
+
+
+router.get("/google/coolback",passport.authenticate('google'),(req, res) => {
+res.json(req.user);
+});
 
 // router.get("/welcome", auth, (req, res) => {
 // console.log(req.params)

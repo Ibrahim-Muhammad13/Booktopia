@@ -9,7 +9,6 @@ const adminRouter = require('./routes/admin');
 const autherRouter = require('./routes/auther');
 const userRouter = require('./routes/user');
 const booksRouter = require('./routes/books');
-const authRouter = require('./routes/AuthenticationRouter');
 const auth = require('./routes/auth');
 const cookieSession = require('cookie-session')
 app.use('/images/',express.static('images'))
@@ -49,8 +48,7 @@ app.use('/admin', adminRouter);
 app.use('/auther', autherRouter);
 app.use('/user', userRouter);
 app.use('/books', booksRouter);
-app.use('/auth', authRouter);
-// app.use('/auth', auth);
+app.use('/auth', auth);
 
 
 app.use((req,res)=>{
