@@ -21,7 +21,7 @@ router.post("/register",[
       res.status(201).json(user);
      }
   else{
-    return res.json("sorry") 
+    return res.json(errors) 
   }
   } 
   catch (err) {console.log(err);}
