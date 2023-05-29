@@ -6,6 +6,7 @@ import {BooksComponent} from './books/books.component';
 import {AuthorsComponent } from './authors/authors.component';
 import {RegisterComponent } from './register/register.component';
 import {LoginComponent } from './login/login.component';
+import {AuthorDetailsComponent} from './author-detalis/author-detalis.component';
 
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
@@ -14,6 +15,10 @@ import { AutherUpdateComponent } from './admin/auther-update/auther-update.compo
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import { AdminBookComponent } from './admin/admin-book/admin-book.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
+import { authGuard } from './guard/auth.guard';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -33,6 +38,11 @@ const routes: Routes = [
     component: BooksComponent
   },
   {
+    path: 'book/:id',
+    component: BookDetailsComponent
+  },
+
+  {
     path: 'authors',
     component: AuthorsComponent
   },
@@ -45,7 +55,18 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'author-details/:id',
+     component: AuthorDetailsComponent
+  },{
+    path: 'admin/login',
+    component:AdminLoginComponent
+  },
+  {path:'myProfile',
+    component: ProfileComponent
+  },
+  {
     path: 'admin',
+    canActivate:[authGuard],
     component:DashboardComponent,
     children:[
       {
@@ -56,7 +77,7 @@ const routes: Routes = [
       {
         path: 'auther',
         component:AutherComponent,
-        
+
       },
       {
         path: 'auther/update/:id',
@@ -69,11 +90,11 @@ const routes: Routes = [
         path: 'books',
         component:AdminBookComponent,
       }
-    
+
     ]
 
   },
-  
+
 ];
 
 @NgModule({

@@ -23,7 +23,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AutherAddComponent } from './admin/auther-add/auther-add.component';
 import {AuthorsCardComponent} from './authors-card/authors-card.component';
 import { AdminBookComponent } from './admin/admin-book/admin-book.component';
+import { AuthorDetailsComponent } from './author-detalis/author-detalis.component';
 import { CategoryBooksComponent } from './category-books/category-books.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { AuthorBookDetailsComponent } from './author-book-details/author-book-details.component';
+import { StarRatingPipe } from './pipes/star-rating.pipe';
+import { ProfileComponent } from './profile/profile.component';
+
+
 
 
 @NgModule({
@@ -45,7 +53,15 @@ import { CategoryBooksComponent } from './category-books/category-books.componen
     AutherAddComponent,
     AuthorsCardComponent,
     AdminBookComponent,
+    AuthorDetailsComponent,
     CategoryBooksComponent,
+    AdminLoginComponent,
+    BookDetailsComponent,
+
+    AuthorBookDetailsComponent,
+    StarRatingPipe,
+    ProfileComponent,
+
 
   ],
   imports: [

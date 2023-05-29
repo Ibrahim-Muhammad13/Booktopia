@@ -7,7 +7,7 @@ import { BookService } from 'src/app/services/book.service';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Subscription } from 'rxjs';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class AdminBookComponent {
   books!:Book[]
   authers!:Author[]
   categories!:Category[]
-  bookName:string = '';
+  //  bookName:string = '';
   rate!:number
   autherId!:number
   categoryId!:number
@@ -34,7 +34,11 @@ export class AdminBookComponent {
   bookForm!: FormGroup;
 
 
-constructor(private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService) { }
+constructor(private fb:FormBuilder, private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService) { 
+  this.bookForm = this.fb.group({
+    bookName: null, 
+  })
+}
 
   ngOnInit(){
   this.getbooks();
@@ -71,14 +75,14 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     console.log(fd)
     const newBook: Book = {
       _id: 0,
-      name: this.bookName,
+      name: this.newBookName,
       rate: this.rate,
       authorId: this.autherId,
       categoryId: this.categoryId,
       image: this.image
     };
     this.books.push(newBook);
-    this.book.addBook(fd)
+    // this.book.addBook(fd)
     // this.cancelForm();
   }
 
@@ -92,6 +96,7 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
 
 
   updateBook(bookId: number, bookName: string, rate: number, authorId: number, categoryId: number) {
+    console.log('Book toti:', bookName);
     const updatedBook: Book = {
       _id: bookId,
       name: bookName,
@@ -102,18 +107,18 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     };
 
     this.book.updateBook(bookId, bookName, rate, authorId, categoryId).subscribe({
-      next: (res: any) => {
-        console.log('Book updated successfully:', res);
-        // Find the index of the updated book in the array
-        const index = this.books.findIndex((book) => book._id === bookId);
-        if (index !== -1) {
-          // Update the book in the array
-          this.books[index] = updatedBook;
-        }
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
+      // next: (res: any) => {
+      //   console.log('Book updated successfully:', res);
+      //   // Find the index of the updated book in the array
+      //   const index = this.books.findIndex((book) => book._id === bookId);
+      //   if (index !== -1) {
+      //     // Update the book in the array
+      //     this.books[index] = updatedBook;
+      //   }
+      // },
+      // error: (err: any) => {
+      //   console.error(err);
+      // }
     });
   }
 
@@ -136,7 +141,6 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
     this.newBookName = '';
     this.showForm = false;
     this.isNewBook = false;
-    this.bookName = '';
     this.rate = 0;
     this.autherId = 0;
     this.categoryId = 0;

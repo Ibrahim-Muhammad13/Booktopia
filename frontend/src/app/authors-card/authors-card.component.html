@@ -1,8 +1,7 @@
-<div class="card h-100" >
-    <img [src] = "oneOfAuthors.image" class="card-img-top">
-    <div class="card-body">
-        <!-- <h5 class="card-title"> {{oneOfAuthors._id}} </h5> -->
-      <h5 class="card-title"> {{oneOfAuthors.firstName}} </h5>
-      <!-- <p class="card-text"> {{oneOfAuthors.d}} </p> -->
-    </div>
-
+<div class="card h-100">
+  <img [src]="oneOfAuthors.image" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{oneOfAuthors.firstName}}</h5>
+    <a (click)="goToAuthorDetails(oneOfAuthors._id)" class="btn btn-success my-3">Author Details</a>
+  </div>
+</div>

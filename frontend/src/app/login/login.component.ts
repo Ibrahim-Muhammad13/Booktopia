@@ -9,12 +9,17 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  result:any
   constructor(private auth:AuthService )
 {}
   submitlogin(login:any){
-    console.log(typeof( login))
-  //  const result = this.auth.login(login)
-   this.auth.login(login)
-  //  console.log(result)
+
+
+   this.auth.login(login).subscribe((res:any)=>{
+    this.result=res
+    // console.log(this.result.user._id)
+    this.auth.setiduser(this.result.user._id)  
+  })
+
  }
 }

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -7,22 +9,71 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
 
-  getAllauther(){
-    return this.http.get('http://localhost:3000/auther')
+
+
+
+
+  private id =new  BehaviorSubject("646bc4d33344a39071390ca4")
+  getidUser() { 
+  return this.id.asObservable();
   }
-  getAllautherbyid(id:any){
-    return this.http.get('http://localhost:3000/auther/'+id)
+  setiduser(newVal:any){
+  this.id.next(newVal);
   }
   
 
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  isLoggedin=false;
+  isAuth(){
+    if(localStorage.getItem('token')){
+      console.log("there is tok")
+      this.isLoggedin=true;
+    }
+    else{
+      this.isLoggedin=false;
+    }
+    return this.isLoggedin;
+  }
+
+
+
+
+  setToken(token:string){
+    console.log(token)
+    if(token!=null){
+      localStorage.setItem('token',token)
+    }
+    // this.router.navigate(['admin'])
+  }
+  getToken(){
+    return localStorage.getItem('token')
+  }
+  logout(){
+    localStorage.removeItem('token')
+    this.isLoggedin=false;
+    this.router.navigate([''])
+
+  }
   register(data:any){
     return this.http.post('http://localhost:3000/auth/register',data).subscribe((res:any)=>console.log(res))
   }
   login(data:any){
     // console.log(data)
-    return this.http.post('http://localhost:3000/auth/login',data).subscribe((res:any)=>{console.log( res)})
+    return this.http.post('http://localhost:3000/auth/login',data)
     // return this.http.post('http://localhost:3000/auth/login',data).subscribe((res:any)=>{return res})
   }
   

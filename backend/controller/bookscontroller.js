@@ -36,7 +36,7 @@ async function getBooksByCatId (id,res){
     async function edit (id,data,res){
   try {
    const respons=  await books.findByIdAndUpdate(id,data)    
-    res.status(201).json("come with updata method by id "+respons )
+    res.status(201).json(respons )
     } catch (e) {
     res.status(500).json("error")
   }}
