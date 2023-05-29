@@ -33,16 +33,18 @@
 
                 <td>
                   <input type="number" class="form-control" aria-describedby="BookRateHelp" name="bookRate" ngModel
-                    #bookRate="ngModel" required />
+                    #bookRate="ngModel" required [min]="0" />
                   <div id="BookRateHelp" class="form-text text-danger" *ngIf="bookRate.touched && bookRate.invalid">
-                    <span *ngIf="bookRate?.errors?.['required']">This Field Is Required</span>
+                    <span *ngIf="bookRate?.errors?.['required']">This field is required</span>
+                    <span *ngIf="bookRate?.errors?.['min']">Rate cannot be a negative number</span>
                   </div>
                 </td>
+                
 
                 <td>
                   <select class="form-select" aria-describedby="authorBookHelp" name="authorbook" ngModel
                     #authorbook="ngModel" required>
-                    <option selected>Choose Your Auther Name</option>
+                    <option disabled selected>Choose Your Auther Name</option>
                     <option *ngFor="let auther of authers" value="{{ auther._id }}">
                       {{ auther.firstName }} {{ auther.LastName }}
                     </option>
@@ -56,7 +58,7 @@
                 <td>
                   <select name="categoryId" class="form-select" aaria-describedby="authorcategoryHelp" ngModel
                     #categoryId="ngModel" required>
-                    <option selected>Choose Your Category Name</option>
+                    <option disabled selected>Choose Your Category Name</option>
                     <option *ngFor="let category of categories" value="{{ category._id }}">
                       {{ category.cat_Name }}
                     </option>
