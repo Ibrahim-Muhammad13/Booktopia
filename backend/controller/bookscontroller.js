@@ -27,12 +27,19 @@ async function gettingbyId (id,res){
 
 async function getBooksByCatId (id,res){
   try {
-    const respons=  await books.find({categoryId:id})   ;    
+    const respons=  await books.find({categoryId:id});    
     res.status(201).json(respons )
   } catch (e) {
     res.status(500).json("error")
 }}
     
+async function getBookByAuthorId (id,res){
+  try {
+    const respons=  await books.find({authorId:id});    
+    res.status(201).json(respons )
+  } catch (e) {
+    res.status(500).json("error")
+}}
 
     async function edit (id,data,res){
   try {
@@ -52,7 +59,7 @@ async function remove (id,res){
 }}
 
 module.exports={
-  creation,getting,gettingbyId,remove,edit,getBooksByCatId
+  creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId
   // ,gettingbyid,edit ,remove
       // add,edit,remove,parse2 ,checked,show
   }

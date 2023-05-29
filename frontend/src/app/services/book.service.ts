@@ -17,6 +17,9 @@ export class BookService {
   getBooksBycategoryId(catId:number){
     return this.http.get('http://localhost:3000/books/cat/'+catId);
   }
+  getBooksByauthorId(authorId:string){
+    return this.http.get('http://localhost:3000/books/author/'+authorId);
+  }
   getBookById(id:any): Observable<Book[]>{
     return this.http.get<Book[]>('http://localhost:3000/books'+id);
   }
