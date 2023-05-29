@@ -29,6 +29,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { AuthorBookDetailsComponent } from './author-book-details/author-book-details.component';
 import { StarRatingPipe } from './pipes/star-rating.pipe';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -59,6 +60,7 @@ import { StarRatingPipe } from './pipes/star-rating.pipe';
 
     AuthorBookDetailsComponent,
     StarRatingPipe,
+    ProfileComponent,
 
 
   ],

@@ -51,6 +51,7 @@ export class AutherAddComponent {
     let fd = new FormData(event.target as HTMLFormElement);
     this.auther.Newauther(fd);
     this.location.back();
+
   }
 
 }

@@ -2,7 +2,7 @@ const express = require('express')
 const categoryController = require('../controller/categoryController')
 const router = express.Router()
 const auth = require('../middlware/auth')
-router.get('/category',(req, res) => {
+router.get('/category' ,(req, res) => {
   categoryController.getAllCategories(req, res)
 })
 

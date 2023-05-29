@@ -18,6 +18,7 @@ import { CategoryBooksComponent } from './category-books/category-books.componen
 import { authGuard } from './guard/auth.guard';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,9 @@ const routes: Routes = [
   {
     path: 'admin/login',
     component:AdminLoginComponent
+  },
+  {path:'myProfile',
+    component: ProfileComponent
   },
   {
     path: 'admin',

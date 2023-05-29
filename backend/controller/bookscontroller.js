@@ -2,8 +2,7 @@ const books = require("../models/books");// for database
 async function creation (data, res){
   try {
     const respons=  await books.create(data)
-
-    res.status(201).json(respons )
+    res.json(respons )
   } catch (e) {
     res.status(500).json(e)
   }}
