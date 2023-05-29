@@ -40,7 +40,6 @@ const routes: Routes = [
     path: 'book/:id',
     component: BookDetailsComponent
   },
-
   {
     path: 'authors',
     component: AuthorsComponent
@@ -55,8 +54,9 @@ const routes: Routes = [
   },
   {
     path: 'author-details/:id',
-     component: AuthorDetailsComponent
-  },{
+    component: AuthorDetailsComponent
+  },
+  {
     path: 'admin/login',
     component:AdminLoginComponent
   },
