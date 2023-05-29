@@ -23,6 +23,12 @@ router.get('/cat/:id',(req, res) => {
   controller.getBooksByCatId (id,res)
 })
 
+router.get('/author/:id',(req, res) => {
+  const {id} =req.params
+  controller.getBookByAuthorId (id,res)
+})
+
+
 //Title mainSpeaker speakers  students
 
 

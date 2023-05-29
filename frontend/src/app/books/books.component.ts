@@ -8,7 +8,7 @@ import { BookService } from '../services/book.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent {
-books!:Book[]
+books!:any[]
 
   constructor(private book:BookService) { }
 

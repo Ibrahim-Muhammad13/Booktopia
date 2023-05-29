@@ -2,7 +2,8 @@
 <div class="container">
   <div class="row">
     <div class="table-container">
-      <form>
+      <form #bookForm="ngForm" (ngSubmit)="submitBookForm(bookForm)">
+
         <table class="table">
           <thead>
             <tr>
@@ -19,57 +20,66 @@
           <tbody>
             <ng-container *ngIf="showForm; else bookList">
               <tr>
+
                 <td>
-                  <input
-                    [(ngModel)]="newBookName"
-                    name="name"
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    
-                  />
+                  <input type="text" [(ngModel)]="newBookName" class="form-control" aria-describedby="BookNameHelp"
+                    name="adminBookName" ngModel #adminBookName="ngModel" minlength="3" required />
+                  <div id="BookNameHelp" class="form-text text-danger"
+                    *ngIf="adminBookName.touched && adminBookName.invalid">
+                    <span *ngIf="adminBookName?.errors?.['required']">This Field Is Required</span>
+                    <span *ngIf="adminBookName?.errors?.['minlength']">the minlength is 3 character</span>
+                  </div>
                 </td>
+
                 <td>
-                  <input
-                    [(ngModel)]="rate"
-                    name="rate"
-                    type="number"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                  />
+                  <input type="number" [(ngModel)]="rate" class="form-control" aria-describedby="BookRateHelp"
+                    name="bookRate" ngModel #bookRate="ngModel" required [min]="0" />
+                  <div id="BookRateHelp" class="form-text text-danger" *ngIf="bookRate.touched && bookRate.invalid">
+                    <span *ngIf="bookRate?.errors?.['required']">This field is required</span>
+                    <span *ngIf="bookRate?.errors?.['min']">Rate cannot be a negative number</span>
+                  </div>
                 </td>
+
+
                 <td>
-                  <select
-                    [(ngModel)]="autherId"
-                    name="author" class="form-select" aria-label="Default select example">
-                    <option selected>Choose Your Auther Name</option>
+                  <select [(ngModel)]="autherId" aria-label="Default select example" class="form-select"
+                    aria-describedby="authorBookHelp" name="authorbook" ngModel #authorbook="ngModel" required>
+                    <option disabled selected>Choose Your Auther Name</option>
                     <option *ngFor="let auther of authers" value="{{ auther._id }}">
                       {{ auther.firstName }} {{ auther.LastName }}
                     </option>
                   </select>
+                  <div id="authorBookHelp" class="form-text text-danger"
+                    *ngIf="authorbook.touched && authorbook.invalid">
+                    <span *ngIf="authorbook?.errors?.['required']">This Field Is Required</span>
+                  </div>
                 </td>
+
                 <td>
-                  <select
-                    [(ngModel)]="categoryId"
-                    name="cat"
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Choose Your Category Name</option>
-                    <option
-                      *ngFor="let category of categories"
-                      value="{{ category._id }}">
+                  <select [(ngModel)]="categoryId" aria-label="Default select example" name="categoryModel"
+                    class="form-select" aaria-describedby="authorcategoryHelp" ngModel #categoryModel="ngModel"
+                    required>
+
+                    <option disabled selected>Choose Your Category Name</option>
+                    <option *ngFor="let category of categories" value="{{ category._id }}">
                       {{ category.cat_Name }}
                     </option>
                   </select>
+                  <div id="authorcategoryHelp" class="form-text text-danger"
+                    *ngIf="categoryModel.touched && categoryModel.invalid">
+                    <span *ngIf="categoryModel?.errors?.['required']">This Field Is Required</span>
+                  </div>
                 </td>
+
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <button (click)="addBook()" type="submit" class="btn btn-primary me-3">Save</button>
+                    <button (click)="addBook()" type="submit" class="btn btn-primary me-3"
+                      [disabled]="bookForm.invalid && bookForm.touched">Save</button>
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
-                    <button type="button" class="btn btn-primary me-1" (click)="selectedBook && updateBook(selectedBook._id, newBookName, selectedBook.rate, selectedBook.authorId, selectedBook.categoryId)">Update</button>
+                    <button type="button" class="btn btn-primary me-1" [disabled]="bookForm.invalid && bookForm.touched"
+                      (click)="selectedBook && updateBook(selectedBook._id, newBookName, selectedBook.rate, selectedBook.authorId, categoryId)">Update</button>
+
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
@@ -80,17 +90,14 @@
               <tr *ngFor="let book of books; let i = index">
                 <td scope="row">{{book.name}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary me-4" (click)="editBook(book)" >Edit</button>
+                  <button type="button" class="btn btn-primary me-4" (click)="editBook(book)">Edit</button>
                   <button type="button" class="btn btn-danger" (click)="deleteBook(book._id, i)">Delete</button>
                 </td>
               </tr>
-          </ng-template>
+            </ng-template>
           </tbody>
         </table>
       </form>
     </div>
   </div>
 </div>
-
-
-

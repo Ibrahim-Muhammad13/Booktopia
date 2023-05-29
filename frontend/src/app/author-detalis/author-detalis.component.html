@@ -1,18 +1,19 @@
 <app-navbar></app-navbar>
-   <h2 class="m-3">Author Details</h2>
-   
+ <div class="container">
+  <h2 class="m-3">Author Details</h2>
+
 <div class="card my-4">
   <div class="row">
     <div class="col-md-4"*ngIf="author">
       <img [src]="author.image" style="width:100%; height:auto;">
     </div>
     <div class="card-body col-md-8"*ngIf="author">
-      <h3>{{author.firstName}}</h3>
-      <p>{{author.LastName}}</p>
+      <h3>{{author.firstName}} {{author.LastName}}</h3>
       <p>{{author.birthDate}}</p>
     </div>
   </div>
 </div>
+ </div>
 <div class="card container">
   <div class="card-header my-2">
     <h5 class="card-title my-2">Author's Books</h5>
