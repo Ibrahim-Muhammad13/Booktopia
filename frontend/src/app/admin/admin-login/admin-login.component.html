@@ -4,6 +4,7 @@
     <div class="col-md-4 mx-auto shadow">
       <div class="card bg-white p-5">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <h3 class="mb-5">Admin Login</h3>
           <div class="row mb-5">
             <input type="email" formControlName="email" placeholder="Email"
             [ngClass]="{'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)}"
