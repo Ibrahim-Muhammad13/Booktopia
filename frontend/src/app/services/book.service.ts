@@ -10,8 +10,8 @@ export class BookService {
 
   constructor(private http:HttpClient) { }
 
-  getBooks(): Observable<Book[]>{
-    return this.http.get<Book[]>('http://localhost:3000/books');
+  getBooks(){
+    return this.http.get('http://localhost:3000/books');
   }
   
   getBooksBycategoryId(catId:number){
