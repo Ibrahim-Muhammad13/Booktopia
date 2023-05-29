@@ -1,7 +1,13 @@
 <h1 class="p-2">Admin Books</h1>
 <h2 class="p-2"  *ngIf="showForm && !isNewBook"> Edit Your Book</h2>
 <h2 class="p-2"  *ngIf="showForm && isNewBook"> Add Your Book</h2>
+<div class="flex justify-content-end me-4 mb-4">
+  <button type="button" class="btn btn-success" *ngIf="!showForm" (click)="showForm=true; isNewBook=true">Add</button>
+</div>
+
+
 <div class="container">
+
   <div class="row">
     <div class="table-container">
       <form>
@@ -12,10 +18,8 @@
               <th scope="col" *ngIf="showForm">Rate</th>
               <th scope="col" *ngIf="showForm">Author Name</th>
               <th scope="col" *ngIf="showForm">Category Name</th>
+              <th scope="col" *ngIf="showForm">Image</th>
               <th scope="col">Action</th>
-              <th scope="col" class="d-flex justify-content-end border-none">
-                <button type="button" class="btn btn-success" *ngIf="!showForm" (click)="showForm=true; isNewBook=true">Add</button>
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -74,7 +78,16 @@
                     <span *ngIf="categoryModel?.errors?.['required']">This Field is required</span>
                   </div>
                 </td>
-
+                <td>
+                  <input
+                  [(ngModel)]="image"
+                  name="imaage"
+                  type="file"
+                  class="form-control"
+                  id="exampleInputfile"
+                  aria-describedby="fileHelp"
+                />
+              </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
                     <button (click)="addBook($event)" type="submit" class="btn btn-primary me-3">Save</button>
@@ -85,19 +98,9 @@
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
-              <td>
-                <input
-                [(ngModel)]="image"
-                name="imaage"
-                type="file"
-                class="form-control"
-                id="exampleInputfile"
-                aria-describedby="fileHelp"
-              />
-            </td>
+
               </tr>
             </ng-container>
-
             <ng-template #bookList>
               <tr *ngFor="let book of books; let i = index">
                 <td scope="row">{{book.name}}</td>
