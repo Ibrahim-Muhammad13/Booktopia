@@ -23,11 +23,11 @@
 
                 <td>
                   <input type="text" class="form-control" aria-describedby="BookNameHelp" name="adminBookName" ngModel
-                    #adminBookName="ngModel" minlength="8" required />
+                    #adminBookName="ngModel" minlength="3" required />
                   <div id="BookNameHelp" class="form-text text-danger"
                     *ngIf="adminBookName.touched && adminBookName.invalid">
                     <span *ngIf="adminBookName?.errors?.['required']">This Field Is Required</span>
-                    <span *ngIf="adminBookName?.errors?.['minlength']">the minlength is 8 character</span>
+                    <span *ngIf="adminBookName?.errors?.['minlength']">the minlength is 3 character</span>
                   </div>
                 </td>
 
