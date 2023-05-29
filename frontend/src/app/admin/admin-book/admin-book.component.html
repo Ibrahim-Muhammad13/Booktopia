@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="table-container">
-      <form>
+      <form enctype="multipart/form-data" >
         <table class="table">
           <thead>
             <tr>
@@ -65,13 +65,23 @@
                 </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <button (click)="addBook()" type="submit" class="btn btn-primary me-3">Save</button>
+                    <button  type="submit" (click)="addBook($event)" class="btn btn-primary me-3">Save</button>
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
                     <button type="button" class="btn btn-primary me-1" (click)="selectedBook && updateBook(selectedBook._id, newBookName, selectedBook.rate, selectedBook.authorId, selectedBook.categoryId)">Update</button>
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
+              <td>
+                <input
+                [(ngModel)]="image"
+                name="imaage"
+                type="file"
+                class="form-control"
+                id="exampleInputfile"
+                aria-describedby="fileHelp"
+              />
+            </td>
               </tr>
             </ng-container>
 

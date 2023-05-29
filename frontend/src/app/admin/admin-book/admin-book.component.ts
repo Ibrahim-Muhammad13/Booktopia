@@ -23,6 +23,7 @@ export class AdminBookComponent {
   rate!:number
   autherId!:number
   categoryId!:number
+  image!:string
 
 
   showForm = false;
@@ -64,22 +65,21 @@ constructor(private http:HttpClient, private auther:AutherService, private book:
   }
 
 
-  addBook() {
-    console.log('Book name:', this.bookName);
-    console.log('Author ID:', this.autherId);
-    console.log('Category ID:', this.categoryId);
-    console.log('Rate:', this.rate);
+  addBook(event: Event) {
+    event.preventDefault();
+    let fd = new FormData(event.target as HTMLFormElement);
+    console.log(fd)
     const newBook: Book = {
       _id: 0,
       name: this.bookName,
       rate: this.rate,
       authorId: this.autherId,
       categoryId: this.categoryId,
-      image: ''
+      image: this.image
     };
     this.books.push(newBook);
-    this.book.addBook(this.bookName, this.rate, this.autherId, this.categoryId)
-    this.cancelForm();
+    this.book.addBook(fd)
+    // this.cancelForm();
   }
 
 

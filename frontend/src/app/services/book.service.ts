@@ -16,10 +16,13 @@ export class BookService {
 getBooksBycategoryId(catId:number){
     return this.http.get('http://localhost:3000/books/cat/'+catId);
   }
-  addBook(bookName: string,  rate: number,authorId: number, categoryId: number){
-    const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
+  addBook(fd :any){
+    // const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
     // console.log(newBook);
-    return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
+   const newBook=fd
+ 
+//  console.log(fd)  
+ return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
   }
 
   updateBook(bookId: number, name: string, rate: number, authorId: number, categoryId: number) {
