@@ -20,12 +20,13 @@
       <th>Avg Rate</th>
       <th>routing</th>
       <th>Shelve</th>
+      <th>status</th>
     </tr>
-    <tr *ngFor= "let book of books">
+    <tr *ngFor= "let book of books let i=index">
       <td><img [src]="book.bookid.image" alt="test" width="100" height="100"></td>
       <td><a href="">{{book.bookid.name}}</a></td>
       <td><a href="">{{
-      books[4].bookid.authorId.firstName+" "+books[4].bookid.authorId.LastName 
+      book.bookid.authorId.firstName+" "+book.bookid.authorId.LastName 
         }}</a></td>
       <td>{{book.bookid.rate}}</td>
       <td> rate<input type="text"></td>
@@ -34,10 +35,12 @@
         <span class="visually-hidden">Toggle Dropdown</span>
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" >Action</a></li>
-        <li><a class="dropdown-item" >Another action</a></li>
-        <li><a class="dropdown-item" >Something else here</a></li>
+        <li><button (click)="changestates(i,'reedy')" class="dropdown-item" >reedy </button></li>
+        <li><button (click)="changestates(i,'currently')" class="dropdown-item"> currently</button></li>
+        <li><button (click)="changestates(i,'wanttoread')" class="dropdown-item" >wanttoread</button></li>
       </ul></td>
+      <td>{{book.status}}</td>
+
     </tr>
 
   </table>

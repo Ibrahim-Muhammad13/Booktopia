@@ -16,6 +16,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./admin-book.component.css']
 })
 export class AdminBookComponent {
+  submitBookForm(form : any){}
+
   books!:Book[]
   authers!:Author[]
   categories!:Category[]

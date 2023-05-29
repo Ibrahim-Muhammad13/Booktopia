@@ -15,6 +15,15 @@ export class UserInfoService {
   }
 
 
+  getbooks(user_id:string,status:string){
+    return this.http.get('http://localhost:3000/profile/'+user_id+"?books="+status);
+  }
+  
+  update(book_id:string,NewStatus:any){
+    // console.log(NewStatus);
+    return this.http.put('http://localhost:3000/profile/'+book_id,NewStatus);
+  }
+
 }
 
 
