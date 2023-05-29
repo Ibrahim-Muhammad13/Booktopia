@@ -35,9 +35,9 @@ export class AdminBookComponent {
   bookForm!: FormGroup;
 
 
-constructor(private fb:FormBuilder, private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService) { 
+constructor(private fb:FormBuilder, private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService) {
   this.bookForm = this.fb.group({
-    bookName: null, 
+    bookName: null,
   })
 }
 
@@ -71,7 +71,7 @@ constructor(private fb:FormBuilder, private http:HttpClient, private auther:Auth
 
 
   addBook() {
-    
+
     console.log('Book name:', this.newBookName);
     console.log('Author ID:', this.autherId);
     console.log('Category ID:', this.categoryId);

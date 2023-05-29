@@ -1,4 +1,6 @@
 <h1 class="p-2">Admin Books</h1>
+<h2 class="p-2"  *ngIf="showForm && !isNewBook"> Edit Your Book</h2>
+<h2 class="p-2"  *ngIf="showForm && isNewBook"> Add Your Book</h2>
 <div class="container">
   <div class="row">
     <div class="table-container">
@@ -12,8 +14,8 @@
               <th scope="col" *ngIf="showForm">Author Name</th>
               <th scope="col" *ngIf="showForm">Category Name</th>
               <th scope="col">Action</th>
-              <th scope="col" class="d-flex justify-content-end">
-                <button type="button" class="btn btn-success" (click)="showForm=true; isNewBook=true">Add</button>
+              <th scope="col" class="d-flex justify-content-end border-none">
+                <button type="button" class="btn btn-success" *ngIf="!showForm" (click)="showForm=true; isNewBook=true">Add</button>
               </th>
             </tr>
           </thead>
@@ -51,7 +53,7 @@
                   </select>
                   <div id="authorBookHelp" class="form-text text-danger"
                     *ngIf="authorbook.touched && authorbook.invalid">
-                    <span *ngIf="authorbook?.errors?.['required']">This Field Is Required</span>
+                    <span *ngIf="authorbook?.errors?.['required']">This Field is required</span>
                   </div>
                 </td>
 
@@ -67,7 +69,7 @@
                   </select>
                   <div id="authorcategoryHelp" class="form-text text-danger"
                     *ngIf="categoryModel.touched && categoryModel.invalid">
-                    <span *ngIf="categoryModel?.errors?.['required']">This Field Is Required</span>
+                    <span *ngIf="categoryModel?.errors?.['required']">This Field is required</span>
                   </div>
                 </td>
 
@@ -79,7 +81,6 @@
                   <ng-container *ngIf="!isNewBook">
                     <button type="button" class="btn btn-primary me-1" [disabled]="bookForm.invalid && bookForm.touched"
                       (click)="selectedBook && updateBook(selectedBook._id, newBookName, selectedBook.rate, selectedBook.authorId, categoryId)">Update</button>
-
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
