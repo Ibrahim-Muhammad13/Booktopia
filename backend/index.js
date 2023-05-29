@@ -10,6 +10,7 @@ const autherRouter = require('./routes/auther');
 const userRouter = require('./routes/user');
 const booksRouter = require('./routes/books');
 const auth = require('./routes/auth');
+const profile=require("./routes/user_books")
 const cookieSession = require('cookie-session')
 app.use('/images/',express.static('images'))
 app.use(express.json());
@@ -49,10 +50,10 @@ app.use('/auther', autherRouter);
 app.use('/user', userRouter);
 app.use('/books', booksRouter);
 app.use('/auth', auth);
-
+app.use(['/add','/profile'], profile);
 
 app.use((req,res)=>{
-  res.status(404).send("page not foned")
+  res.status(404).send("page not foned !")
 })
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

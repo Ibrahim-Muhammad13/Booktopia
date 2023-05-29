@@ -2,8 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="table-container">
-      <form #bookForm="ngForm" (ngSubmit)="submitBookForm(bookForm)">
-
+      <form>
         <table class="table">
           <thead>
             <tr>
@@ -73,8 +72,7 @@
 
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <button (click)="addBook()" type="submit" class="btn btn-primary me-3"
-                      [disabled]="bookForm.invalid && bookForm.touched">Save</button>
+                    <button (click)="addBook($event)" type="submit" class="btn btn-primary me-3">Save</button>
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
                     <button type="button" class="btn btn-primary me-1" [disabled]="bookForm.invalid && bookForm.touched"
@@ -83,6 +81,16 @@
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
+              <td>
+                <input
+                [(ngModel)]="image"
+                name="imaage"
+                type="file"
+                class="form-control"
+                id="exampleInputfile"
+                aria-describedby="fileHelp"
+              />
+            </td>
               </tr>
             </ng-container>
 
