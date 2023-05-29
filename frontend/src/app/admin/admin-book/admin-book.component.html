@@ -24,7 +24,7 @@
 
                 <td>
                   <input type="text" [(ngModel)]="newBookName" class="form-control" aria-describedby="BookNameHelp"
-                    name="adminBookName" ngModel #adminBookName="ngModel" minlength="3" required />
+                    name="adminBookName" ngModel #adminBookName="ngModel" minlength="3" required (input)="hasChanges = true"/>
                   <div id="BookNameHelp" class="form-text text-danger"
                     *ngIf="adminBookName.touched && adminBookName.invalid">
                     <span *ngIf="adminBookName?.errors?.['required']">This Field Is Required</span>
@@ -34,7 +34,7 @@
 
                 <td>
                   <input type="number" [(ngModel)]="rate" class="form-control" aria-describedby="BookRateHelp"
-                    name="bookRate" ngModel #bookRate="ngModel" required [min]="0" />
+                    name="bookRate" ngModel #bookRate="ngModel" required [min]="0" (input)="hasChanges = true"/>
                   <div id="BookRateHelp" class="form-text text-danger" *ngIf="bookRate.touched && bookRate.invalid">
                     <span *ngIf="bookRate?.errors?.['required']">This field is required</span>
                     <span *ngIf="bookRate?.errors?.['min']">Rate cannot be a negative number</span>
@@ -44,7 +44,9 @@
 
                 <td>
                   <select [(ngModel)]="autherId" aria-label="Default select example" class="form-select"
-                    aria-describedby="authorBookHelp" name="authorbook" ngModel #authorbook="ngModel" required>
+                    aria-describedby="authorBookHelp" name="authorbook" ngModel #authorbook="ngModel"
+                    required
+                    (input)="hasChanges = true">
                     <option disabled selected>Choose Your Auther Name</option>
                     <option *ngFor="let auther of authers" value="{{ auther._id }}">
                       {{ auther.firstName }} {{ auther.LastName }}
@@ -59,7 +61,8 @@
                 <td>
                   <select [(ngModel)]="categoryId" aria-label="Default select example" name="categoryModel"
                     class="form-select" aaria-describedby="authorcategoryHelp" ngModel #categoryModel="ngModel"
-                    required>
+                    required
+                    (input)="hasChanges = true">
 
                     <option disabled selected>Choose Your Category Name</option>
                     <option *ngFor="let category of categories" value="{{ category._id }}">

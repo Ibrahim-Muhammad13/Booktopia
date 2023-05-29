@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 export class AutherAddComponent {
   Auther!: any
   rigester: FormGroup
+  public hasChanges = false;
 
   constructor(private fb: FormBuilder, private auther: AutherService, private activeRouter: ActivatedRoute, private router: Router, private location: Location) {
     this.rigester = fb.group({
@@ -52,6 +53,16 @@ export class AutherAddComponent {
     this.auther.Newauther(fd);
     this.location.back();
 
+  }
+
+  cancel() {
+    if (this.hasChanges) {
+      const confirmDiscardChanges = confirm('Are you sure you want to discard your changes?');
+      if (!confirmDiscardChanges) {
+        return;
+      }
+    }
+    this.location.back(); 
   }
 
 }

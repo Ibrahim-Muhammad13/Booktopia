@@ -3,6 +3,7 @@
   <div class="row">
     <h1 class="col-md-10">Author Page</h1>
     <button routerLink="add" class="btn btn-success col-md-2 my-3">Add New Author</button>
+    <div class="table-container">
     <table class="table table-bordered" style="border-color: black;">
       <thead>
         <tr>
@@ -20,13 +21,13 @@
           <td>{{row.birthDate}}</td>
           <td><img [src]="row.image" [alt]="row.firstName" class="author-image"></td>
           <td>
-            <button routerLink="update/{{row._id}}" class="btn btn-primary ">Update</button>
+            <button routerLink="update/{{row._id}}" class="btn btn-primary ">Edit</button>
             <button (click)="delete(row._id)" class="btn btn-danger m-2">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
-  
+</div>
   </div>
   </div>
-  
+

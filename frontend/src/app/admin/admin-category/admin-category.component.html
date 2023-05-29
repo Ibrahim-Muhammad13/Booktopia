@@ -28,7 +28,8 @@
                 minlength="4"
                 maxlength="20"
                 pattern="^[^0-9].*"
-                id="cat" placeholder="Enter Category Name" [(ngModel)]="newCategoryName">
+                id="cat" placeholder="Enter Category Name" [(ngModel)]="newCategoryName"
+                (input)="hasChanges = true">
               <div *ngIf="categoryForm.controls['categoryName'].invalid && (categoryForm.controls['categoryName'].dirty || categoryForm.controls['categoryName'].touched)"
                 class="invalid-feedback">
                 <div *ngIf="categoryForm.controls['categoryName'].errors?.['required']">Category name is required.</div>
