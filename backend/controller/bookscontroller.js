@@ -1,4 +1,6 @@
 const books = require("../models/books");// for database
+const author = require("../models/author");
+const category = require("../models/category");
 async function creation (data, res){
   try {
     const respons=  await books.create(data)
@@ -15,6 +17,34 @@ async function getting (res){
     res.status(500).json("error")
   }}
 
+
+
+async function search (searchTerm,res){
+  
+  try {
+    const totalbooks = await books.find()
+    .populate("authorId")
+    .populate("categoryId");
+
+  const respons = [];
+
+  await totalbooks.map(async (book) => {
+        if (
+          book.name.includes(searchTerm) ||
+          book.authorId.firstName.includes(searchTerm) ||
+          book.categoryId.cat_Name.includes(searchTerm)
+        ) {
+          respons.push(book);
+        }
+      })
+
+      res.status(200).json(respons);
+      
+
+  } catch (e) {
+    res.status(500).json(e)
+}}
+  
 async function gettingbyId (id,res){
 
   try {
@@ -58,7 +88,7 @@ async function remove (id,res){
 }}
 
 module.exports={
-  creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId
+  creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId,search
   // ,gettingbyid,edit ,remove
       // add,edit,remove,parse2 ,checked,show
   }

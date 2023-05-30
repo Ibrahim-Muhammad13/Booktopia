@@ -19,7 +19,11 @@ import { authGuard } from './guard/auth.guard';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { ProfileComponent } from './profile/profile.component';
+<<<<<<< HEAD
 import { authuserGuard } from './guard/authuser.guard';
+=======
+import { SearchComponent } from './search/search.component';
+>>>>>>> d2aec6af12786074610979c4e2d0420e560681a1
 
 
 const routes: Routes = [
@@ -42,7 +46,10 @@ const routes: Routes = [
     path: 'book/:id',
     component: BookDetailsComponent
   },
-
+  {
+    path:"search",
+    component:SearchComponent
+  },
   {
     path: 'authors',
     component: AuthorsComponent
@@ -57,8 +64,9 @@ const routes: Routes = [
   },
   {
     path: 'author-details/:id',
-     component: AuthorDetailsComponent
-  },{
+    component: AuthorDetailsComponent
+  },
+  {
     path: 'admin/login',
     component:AdminLoginComponent
   },

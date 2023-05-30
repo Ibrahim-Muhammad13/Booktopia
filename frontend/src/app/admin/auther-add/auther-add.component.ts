@@ -3,7 +3,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, V
 import { ActivatedRoute } from '@angular/router';
 import { AutherService } from 'src/app/services/auther.service';
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-auther-add',
@@ -12,13 +12,10 @@ import { Router } from '@angular/router';
 })
 export class AutherAddComponent {
   Auther!: any
-
-
-
-
   rigester: FormGroup
+  public hasChanges = false;
 
-  constructor(private fb: FormBuilder, private auther: AutherService, private activeRouter: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private auther: AutherService, private activeRouter: ActivatedRoute, private router: Router, private location: Location) {
     this.rigester = fb.group({
       firstName: [null, [Validators.required, Validators.minLength(4)]],
       LastName: [null, [Validators.required, Validators.minLength(4)]],
@@ -54,8 +51,18 @@ export class AutherAddComponent {
     event.preventDefault();
     let fd = new FormData(event.target as HTMLFormElement);
     this.auther.Newauther(fd);
-    // console.log(fd)
-    // this.router.navigate(['admin/auther']);
+    this.location.back();
+
+  }
+
+  cancel() {
+    if (this.hasChanges) {
+      const confirmDiscardChanges = confirm('Are you sure you want to discard your changes?');
+      if (!confirmDiscardChanges) {
+        return;
+      }
+    }
+    this.location.back(); 
   }
 
 }
