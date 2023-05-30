@@ -59,11 +59,24 @@ export class AuthService {
     }
     // this.router.navigate(['admin'])
   }
+
+
+  setTokenID(token:string){
+    console.log(token)
+    if(token!=null){
+      localStorage.setItem('id_user',token)
+    }
+    // this.router.navigate(['admin'])
+  }
   getToken(){
     return localStorage.getItem('token')
   }
+  getTokenID(){
+    return localStorage.getItem('id_user')
+  }
   logout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('id_user')
     this.isLoggedin=false;
     this.router.navigate([''])
 

@@ -14,7 +14,7 @@ export class BookDetailsComponent {
   constructor(private activeRouter:ActivatedRoute,private books:BookService,private auth:AuthService,private user_book:UserInfoService ){}
 book:any;
 id_book:any
-id_user!:string
+id_user:any
 
 
   ngOnInit(){
@@ -24,18 +24,27 @@ id_user!:string
   }
 
   addToProfile(){
-// console.log(this.book)
-this.auth.getidUser().subscribe((res)=>{this.id_user= res})
-console.log(this.id_book,this.id_user)
+    const login=this.auth.isAuth()
+    if(login){
+     this.id_user=this.auth.getTokenID()
+    // console.log(this.id_book,this.id_user)
+    const add_book={
+      bookid:this.id_book,
+      status:"reedy",
+      UserId:this.id_user
+    }
+    this.user_book.addBook(add_book)
+    alert("this book is  find in your profile  or add secessing")
+
+    }
+    // if login 
+    if (login!=true){
+      alert("Please login first")
+    }
 // bookid status UserId
 
- const add_book={
-  bookid:this.id_book,
-  status:"reedy",
-  UserId:this.id_user
 
-}
-this.user_book.addBook(add_book)
+// this.user_book.addBook(add_book)
 
   }
 }
