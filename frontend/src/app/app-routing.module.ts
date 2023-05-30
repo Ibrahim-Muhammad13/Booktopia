@@ -19,6 +19,7 @@ import { authGuard } from './guard/auth.guard';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'book/:id',
     component: BookDetailsComponent
+  },
+  {
+    path:"search",
+    component:SearchComponent
   },
   {
     path: 'authors',

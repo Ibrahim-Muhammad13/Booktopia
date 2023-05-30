@@ -17,7 +17,10 @@ router.get('/:id',(req, res) => {
   controller.gettingbyId (id,res)
 
 });
-
+router.get('/search/:name',(req, res) => {
+  const {name} =req.params
+  controller.search (name,res)
+});
 router.get('/cat/:id',(req, res) => {
   const {id} =req.params
   controller.getBooksByCatId (id,res)

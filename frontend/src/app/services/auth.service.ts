@@ -34,8 +34,6 @@ export class AuthService {
 
 
 
-
-
   
   isLoggedin=false;
   isAuth(){
