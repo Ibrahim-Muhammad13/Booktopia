@@ -17,6 +17,8 @@ export class AdminCategoryComponent implements OnDestroy {
   selectedCategory: Category | null = null;
   subscription: Subscription | undefined;
 
+  public hasChanges = false;
+
   constructor(private fb : FormBuilder, private category:CategoriesService){
     this.categoryForm = this.fb.group({
       categoryName: [null, [
@@ -104,6 +106,12 @@ export class AdminCategoryComponent implements OnDestroy {
     this.newCategoryName = '';
     this.showForm = false;
     this.isNewCategory = false;
+    if (this.hasChanges) {
+      const confirmDiscardChanges = confirm('Are you sure you want to discard your changes?');
+      if (!confirmDiscardChanges) {
+        return;
+      }
+    }
   }
 
   ngOnDestroy() {

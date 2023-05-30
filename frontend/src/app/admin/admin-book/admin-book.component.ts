@@ -8,6 +8,7 @@ import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class AdminBookComponent {
   isNewBook = false;
   subscription: Subscription | undefined;
   bookForm!: FormGroup;
+
+  public hasChanges = false;
 
 
 constructor(private fb:FormBuilder, private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService) {
@@ -146,6 +149,13 @@ constructor(private fb:FormBuilder, private http:HttpClient, private auther:Auth
     this.rate = 0;
     this.autherId = 0;
     this.categoryId = 0;
+
+    if (this.hasChanges) {
+      const confirmDiscardChanges = confirm('Are you sure you want to discard your changes?');
+      if (!confirmDiscardChanges) {
+        return;
+      }
+    }
   }
 
   ngOnDestroy() {

@@ -1,7 +1,13 @@
 <h1 class="p-2">Admin Books</h1>
 <h2 class="p-2"  *ngIf="showForm && !isNewBook"> Edit Your Book</h2>
 <h2 class="p-2"  *ngIf="showForm && isNewBook"> Add Your Book</h2>
+<div class="flex justify-content-end me-4 mb-4">
+  <button type="button" class="btn btn-success" *ngIf="!showForm" (click)="showForm=true; isNewBook=true">Add</button>
+</div>
+
+
 <div class="container">
+
   <div class="row">
     <div class="table-container">
       <form>
@@ -12,10 +18,8 @@
               <th scope="col" *ngIf="showForm">Rate</th>
               <th scope="col" *ngIf="showForm">Author Name</th>
               <th scope="col" *ngIf="showForm">Category Name</th>
+              <th scope="col" *ngIf="showForm">Image</th>
               <th scope="col">Action</th>
-              <th scope="col" class="d-flex justify-content-end border-none">
-                <button type="button" class="btn btn-success" *ngIf="!showForm" (click)="showForm=true; isNewBook=true">Add</button>
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -24,7 +28,7 @@
 
                 <td>
                   <input type="text" [(ngModel)]="newBookName" class="form-control" aria-describedby="BookNameHelp"
-                    name="adminBookName" ngModel #adminBookName="ngModel" minlength="3" required />
+                    name="adminBookName" ngModel #adminBookName="ngModel" minlength="3" required (input)="hasChanges = true"/>
                   <div id="BookNameHelp" class="form-text text-danger"
                     *ngIf="adminBookName.touched && adminBookName.invalid">
                     <span *ngIf="adminBookName?.errors?.['required']">This Field Is Required</span>
@@ -34,7 +38,7 @@
 
                 <td>
                   <input type="number" [(ngModel)]="rate" class="form-control" aria-describedby="BookRateHelp"
-                    name="bookRate" ngModel #bookRate="ngModel" required [min]="0" />
+                    name="bookRate" ngModel #bookRate="ngModel" required [min]="0" (input)="hasChanges = true"/>
                   <div id="BookRateHelp" class="form-text text-danger" *ngIf="bookRate.touched && bookRate.invalid">
                     <span *ngIf="bookRate?.errors?.['required']">This field is required</span>
                     <span *ngIf="bookRate?.errors?.['min']">Rate cannot be a negative number</span>
@@ -44,7 +48,9 @@
 
                 <td>
                   <select [(ngModel)]="autherId" aria-label="Default select example" class="form-select"
-                    aria-describedby="authorBookHelp" name="authorbook" ngModel #authorbook="ngModel" required>
+                    aria-describedby="authorBookHelp" name="authorbook" ngModel #authorbook="ngModel"
+                    required
+                    (input)="hasChanges = true">
                     <option disabled selected>Choose Your Auther Name</option>
                     <option *ngFor="let auther of authers" value="{{ auther._id }}">
                       {{ auther.firstName }} {{ auther.LastName }}
@@ -59,7 +65,8 @@
                 <td>
                   <select [(ngModel)]="categoryId" aria-label="Default select example" name="categoryModel"
                     class="form-select" aaria-describedby="authorcategoryHelp" ngModel #categoryModel="ngModel"
-                    required>
+                    required
+                    (input)="hasChanges = true">
 
                     <option disabled selected>Choose Your Category Name</option>
                     <option *ngFor="let category of categories" value="{{ category._id }}">
@@ -71,7 +78,16 @@
                     <span *ngIf="categoryModel?.errors?.['required']">This Field is required</span>
                   </div>
                 </td>
-
+                <td>
+                  <input
+                  [(ngModel)]="image"
+                  name="imaage"
+                  type="file"
+                  class="form-control"
+                  id="exampleInputfile"
+                  aria-describedby="fileHelp"
+                />
+              </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
                     <button (click)="addBook($event)" type="submit" class="btn btn-primary me-3">Save</button>
@@ -82,19 +98,9 @@
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
                 </td>
-              <td>
-                <input
-                [(ngModel)]="image"
-                name="imaage"
-                type="file"
-                class="form-control"
-                id="exampleInputfile"
-                aria-describedby="fileHelp"
-              />
-            </td>
+
               </tr>
             </ng-container>
-
             <ng-template #bookList>
               <tr *ngFor="let book of books; let i = index">
                 <td scope="row">{{book.name}}</td>
