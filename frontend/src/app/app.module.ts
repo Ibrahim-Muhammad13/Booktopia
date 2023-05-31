@@ -30,6 +30,7 @@ import { BookDetailsComponent } from './books/book-details/book-details.componen
 import { AuthorBookDetailsComponent } from './author-book-details/author-book-details.component';
 import { StarRatingPipe } from './pipes/star-rating.pipe';
 import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -61,6 +62,7 @@ import { ProfileComponent } from './profile/profile.component';
     AuthorBookDetailsComponent,
     StarRatingPipe,
     ProfileComponent,
+    HeaderComponent,
 
 
   ],
