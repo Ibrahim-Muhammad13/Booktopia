@@ -19,6 +19,18 @@ h1
     font-size: 1.6rem;
   }
 }
+@media (max-width: 1355px) {
+  .row {
+    padding: 2rem 1rem;
+  }
+
+  h1, p {
+    font-size: 3rem;
+  }
+}
+
 button{
-  font-weight: bold;
+}
+.container-fluid{
+  background-color: #485bb0;
 }
