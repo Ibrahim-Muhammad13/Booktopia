@@ -19,8 +19,8 @@ id_user:any
 
   ngOnInit(){
     this.id_book =this.activeRouter.snapshot.params['id']
-    this.books.getBookById(this.id_book).subscribe((res:any)=>this.book=res)
-
+    this.books.getBookById(this.id_book).subscribe((res:any)=>{this.book=res[0];console.log(this.book
+      ) })
   }
 
   addToProfile(){
@@ -41,10 +41,24 @@ id_user:any
     if (login!=true){
       alert("Please login first")
     }
-// bookid status UserId
+  }
 
+  submit(review_value :any){
+    console.log(review_value)
+    const login=this.auth.isAuth()
+    if(login){
+     this.id_user=this.auth.getTokenID()
+    const review={
+      bookid:this.id_book,
+      review:review_value.reviewdata,
+      UserId:this.id_user
+    }
+    console.log(review)
 
-// this.user_book.addBook(add_book)
-
+    // add to data base
+  }
+    else{
+      alert("Please login first to add review")
+    }
   }
 }
