@@ -17,6 +17,9 @@ name: {
   },
   image: {
     type: String,
+},
+description:{
+  type: String,
 }
 });
 

@@ -33,3 +33,7 @@ hr {
 .review {
   margin-bottom: 1.5rem;
 }
+
+.checked {
+  color: orange;
+}

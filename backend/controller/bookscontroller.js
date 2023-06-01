@@ -48,7 +48,8 @@ async function search (searchTerm,res){
 async function gettingbyId (id,res){
 
   try {
-    const respons=  await books.find({_id:id})   ;    
+    const respons=  await books.find({_id:id}).populate("authorId")
+    .populate("categoryId");  ;    
     res.status(201).json(respons )
   } catch (e) {
     res.status(500).json("error")
