@@ -12,7 +12,7 @@ import {  BookService } from '../services/book.service';
 })
 export class AuthorDetailsComponent implements OnInit {
   author: Author | undefined;
-  authorId: string | undefined;
+  authorId! : string ;
  books: Book[] =[
   { '_id':1,
   'name': 'mohamed',
@@ -99,6 +99,7 @@ export class AuthorDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.authorId = params['id'];
       this.getAuthorDetails();
+      this.getBooksByAuthorId(this.authorId);
     });
   }
 
@@ -106,5 +107,9 @@ export class AuthorDetailsComponent implements OnInit {
     if (this.authorId) {
       this.authorService.getAllautherbyid(this.authorId).subscribe((res: any) => {this.author = res;});
     }
+  }
+
+  getBooksByAuthorId(authorId: string) {
+    this.bookService.getBooksByauthorId(authorId).subscribe((res: any) => {this.books = res;});
   }
 }

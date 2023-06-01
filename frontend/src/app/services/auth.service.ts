@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -9,6 +10,30 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   constructor(private http:HttpClient,private router:Router) { }
+
+
+
+
+
+  private id =new  BehaviorSubject("646bc4d33344a39071390ca4")
+  getidUser() { 
+  return this.id.asObservable();
+  }
+  setiduser(newVal:any){
+  this.id.next(newVal);
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
   
   isLoggedin=false;
   isAuth(){
@@ -22,13 +47,8 @@ export class AuthService {
     return this.isLoggedin;
   }
 
-  getAllauther(){
-    return this.http.get('http://localhost:3000/auther')
-  }
-  getAllautherbyid(id:any){
-    return this.http.get('http://localhost:3000/auther/'+id)
-  }
-  
+
+
 
   setToken(token:string){
     console.log(token)
@@ -37,11 +57,24 @@ export class AuthService {
     }
     // this.router.navigate(['admin'])
   }
+
+
+  setTokenID(token:string){
+    console.log(token)
+    if(token!=null){
+      localStorage.setItem('id_user',token)
+    }
+    // this.router.navigate(['admin'])
+  }
   getToken(){
     return localStorage.getItem('token')
   }
+  getTokenID(){
+    return localStorage.getItem('id_user')
+  }
   logout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('id_user')
     this.isLoggedin=false;
     this.router.navigate([''])
 

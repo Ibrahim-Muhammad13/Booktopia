@@ -17,11 +17,20 @@ router.get('/:id',(req, res) => {
   controller.gettingbyId (id,res)
 
 });
-
+router.get('/search/:name',(req, res) => {
+  const {name} =req.params
+  controller.search (name,res)
+});
 router.get('/cat/:id',(req, res) => {
   const {id} =req.params
   controller.getBooksByCatId (id,res)
 })
+
+router.get('/author/:id',(req, res) => {
+  const {id} =req.params
+  controller.getBookByAuthorId (id,res)
+})
+
 
 //Title mainSpeaker speakers  students
 
@@ -32,6 +41,7 @@ router.post('/',
 ],uplaod.any(),(req, res) => {
 const errors = validationResult(req);
   if(errors.isEmpty()){
+
      controller.creation(req.body,res)
     }
       else{

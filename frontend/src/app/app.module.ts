@@ -29,7 +29,14 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { AuthorBookDetailsComponent } from './author-book-details/author-book-details.component';
 import { StarRatingPipe } from './pipes/star-rating.pipe';
+
 import { HomePart2Component } from './home-part2/home-part2.component';
+
+import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './header/header.component';
+
+import { SearchComponent } from './search/search.component';
+
 
 
 
@@ -61,6 +68,13 @@ import { HomePart2Component } from './home-part2/home-part2.component';
     AuthorBookDetailsComponent,
     StarRatingPipe,
     HomePart2Component,
+
+    ProfileComponent,
+    HeaderComponent,
+
+    SearchComponent,
+
+
 
 
   ],

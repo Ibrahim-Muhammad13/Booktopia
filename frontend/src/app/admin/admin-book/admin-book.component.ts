@@ -8,6 +8,7 @@ import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AdminBookComponent {
   rate!:number
   autherId!:number
   categoryId!:number
+  image!:string
 
 
   showForm = false;
@@ -34,10 +36,12 @@ export class AdminBookComponent {
   subscription: Subscription | undefined;
   bookForm!: FormGroup;
 
+  public hasChanges = false;
 
-constructor(private fb:FormBuilder, private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService) { 
+
+constructor(private fb:FormBuilder, private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService) {
   this.bookForm = this.fb.group({
-    bookName: null, 
+    bookName: null,
   })
 }
 
@@ -70,23 +74,21 @@ constructor(private fb:FormBuilder, private http:HttpClient, private auther:Auth
   }
 
 
-  addBook() {
-    
-    console.log('Book name:', this.newBookName);
-    console.log('Author ID:', this.autherId);
-    console.log('Category ID:', this.categoryId);
-    console.log('Rate:', this.rate);
+  addBook(event: Event) {
+    event.preventDefault();
+    let fd = new FormData(event.target as HTMLFormElement);
+    console.log(fd)
     const newBook: Book = {
       _id: 0,
       name: this.newBookName,
       rate: this.rate,
       authorId: this.autherId,
       categoryId: this.categoryId,
-      image: ''
+      image: this.image
     };
     this.books.push(newBook);
-    this.book.addBook(this.newBookName, this.rate, this.autherId, this.categoryId)
-    this.cancelForm();
+    // this.book.addBook(fd)
+    // this.cancelForm();
   }
 
 
@@ -147,6 +149,13 @@ constructor(private fb:FormBuilder, private http:HttpClient, private auther:Auth
     this.rate = 0;
     this.autherId = 0;
     this.categoryId = 0;
+
+    if (this.hasChanges) {
+      const confirmDiscardChanges = confirm('Are you sure you want to discard your changes?');
+      if (!confirmDiscardChanges) {
+        return;
+      }
+    }
   }
 
   ngOnDestroy() {

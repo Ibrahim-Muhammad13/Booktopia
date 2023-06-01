@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const UserBooks = new mongoose.Schema({
 bookid: {
-type: [mongoose.Schema.Types.ObjectId],
+type: mongoose.Schema.Types.ObjectId,
 ref: 'books',
 
   },
@@ -10,8 +10,12 @@ status: {
     type: String,//read reading want to read
 },
 UserId: {
-    type: Number,
+    type: String,
     ref: 'user',
+  },
+  rate:{
+  type: Number,
+
   }
 });
 
