@@ -29,9 +29,10 @@
         </ul>
 
 
-        <a class="nav-item nav-link active my-1 me-2"  routerLink="/register">register</a>
-        <a class="nav-item nav-link active my-1 me-2"  routerLink="/myProfile">profile</a>
-        <a class="nav-item nav-link active my-1 me-2"  routerLink="/login">login</a>
+        <a class="nav-item nav-link active my-1 me-2"  *ngIf="!loggin" routerLink="/register">register</a>
+        <a class="nav-item nav-link active my-1 me-2"   *ngIf="loggin"routerLink="/myProfile">profile</a>
+          <a class="nav-item nav-link active my-1 me-2"  *ngIf="!loggin" routerLink="/login">login</a>
+          <button class="nav-item nav-link active my-1 me-2"  *ngIf="loggin"(click)="logaut()">logout</button>
 
       </div>
     </div>

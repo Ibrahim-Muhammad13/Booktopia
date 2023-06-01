@@ -13,6 +13,10 @@ export class BookService {
   getBooks(){
     return this.http.get('http://localhost:3000/books');
   }
+
+  searchBooks(searchTerm: string){
+    return this.http.get('http://localhost:3000/books/search/'+searchTerm);
+  }
   
   getBooksBycategoryId(catId:number){
     return this.http.get('http://localhost:3000/books/cat/'+catId);

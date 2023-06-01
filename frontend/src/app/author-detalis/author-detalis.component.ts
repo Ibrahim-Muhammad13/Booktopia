@@ -12,7 +12,7 @@ import {  BookService } from '../services/book.service';
 })
 export class AuthorDetailsComponent implements OnInit {
   author: Author | undefined;
-  authorId!: string ;
+  authorId! : string ;
  books: Book[] =[
   { '_id':1,
   'name': 'mohamed',

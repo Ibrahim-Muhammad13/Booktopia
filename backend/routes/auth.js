@@ -41,7 +41,7 @@ try {
   if(errors.isEmpty()){
     const { email, password} = req.body;
     const user = await User.findOne({ email });
-    console.log(user)
+    // console.log(user)
     if (user && password== user.password) {
       
         Type=user.Type
@@ -52,7 +52,7 @@ try {
        user.token = token;
      return res.json({user:user,token:user.token});
     }
-    res.json("Invalid  no user found in data base ");
+    res.json("Invalid data");
   }
    else{ return res.json(errors) }
 
