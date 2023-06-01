@@ -19,7 +19,7 @@ h1
     font-size: 1.6rem;
   }
 }
-@media (max-width: 1355px) { /* Small and medium screens */
+@media (max-width: 1355px) { 
   .row {
     padding: 2rem 1rem;
   }
