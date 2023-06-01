@@ -1,0 +1,116 @@
+
+<style>
+  section {
+    background-color: rgba(195, 195, 239, 0.264);
+  }
+
+  .card {
+    overflow: hidden;
+    height: 22rem;
+    width: 22rem;
+  }
+
+  .card img {
+    height: 100%;
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .card .intro {
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    transform: translateY(-25%);
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .intro {
+    transform: translateY(-100%);
+  }
+
+  .row .col-md-3 {
+    margin-left: 2rem;
+    margin-right: 3rem;
+  }
+</style>
+
+<section>
+  <div class="container shadow">
+    <div class="row ">
+
+      <!-- <img [src]="image1" class=" mt-5" style="height:25rem ;width: 100%;border-radius: 22px;"> -->
+      <div id="carouselExampleDark" class="carousel carousel-dark slide mt-5"   data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img [src]="image1" style="height:25rem ;width: 100%;border-radius: 22px;" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Discover a captivating story</h5>
+              <p>Immerse yourself in a world of mystery and adventure.</p>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img [src]="image4" style="height:25rem ;width: 100%;border-radius: 22px;" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5 style="color: white;">Discover a captivating story</h5>
+              <p style="color: white;">Immerse yourself in a world of mystery and adventure.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img [src]="image1" style="height:25rem ;width: 100%;border-radius: 22px;" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Discover a captivating story</h5>
+              <p>Immerse yourself in a world of mystery and adventure.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card shadow my-5">
+          <img [src]="image3">
+          <div class="intro">
+            <h2>Popular Author</h2>
+            <p>Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="authors" class="btn btn-danger">See All Authors</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 ">
+        <div class="card shadow my-5">
+          <img [src]="image2">
+          <div class="intro">
+            <h2 >Popular Book</h2>
+            <p >Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="books" class="btn btn-danger">See All Books</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 ">
+        <div class="card shadow my-5">
+          <img [src]="image3">
+          <div class="intro">
+            <h2>Popular Category</h2>
+            <p>Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="categories" class="btn btn-danger">See All Categories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

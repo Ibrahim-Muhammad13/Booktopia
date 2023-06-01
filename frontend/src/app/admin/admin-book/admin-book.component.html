@@ -38,10 +38,12 @@
 
                 <td>
                   <input type="number" [(ngModel)]="rate" class="form-control" aria-describedby="BookRateHelp"
-                    name="bookRate" ngModel #bookRate="ngModel" required [min]="0" (input)="hasChanges = true"/>
+                    name="bookRate" ngModel #bookRate="ngModel" required [min]="0"[max]="5" />
+
                   <div id="BookRateHelp" class="form-text text-danger" *ngIf="bookRate.touched && bookRate.invalid">
                     <span *ngIf="bookRate?.errors?.['required']">This field is required</span>
                     <span *ngIf="bookRate?.errors?.['min']">Rate cannot be a negative number</span>
+                    <span *ngIf="bookRate?.errors?.['max']">Rate cannot be more than 5</span>
                   </div>
                 </td>
 
