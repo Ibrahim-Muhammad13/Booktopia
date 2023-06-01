@@ -14,12 +14,13 @@ export class ProfileComponent {
   constructor(private activeRouter:ActivatedRoute,private book:BookService,private auth:AuthService,private user_book:UserInfoService ,private auther:AutherService){}
 
   books:any;
-  id_user!:string
+  id_user!:any
   Auther!:[{}]
 
 
   ngOnInit(){
-    this.auth.getidUser().subscribe((res)=>{this.id_user= res})
+    this.id_user=this.auth.getTokenID()
+    // this.auth.getidUser().subscribe((res)=>{this.id_user= res})
     this.user_book.getallbooks(this.id_user).subscribe((res:any)=>{
       this.books=res;
 

@@ -32,6 +32,8 @@ import { StarRatingPipe } from './pipes/star-rating.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 
+import { SearchComponent } from './search/search.component';
+
 
 
 
@@ -63,6 +65,9 @@ import { HeaderComponent } from './header/header.component';
     StarRatingPipe,
     ProfileComponent,
     HeaderComponent,
+
+    SearchComponent,
+
 
 
   ],

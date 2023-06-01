@@ -20,6 +20,8 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { authuserGuard } from './guard/authuser.guard';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,10 @@ const routes: Routes = [
     component: BookDetailsComponent
   },
   {
+    path:"search",
+    component:SearchComponent
+  },
+  {
     path: 'authors',
     component: AuthorsComponent
   },
@@ -62,6 +68,7 @@ const routes: Routes = [
     component:AdminLoginComponent
   },
   {path:'myProfile',
+  canActivate:[authuserGuard],
     component: ProfileComponent
   },
   {
