@@ -30,8 +30,23 @@
       <td><a href="">{{
       book.bookid.authorId.firstName+" "+book.bookid.authorId.LastName 
         }}</a></td>
-      <td>{{book.bookid.rate}}</td>
-      <td> rate<input type="text"></td>
+      <td>
+        
+        <span class = "fa fa-star " [ngClass]="{'checked': book?.bookid.rate >= 1}"></span>
+     <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 2}"></span>
+     <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 3}"></span>
+     <span class = "fa fa-star "[ngClass]="{'checked': book?.bookid.rate >= 4}"></span>
+     <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate== 5}"></span>
+        <span>{{book?.bookid.rate}}</span>
+      </td>
+      <td>
+         <span class = "fa fa-star "(click)="changerating(1,i)" [ngClass]="{'checked':this.book?.rate >= 1}"></span>
+         <span class = "fa fa-star"(click)="changerating(2,i)"  [ngClass]="{'checked':  this.book?.rate>= 2}"></span>
+         <span class = "fa fa-star"(click)="changerating(3,i)"  [ngClass]="{'checked': this.book?.rate >= 3}"></span>
+         <span class = "fa fa-star " (click)="changerating(4,i)" [ngClass]="{'checked': this.book?.rate >= 4}"></span>
+         <span class = "fa fa-star"(click)="changerating(5,i)"  [ngClass]="{'checked': this.book?.rate== 5}"></span>
+        <span>{{book?.rate}}</span>
+      </td>
       <!-- <td><input type="text"> [(ngModel)]="autherId"</td> -->
       <td>  <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
         <span class="visually-hidden">Toggle Dropdown</span>

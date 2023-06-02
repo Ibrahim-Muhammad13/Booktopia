@@ -35,7 +35,13 @@ async function gettingbyquery(id,stutes, res){
       }
     }
 
-
+async function getAllRating (id,res){
+  try {
+    const respons=  await user.find({bookid:id}).select("rate");    
+    res.json(respons)
+  } catch (e) {
+    res.status(500).json(e)
+}}
 async function edit (id,data,res){
   try {
 
@@ -54,9 +60,6 @@ async function remove (id,res){
     } catch (e) {
     res.status(500).json(e)
 }}
-
-      module.exports={
-        creation,getting,gettingbyId,remove,edit,gettingbyquery
-        // ,gettingbyid,edit ,remove
-            // add,edit,remove,parse2 ,checked,show
-        }
+module.exports={
+  creation,getting,gettingbyId,remove,edit,gettingbyquery,getAllRating
+}

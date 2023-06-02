@@ -18,16 +18,30 @@ router.get('/:id',(req, res) => {
    else{
     controller.gettingbyId (id,res) }
 });
+
+
+
+
+
+router.get('/rate/:id',(req, res) => {
+  const {id} =req.params
+    controller.getAllRating (id,res) 
+  // res.json("done")
+  }
+);
+
+
+
+
+
  router.post('/',(req, res) => {  
     controller.creation(req.body,res)
 });
 
 router.put( '/:id',(req, res) => {
-
   const {id} =req.params
   const data= req.body
   // res.json(id)
-
   controller.edit(id,data,res)
 });
 

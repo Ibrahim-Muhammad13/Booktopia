@@ -1,9 +1,8 @@
 const express= require ("express");
 const router=express.Router();
 const controller=require("../controller/BookReveiwController")
-const { body, validationResult } = require('express-validator');
+// const { body, validationResult } = require('express-validator');
 // const auth = require("../middlware/auth");
-// const jwt=require("jsonwebtoken");
 
 
 // router.get('/',(req, res) => {
@@ -11,11 +10,13 @@ const { body, validationResult } = require('express-validator');
 // });
 
 
-router.get('/',(req, res) => {
-  const query=req.query
-  //  const {id} =req.params
-   if (query.book){   controller.gettingbyquery (query.book,res)}
-});
+router.get('/:id',(req, res) => {
+//   const query=req.query
+   const {id} =req.params
+   // if (query.book){   
+      controller.reviewsForOneBook (id,res)}
+// }
+);
 
 
 
@@ -37,17 +38,10 @@ router.get('/',(req, res) => {
 
 
 
-// router.delete('/:id',(req, res) => {
-//   const {id} =req.params
-//   controller.remove(id,res)
-// });
-
-
-
-router.delete('/', (req, res) => {// to test only
-
+router.delete('/:id',(req, res) => {
+  const {id} =req.params
+  controller.remove(id,res)
 });
-
 
 
 module.exports = router
