@@ -12,6 +12,20 @@ import { AutherService } from '../services/auther.service';
 })
 export class ProfileComponent {
 
+  title: string = 'all';
+  activeButton: string = 'all';
+
+  setTitle(title: string) {
+    this.title = title;
+  }
+  filterBooks(activeButton: string) {
+    this.activeButton = activeButton;
+  }
+
+
+
+
+
   constructor(private activeRouter:ActivatedRoute,private book:BookService,private auth:AuthService,private user_book:UserInfoService ,private auther:AutherService){}
 rating:number=1
   books:any;
@@ -25,8 +39,10 @@ rating:number=1
     this.user_book.getallbooks(this.id_user).subscribe((res:any)=>{
       this.books=res;
 
+
         // console.log(this.books[0].bookid.authorId.firstName+" "+this.books[0].bookid.authorId.LastName) 
         console.log(this.books[0].rate) 
+
     });
 
   }
@@ -66,7 +82,7 @@ const newdata={
 this.user_book.update(this.books[index]._id,newdata).subscribe((res:any)=>{
   console.log(res);
   })
-  
+
     }
 
  changerating(rate:number,index:any){

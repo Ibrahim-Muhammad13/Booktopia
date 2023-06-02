@@ -1,6 +1,47 @@
-<section>
-  <div class="container-fluid shadow">
-    <div class="row justify-content-center">
+<div class="container-fluid shadow">
+    <div class="row justify-content-center py-5">
+
+
+      <div class="col-md-3">
+        <div class="card shadow my-5">
+          <img [src]="image1">
+          <div class="intro">
+            <h2>Popular Author</h2>
+            <p>Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="authors" class="btn">See All Authors</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow my-5">
+          <img [src]="image2">
+          <div class="intro">
+            <h2 >Popular Book</h2>
+            <p >Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="books" class="btn">See All Books</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow my-5">
+          <img [src]="image3" class="card-img-top">
+          <div class="intro">
+            <h2>Popular Category</h2>
+            <p>Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="categories" class="btn">See All Categories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
 
       <!-- <div id="carouselExampleDark" class="carousel carousel-dark slide mt-5"   data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -40,40 +81,3 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div> -->
-
-      <div class="col-md-3">
-        <div class="card shadow my-5">
-          <img [src]="image1">
-          <div class="intro">
-            <h2>Popular Author</h2>
-            <p>Cupiditate ab dolores natus error necessitatibus minus
-              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
-              <a routerLink="authors" class="btn">See All Authors</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card shadow my-5">
-          <img [src]="image2">
-          <div class="intro">
-            <h2 >Popular Book</h2>
-            <p >Cupiditate ab dolores natus error necessitatibus minus
-              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
-              <a routerLink="books" class="btn">See All Books</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 ">
-        <div class="card shadow my-5">
-          <img [src]="image3" class="card-img-top">
-          <div class="intro">
-            <h2>Popular Category</h2>
-            <p>Cupiditate ab dolores natus error necessitatibus minus
-              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
-              <a routerLink="categories" class="btn">See All Categories</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>

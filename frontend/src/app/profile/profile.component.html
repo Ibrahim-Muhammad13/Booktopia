@@ -1,63 +1,69 @@
 <app-navbar></app-navbar>
 
-
-
-<button class="btn btn-success btn-lg px-5" type="button" (click)="all()">all</button>
-<button class="btn btn-success btn-lg px-5" type="button" (click)="read()">read</button>
-<button class="btn btn-success btn-lg px-5" type="button" (click)="currently()">currently</button>
-<button class="btn btn-success btn-lg px-5" type="button" (click)="wanttoread()">want to read</button>
-
+<div class="yellow">
+  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('all'); setTitle('all')" [ngClass]="activeButton === 'all' ? 'active-all' : ''">all</button>
+  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('read'); setTitle('read')" [ngClass]="activeButton === 'read' ? 'active-all' : ''">read</button>
+  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('currently'); setTitle('currently')" [ngClass]="activeButton === 'currently' ? 'active-all' : ''">currently</button>
+  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('want to read'); setTitle('want to read')" [ngClass]="activeButton === 'want to read' ? 'active-all' : ''">want to read</button>
+</div>
 
 <br>
 <br>
 <br>
 <br>
-<br>
-<h2>title</h2>
-<table style="width:100%">
-    <tr>
-      <th>Cover</th>
-      <th>Name</th>
-      <th>Auther</th>
-      <th>Avg Rate</th>
-      <th>routing</th>
-      <th>Shelve</th>
-      <th>status</th>
-    </tr>
-    <tr *ngFor= "let book of books let i=index">
-      <td><img [src]="book.bookid.image" alt="test" width="100" height="100"></td>
-      <td><a href="">{{book.bookid.name}}</a></td>
-      <td><a href="">{{
-      book.bookid.authorId.firstName+" "+book.bookid.authorId.LastName 
-        }}</a></td>
-      <td>
-        
-        <span class = "fa fa-star " [ngClass]="{'checked': book?.bookid.rate >= 1}"></span>
-     <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 2}"></span>
-     <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 3}"></span>
-     <span class = "fa fa-star "[ngClass]="{'checked': book?.bookid.rate >= 4}"></span>
-     <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate== 5}"></span>
-        <span>{{book?.bookid.rate}}</span>
-      </td>
-      <td>
-         <span class = "fa fa-star "(click)="changerating(1,i)" [ngClass]="{'checked':this.book?.rate >= 1}"></span>
-         <span class = "fa fa-star"(click)="changerating(2,i)"  [ngClass]="{'checked':  this.book?.rate>= 2}"></span>
-         <span class = "fa fa-star"(click)="changerating(3,i)"  [ngClass]="{'checked': this.book?.rate >= 3}"></span>
-         <span class = "fa fa-star " (click)="changerating(4,i)" [ngClass]="{'checked': this.book?.rate >= 4}"></span>
-         <span class = "fa fa-star"(click)="changerating(5,i)"  [ngClass]="{'checked': this.book?.rate== 5}"></span>
-        <span>{{book?.rate}}</span>
-      </td>
-      <!-- <td><input type="text"> [(ngModel)]="autherId"</td> -->
-      <td>  <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="visually-hidden">Toggle Dropdown</span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><button (click)="changestates(i,'reedy')" class="dropdown-item" >reedy </button></li>
-        <li><button (click)="changestates(i,'currently')" class="dropdown-item"> currently</button></li>
-        <li><button (click)="changestates(i,'wanttoread')" class="dropdown-item" >wanttoread</button></li>
-      </ul></td>
-      <td>{{book.status}}</td>
 
-    </tr>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+    <div class="col-12">
+      <h2 class="text-center">{{title}}</h2>
+      <table class="shadow" style="width:100%">
+          <tr>
+            <th>Cover</th>
+            <th>Name</th>
+            <th>Auther</th>
+            <th>Avg Rate</th>
+            <th>routing</th>
+            <th>Shelve</th>
+            <th>status</th>
+          </tr>
+          <tr *ngFor= "let book of books let i=index">
+            <td><img [src]="book.bookid.image" alt="test" width="100" height="100"></td>
+            <td><a href="">{{book.bookid.name}}</a></td>
+            <td><a href="">{{
+            book.bookid.authorId.firstName+" "+book.bookid.authorId.LastName
+              }}</a></td>
+            <td>       
+               <span class = "fa fa-star " [ngClass]="{'checked': book?.bookid.rate >= 1}"></span>
+               <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 2}"></span>
+               <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 3}"></span>
+               <span class = "fa fa-star "[ngClass]="{'checked': book?.bookid.rate >= 4}"></span>
+               <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate== 5}"></span>
+               <span>{{book?.bookid.rate}}</span>
+            </td>
+            <td>
+               <span class = "fa fa-star "(click)="changerating(1,i)" [ngClass]="{'checked':this.book?.rate >= 1}"></span>
+               <span class = "fa fa-star"(click)="changerating(2,i)"  [ngClass]="{'checked':  this.book?.rate>= 2}"></span>
+               <span class = "fa fa-star"(click)="changerating(3,i)"  [ngClass]="{'checked': this.book?.rate >= 3}"></span>
+               <span class = "fa fa-star " (click)="changerating(4,i)" [ngClass]="{'checked': this.book?.rate >= 4}"></span>
+               <span class = "fa fa-star"(click)="changerating(5,i)"  [ngClass]="{'checked': this.book?.rate== 5}"></span>
+              <span>{{book?.rate}}</span>
+            </td>
+            
+            <!-- <td><input type="text"> [(ngModel)]="autherId"</td> -->
+            <td>  <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><button (click)="changestates(i,'reedy')" class="dropdown-item" >reedy </button></li>
+              <li><button (click)="changestates(i,'currently')" class="dropdown-item"> currently</button></li>
+              <li><button (click)="changestates(i,'wanttoread')" class="dropdown-item" >wanttoread</button></li>
+            </ul></td>
+            <td>{{book.status}}</td>
 
-  </table>
+          </tr>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
