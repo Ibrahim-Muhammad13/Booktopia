@@ -23,7 +23,7 @@ async function getting (res){
 
 
 
-async function gettingbyquery(id,stutes, res){
+async function reviewsForOneBook(id,res){
     try {
       const respons=  await review.find({bookid:id}).populate({path:"UserId"});    
       res.json(respons)
@@ -55,7 +55,7 @@ async function remove (id,res){
 }
 
       module.exports={
-        creation,getting,remove,edit,gettingbyquery
+        creation,getting,remove,edit,reviewsForOneBook
         // ,gettingbyid,edit ,remove
             // add,edit,remove,parse2 ,checked,show
         }

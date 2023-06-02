@@ -9,6 +9,7 @@ const adminRouter = require('./routes/admin');
 const autherRouter = require('./routes/auther');
 const userRouter = require('./routes/user');
 const booksRouter = require('./routes/books');
+const reviewRouter = require('./routes/BookReveiw');
 const auth = require('./routes/auth');
 const profile=require("./routes/user_books")
 const cookieSession = require('cookie-session')
@@ -51,6 +52,7 @@ app.use('/user', userRouter);
 app.use('/books', booksRouter);
 app.use('/auth', auth);
 app.use(['/add','/profile'], profile);
+app.use(['/review'], reviewRouter);
 
 app.use((req,res)=>{
   res.status(404).send("page not foned !")
