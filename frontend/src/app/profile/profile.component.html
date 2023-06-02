@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
 
 <div class="yellow">
-  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('all'); setTitle('all')" [ngClass]="activeButton === 'all' ? 'active-all' : ''">all</button>
-  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('read'); setTitle('read')" [ngClass]="activeButton === 'read' ? 'active-all' : ''">read</button>
-  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('currently'); setTitle('currently')" [ngClass]="activeButton === 'currently' ? 'active-all' : ''">currently</button>
-  <button class="btn btn-success btn-lg px-5" type="button" (click)="filterBooks('want to read'); setTitle('want to read')" [ngClass]="activeButton === 'want to read' ? 'active-all' : ''">want to read</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('all'); setTitle('all')" [ngClass]="activeButton === 'all' ? 'active-all' : ''">all</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('read'); setTitle('read')" [ngClass]="activeButton === 'read' ? 'active-all' : ''">read</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('currently'); setTitle('currently')" [ngClass]="activeButton === 'currently' ? 'active-all' : ''">currently</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('want to read'); setTitle('want to read')" [ngClass]="activeButton === 'want to read' ? 'active-all' : ''">want to read</button>
 </div>
 
 <br>
@@ -32,7 +32,7 @@
             <td><a href="">{{
             book.bookid.authorId.firstName+" "+book.bookid.authorId.LastName
               }}</a></td>
-            <td>       
+            <td>
                <span class = "fa fa-star " [ngClass]="{'checked': book?.bookid.rate >= 1}"></span>
                <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 2}"></span>
                <span class = "fa fa-star"[ngClass]="{'checked': book?.bookid.rate >= 3}"></span>
@@ -48,7 +48,7 @@
                <span class = "fa fa-star"(click)="changerating(5,i)"  [ngClass]="{'checked': this.book?.rate== 5}"></span>
               <span>{{book?.rate}}</span>
             </td>
-            
+
             <!-- <td><input type="text"> [(ngModel)]="autherId"</td> -->
             <td>  <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
               <span class="visually-hidden">Toggle Dropdown</span>
