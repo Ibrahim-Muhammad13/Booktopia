@@ -1,3 +1,4 @@
+
 /* 1D1D1D */
 
 
@@ -49,3 +50,10 @@ th {
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
+
+
+.checked {
+    color: orange;
+  }
+  
+
