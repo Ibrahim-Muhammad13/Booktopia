@@ -10,6 +10,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
   result:any
+  showAlert: boolean = false;
+alertMessage: string = "";
+emailDuplicateMessage: string = "";
+
   constructor(private auth:AuthService ,private router:Router)
 {}
   submitlogin(login:any){
@@ -18,10 +22,16 @@ export class LoginComponent {
    this.auth.login(login).subscribe((res:any)=>{
     this.result=res
     if (this.result=="Invalid data"){
-      alert("username or password incorrect")
+      
+      this.showAlert = true;
+this.alertMessage = "username or password incorrect";
+    }else if (this.result == "Email already exists") {
+      this.emailDuplicateMessage = "The email is already duplicated.";
     }
     else{
-      alert("login seccessfully")
+     
+      this.showAlert = true;
+this.alertMessage = "login seccessfully";
       this.auth.setToken(this.result.token)
       this.auth.setTokenID(this.result.user._id)
       this.router.navigate(['books'])
@@ -31,4 +41,8 @@ export class LoginComponent {
   })
 
  }
+ hideAlert() {
+  this.showAlert = false;
+  this.alertMessage = "";
+  }
 }
