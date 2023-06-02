@@ -1,4 +1,15 @@
-<div class="card my-2 container">
+
+    <div class="container">
+      <div class="row">
+      <div class="col-md-12">
+      <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ alertMessage }}
+      <button type="button" class="btn-close" aria-label="Close" (click)="hideAlert()"></button>
+      </div>
+      </div>
+      </div>
+      </div>
+    <div class="card my-2 container">
 
     <div class="row">
 
@@ -15,7 +26,7 @@
         <div class="col-lg-3 my-3">
             <form>
                 <div class="input-group">
-                  <select class="form-control">
+                  <select class="form-control" [(ngModel)]="selectedOption" (change)="showAlertMessage()" name="selectedOption">
                     <option value="">Select an option</option>
                     <option value="option1">Option 1</option>
                     <option value="option2">Option 2</option>
@@ -25,7 +36,8 @@
                     <span class="input-group-text"><i class="bi bi-caret-down"></i></span>
                   </div>
                 </div>
-              </form>      
+              </form> 
+                
         </div>
 
     </div>

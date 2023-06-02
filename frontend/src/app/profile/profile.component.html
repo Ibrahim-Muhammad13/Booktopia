@@ -1,5 +1,14 @@
 <app-navbar></app-navbar>
-
+<div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ alertMessage }}
+  <button type="button" class="btn-close" aria-label="Close" (click)="hideAlert()"></button>
+  </div>
+  </div>
+  </div>
+  </div>
 
 
 <button class="btn btn-success btn-lg px-5" type="button" (click)="all()">all</button>
@@ -33,14 +42,32 @@
       <td>{{book.bookid.rate}}</td>
       <td> rate<input type="text"></td>
       <!-- <td><input type="text"> [(ngModel)]="autherId"</td> -->
-      <td>  <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+      <td>
+         <!-- <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
         <span class="visually-hidden">Toggle Dropdown</span>
       </button>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu"  (change)="showAlertMessage()" name="selectedOption">
         <li><button (click)="changestates(i,'reedy')" class="dropdown-item" >reedy </button></li>
         <li><button (click)="changestates(i,'currently')" class="dropdown-item"> currently</button></li>
         <li><button (click)="changestates(i,'wanttoread')" class="dropdown-item" >wanttoread</button></li>
-      </ul></td>
+      </ul> -->
+ 
+      <form>
+      <div class="input-group">
+        <select class="form-control" [(ngModel)]="selectedOption" (change)="showAlertMessage()" name="selectedOption">
+          <option value="">Select an option</option>
+          <option (click)="changestates(i,'reedy')" value="read">read</option>
+          <option (click)="changestates(i,'currently')"value="currently">currently</option>
+          <option (click)="changestates(i,'wanttoread')"value="wanttoread">wanttoread</option>
+        </select>
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="bi bi-caret-down"></i></span>
+        </div>
+      </div>
+    </form> 
+      
+    </td>
+   
       <td>{{book.status}}</td>
 
     </tr>
