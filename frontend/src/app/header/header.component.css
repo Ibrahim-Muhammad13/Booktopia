@@ -1,0 +1,36 @@
+h1
+{
+  font-size: 72px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+@media (max-width: 576px) { /* Small screens */
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 991.98px) { /* Small and medium screens */
+  .row {
+    padding: 2rem 1rem;
+  }
+
+  h1, p {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 1355px) {
+  .row {
+    padding: 2rem 1rem;
+  }
+
+  h1, p {
+    font-size: 3rem;
+  }
+}
+
+button{
+}
+.container-fluid{
+  background-color: #485bb0;
+}
