@@ -22,7 +22,12 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { authuserGuard } from './guard/authuser.guard';
 import { SearchComponent } from './search/search.component';
+
 import { WelcomeComponent } from './admin/welcome/welcome.component';
+
+import { AddBookComponent } from './admin/add-book/add-book.component';
+import { UpdateBookComponent } from './admin/update-book/update-book.component';
+
 
 const routes: Routes = [
   {
@@ -102,8 +107,15 @@ const routes: Routes = [
       },{
         path: 'books',
         component:AdminBookComponent,
+      },
+      {
+        path: 'books/add',
+        component:AddBookComponent,
+      },
+      {
+        path: 'books/update/:id',
+        component:UpdateBookComponent,
       }
-
     ]
 
   },

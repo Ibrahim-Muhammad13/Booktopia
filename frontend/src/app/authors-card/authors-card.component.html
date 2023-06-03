@@ -2,6 +2,8 @@
   <img [src]="oneOfAuthors.image" class="card-img-top h-100">
   <div class="card-body">
     <h5 class="card-title">{{oneOfAuthors.firstName}}</h5>
+
     <a (click)="goToAuthorDetails(oneOfAuthors._id)" class="btn btn-primary my-3">Author Details</a>
+
   </div>
 </div>

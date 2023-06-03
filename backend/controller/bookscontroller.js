@@ -1,6 +1,8 @@
 const books = require("../models/books");// for database
 const author = require("../models/author");
 const category = require("../models/category");
+
+
 async function creation (data, res){
   try {
     const respons=  await books.create(data)
@@ -8,13 +10,23 @@ async function creation (data, res){
   } catch (e) {
     res.status(500).json(e)
   }}
-
-async function getting (res){
+  
+async function getting (req,res){
+  const q =req.query
+  console.log(q)
   try {
-    const respons=  await books.find().populate("authorId").populate("categoryId");    
-    res.status(201).json(respons)
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 3; 
+    const respons=  await books.find()
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .populate("authorId").populate("categoryId"); 
+    
+    const booksCount = respons.length;
+    const count = await books.countDocuments();
+    res.status(200).json({currentPage:page,count:booksCount,totalPages: Math.ceil(count / limit),books:respons})
   } catch (e) {
-    res.status(500).json("error")
+    res.status(500).json(e.message)
   }}
 
 
@@ -49,11 +61,23 @@ async function gettingbyId (id,res){
 
   try {
     const respons=  await books.find({_id:id}).populate("authorId")
-    .populate("categoryId");  ;    
+    .populate("categoryId");  
     res.status(201).json(respons )
   } catch (e) {
     res.status(500).json("error")
     }}
+
+
+    async function gettingbyID (id,res){
+
+      try {
+        const respons=  await books.find({_id:id})   
+        res.status(201).json(respons )
+      } catch (e) {
+        res.status(500).json("error")
+        }}
+    
+
 
 async function getBooksByCatId (id,res){
   try {
@@ -71,12 +95,12 @@ async function getBookByAuthorId (id,res){
     res.status(500).json("error")
 }}
 
-    async function edit (id,data,res){
+async function edit (id,data,res){
   try {
-   const respons=  await books.findByIdAndUpdate(id,data)    
-    res.status(201).json(respons )
+   const respons=  await books.findByIdAndUpdate(id.id ,data)  
+    res.json(respons )
     } catch (e) {
-    res.status(500).json("error")
+    res.json(e)
   }}
 
 
@@ -89,7 +113,7 @@ async function remove (id,res){
 }}
 
 module.exports={
-  creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId,search
+  creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId,search,gettingbyID
   // ,gettingbyid,edit ,remove
       // add,edit,remove,parse2 ,checked,show
   }

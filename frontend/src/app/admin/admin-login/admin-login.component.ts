@@ -43,6 +43,7 @@ hideAlert() {
   onSubmit() {
     const { email, password } = this.loginForm.value;
     const data = { email, password };
+
     this.auth.login(data).subscribe((res: any) => {
       this.result = res;
       if (this.result === "Invalid data") {
@@ -58,5 +59,6 @@ hideAlert() {
         this.router.navigate(['admin/welcome']);
       }
     });
+
   }
 }

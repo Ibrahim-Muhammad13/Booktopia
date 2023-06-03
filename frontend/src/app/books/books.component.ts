@@ -12,16 +12,31 @@ books!:any[]
 
   constructor(private book:BookService) { }
 
+
+  currentPage = 1;
+  totalPages = 3;
+  selectedItemsPerPage = 8;
   ngOnInit(){
 
-  this.getbooks();
+  this.getbooks(this.currentPage,this.selectedItemsPerPage);
   }
 
-  getbooks(){
-  this.book.getBooks().subscribe((res:any)=>this.books=res)
+  getbooks(page:number,limit:number){
+  this.book.getBooks(page,limit).subscribe((res:any)=>{this.books=res.books,this.totalPages=res.totalPages});
   }
 
-  // filterBooksByCategory(catId: number) {
-  //   this.books.filter((book: Book) => book.categoryId === catId);
-  // }
+  nextPage() {
+    this.currentPage++;
+   console.log(this.currentPage)
+    this.getbooks(this.currentPage,this.selectedItemsPerPage);
+  }
+
+  prevPage() {
+    this.currentPage--;
+    this.getbooks(this.currentPage,this.selectedItemsPerPage);
+  }
+  onItemsPerPageChange(){
+    this.getbooks(this.currentPage,this.selectedItemsPerPage);
+  }
+  
 }

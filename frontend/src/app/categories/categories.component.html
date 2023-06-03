@@ -10,6 +10,7 @@
   <div class="col-md-4  my-2 " *ngFor="let category of categories">
 
     <div class="card shadow rounded-pill" style="background-color: rgb(75, 75, 194);">
+
         <div class="card-body">
 
           <a [routerLink]="['/category',category._id]"><h4 class="card-title text-white text-center" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);">{{category.cat_Name}}</h4></a>
