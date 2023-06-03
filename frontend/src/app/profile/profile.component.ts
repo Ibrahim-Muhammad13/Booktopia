@@ -126,20 +126,6 @@ hideAlert() {
   this.alertMessage = "";
 }
 
-
-changestates(index:any,newStutes:string){
-const newdata={
-  "bookid":this.books[index].bookid._id,
-   "status":newStutes,
-   "UserId":this.books[index].UserId,
-   "rate":this.books[index].bookid.rate
-}
-this.user_book.update(this.books[index]._id,newdata).subscribe((res:any)=>{
-  console.log(res);
-  })
-
-    }
-
  changerating(rate:number,index:any){
 this.rating=rate
 const newdata={
