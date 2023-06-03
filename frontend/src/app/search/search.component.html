@@ -11,11 +11,15 @@
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-4" *ngFor="let book of books">
-            <p>{{book.name}}</p>
-            <p>{{book.authorId['firstName']}}</p>
-            <p>{{book.categoryId['cat_Name']}}</p>
+  <div class="row mt-5">
+    <div class="col-md-4" *ngFor="let book of books">
+      <div class="card mb-3" routerLink="/book/:id">
+        <div class="card-body">
+          <h5 class="card-title">{{book.name}}</h5>
+          <p class="card-text">Author: {{book.authorId['firstName']}}</p>
+          <p class="card-text">Category: {{book.categoryId['cat_Name']}}</p>
         </div>
+      </div>
     </div>
+  </div>
 </div>

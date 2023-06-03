@@ -34,7 +34,15 @@ export class AuthService {
     }
     return this.isLoggedin;
   }
-
+  isUser(){
+    if(localStorage.getItem('token')){
+      this.isLoggedin=true;
+    }
+    else{
+      this.isLoggedin=false;
+    }
+    return this.isLoggedin;
+  }
   DecodeToken(token: string): string {
     return jwt_decode(token);
   }

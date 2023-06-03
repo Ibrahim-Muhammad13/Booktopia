@@ -39,4 +39,5 @@ categories!:Category[];
     this.getCategories(this.currentPage,this.selectedItemsPerPage);
   }
 
+
 }

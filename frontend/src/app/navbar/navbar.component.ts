@@ -11,7 +11,7 @@ export class NavbarComponent {
   loggin!:any
 constructor(private auth:AuthService, private router:Router){}
 ngOnInit(){
-this.loggin=this.auth.isAuth()
+this.loggin=this.auth.isUser()
 }
 
   logaut(){

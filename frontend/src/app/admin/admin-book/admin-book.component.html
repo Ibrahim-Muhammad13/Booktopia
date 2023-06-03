@@ -2,7 +2,7 @@
 <h2 class="p-2"  *ngIf="showForm && !isNewBook"> Edit Your Book</h2>
 <h2 class="p-2"  *ngIf="showForm && isNewBook"> Add Your Book</h2>
 <div class="flex justify-content-end me-4 mb-4">
-  <button type="button" class="btn btn-success" *ngIf="!showForm" (click)="showForm=true; isNewBook=true">Add</button>
+  <button type="button" class="btn btn-success"  routerLink="/admin/books/add">Add</button>
 </div>
 
 
@@ -10,7 +10,7 @@
 
   <div class="row">
     <div class="table-container">
-      <form>
+      <form enctype="multipart/form-data"  (click)="addBook($event)" >
         <table class="table">
           <thead>
             <tr>
@@ -92,10 +92,7 @@
               </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <form id="myForm">
-                      <button (click)="addBook($event)" type="submit" class="btn btn-primary me-3">Save</button>
-                    </form>
-                    
+                    <button type="submit" class="btn btn-primary me-3">Save</button>
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
                     <button type="button" class="btn btn-primary me-1" [disabled]="bookForm.invalid && bookForm.touched"
@@ -106,11 +103,33 @@
 
               </tr>
             </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <ng-template #bookList>
               <tr *ngFor="let book of books; let i = index">
                 <td scope="row">{{book.name}}</td>
+                <!-- <td scope="row">{{book._id}}</td> -->
                 <td>
-                  <button type="button" class="btn btn-primary me-4" (click)="editBook(book)">Edit</button>
+                  <button type="button" class="btn btn-primary me-4" routerLink="/admin/books/update/{{book._id}}">Edit</button>
                   <button type="button" class="btn btn-danger" (click)="deleteBook(book._id, i)">Delete</button>
                 </td>
               </tr>

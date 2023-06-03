@@ -1,0 +1,13 @@
+.btn{
+  background-color: #E45F4E;
+color: white;
+}
+.card{
+  box-shadow: 2px 2px 7px #385A64;
+}
+.card:hover{
+  box-shadow: 2px 2px 7px #FCD02D;
+  transition: 0.3s;
+  cursor: pointer;
+}
+

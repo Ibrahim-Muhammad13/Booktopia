@@ -1,38 +1,35 @@
-
-
 <div class="container-fluid d-flex align-items-center justify-content-center">
-    <div class="col-md-4 mx-auto shadow">
-      <div class="card bg-white p-5">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <h3 class="mb-5">Admin Login</h3>
-          <div class="row mb-5">
-            <input type="email" formControlName="email" placeholder="Email"
-            [ngClass]="{'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)}"
-            class="py-3">
+  <div class="col-md-4 mx-auto shadow">
+    <div class="card bg-white p-5">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h3 class="mb-5">Admin Login</h3>
+        <div class="row mb-5">
+          <input type="email" formControlName="email" placeholder="Email"
+          [ngClass]="{'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)}"
+          class="py-3">
 
-            <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
-              class="invalid-feedback">
-              <div *ngIf="loginForm.controls['email'].errors?.['required']">Email is required</div>
-              <div *ngIf="loginForm.controls['email'].errors?.['email']">Invalid email format</div>
-            </div>
+          <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+            class="invalid-feedback">
+            <div *ngIf="loginForm.controls['email'].errors?.['required']">Email is required</div>
+            <div *ngIf="loginForm.controls['email'].errors?.['email']">Invalid email format</div>
           </div>
+        </div>
 
-          <div class="row mb-5">
-            <input type="password" formControlName="password" placeholder="Password" class="py-3"
-            [ngClass]="{'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)}">
+        <div class="row mb-5">
+          <input type="password" formControlName="password" placeholder="Password" class="py-3"
+          [ngClass]="{'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)}">
 
-            <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
-              class="invalid-feedback">
-              <div *ngIf="loginForm.controls['password'].errors?.['required']">Password is required</div>
-              <div *ngIf="loginForm.controls['password'].errors?.['minlength']">Password must be at least 6 characters</div>
-            </div>
+          <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+            class="invalid-feedback">
+            <div *ngIf="loginForm.controls['password'].errors?.['required']">Password is required</div>
+            <div *ngIf="loginForm.controls['password'].errors?.['minlength']">Password must be at least 6 characters</div>
           </div>
-          <button type="submit" class="btn btn-warning px-4 py-2" [disabled]="loginForm.invalid" routerLink="/admin">Login</button>
-        </form>
-      </div>
+        </div>
+        <button type="submit" class="btn btn-warning px-4 py-2" [disabled]="loginForm.invalid">Login</button>
+      </form>
     </div>
+  </div>
 </div>
-
 
 <!--
 <div class="container">
