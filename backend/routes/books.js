@@ -41,8 +41,7 @@ router.post('/',uplaod.any(),(req, res) => {
 
 const errors = validationResult(req);
   if(errors.isEmpty()){
-res.json(req.body)
-    //  controller.creation(req.body,res)
+     controller.creation(req.body,res)
     }
       else{
       return res.json(errors) 

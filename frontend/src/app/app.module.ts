@@ -36,6 +36,7 @@ import { FooterComponent } from './footer/footer.component';
 
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AddBookComponent } from './admin/add-book/add-book.component';
 
 
 
@@ -71,6 +72,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HeaderComponent,
     SearchComponent,
       HomeQuoteComponent,
+      AddBookComponent,
       FooterComponent,
 
 

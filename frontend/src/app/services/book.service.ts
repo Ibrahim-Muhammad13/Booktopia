@@ -30,10 +30,14 @@ export class BookService {
     return this.http.get<Book[]>('http://localhost:3000/books/'+id);
   }
 
-  addBook(bookName: string,  rate: number,authorId: number, categoryId: number){
-    const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
-    // console.log(newBook);
-    return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
+  // addBook(bookName: string,  rate: number,authorId: number, categoryId: number){
+  //   const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
+  //   // console.log(newBook);
+  //   return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
+  // }
+
+  addBook(data:any){
+    return this.http.post('http://localhost:3000/books', data).subscribe((res: any)=>console.log(res));
   }
 
   updateBook(bookId: any, Name: string, rate: number, authorId: number, categoryId: number) {
