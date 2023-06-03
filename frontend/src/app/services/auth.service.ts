@@ -2,18 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-
-
+import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   constructor(private http:HttpClient,private router:Router) { }
-
-
-
-
 
   private id =new  BehaviorSubject("646bc4d33344a39071390ca4")
   getidUser() { 
@@ -23,23 +18,16 @@ export class AuthService {
   this.id.next(newVal);
   }
   
-
-
-
-
-
-
-
-
-
-
-
-  
   isLoggedin=false;
   isAuth(){
     if(localStorage.getItem('token')){
       console.log("there is tok")
       this.isLoggedin=true;
+    // const token =this.DecodeToken(localStorage.getItem('token')!);
+    let decodedJWT = JSON.parse(window.atob(localStorage.getItem('token')!.split('.')[1]));
+      if(decodedJWT.Type==false){
+        this.router.navigate([''])
+      }
     }
     else{
       this.isLoggedin=false;
@@ -47,7 +35,9 @@ export class AuthService {
     return this.isLoggedin;
   }
 
-
+  DecodeToken(token: string): string {
+    return jwt_decode(token);
+  }
 
 
   setToken(token:string){

@@ -64,5 +64,32 @@
       </table>
     </form>
     </div>
+    
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <nav>
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <button class="page-link" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+            </li>
+            <li class="page-item">
+              <span class="page-link">{{ currentPage }} / {{ totalPages }}</span>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <button class="page-link" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+            </li>
+          </ul>
+        </nav>
+      </div> 
+       <div class="items-per-page">
+        <label for="itemsPerPage">Items per Page:</label>
+        <select id="itemsPerPage" [(ngModel)]="selectedItemsPerPage" (change)="onItemsPerPageChange()">
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="16">16</option>
+        </select>
+      </div>
+    
+    </div>
   </div>
 </div>

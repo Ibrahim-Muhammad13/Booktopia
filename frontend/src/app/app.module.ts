@@ -75,7 +75,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
-
   ],
   imports: [
     BrowserModule,

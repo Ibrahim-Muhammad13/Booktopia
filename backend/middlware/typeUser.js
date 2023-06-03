@@ -10,6 +10,9 @@ const verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, config.TOKEN_KEY);
     req.user = decoded;// id and gmail
+    if (req.user.Type==false ){
+    return res.status(403).send("you must be admin to do this action")}
+  
   } catch (err) {
     return res.status(401).send("Invalid Token");
   }

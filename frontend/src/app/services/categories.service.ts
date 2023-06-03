@@ -12,8 +12,12 @@ export class CategoriesService {
 
   constructor(private http: HttpClient) { }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>('http://localhost:3000/admin/category');
+  getCategories(page: number, limit: number){
+    return this.http.get('http://localhost:3000/admin/category',{
+      params: {
+        page: page.toString(),
+        limit: limit.toString()
+    }});
   }
 
 

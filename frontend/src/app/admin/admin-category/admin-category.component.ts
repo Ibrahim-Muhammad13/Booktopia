@@ -32,13 +32,15 @@ export class AdminCategoryComponent implements OnDestroy {
 
 
   ngOnInit() {
-    this.fetchCategories();
+    this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
 
   }
 
-  fetchCategories() {
-    this.subscription = this.category.getCategories().subscribe((res: any) => {
-      this.categories = res.categories;
+  fetchCategories(page:number,limit:number) {
+    this.subscription = this.category.getCategories(page,limit).subscribe((res: any) => {
+      this.categories = res.categories,
+      this.totalPages = res.totalPages
+      this.currentPage = res.currentPage
     });
   }
 
@@ -49,7 +51,7 @@ export class AdminCategoryComponent implements OnDestroy {
         cat_Name: this.categoryForm.controls['categoryName']?.value,
       };
       this.category.createCategory(book).subscribe((res: any) => {
-      this.fetchCategories();
+      this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
       this.cancelForm();
     });
       this.categories.push(newCategory);  //push to ui whithout refresh
@@ -78,7 +80,7 @@ export class AdminCategoryComponent implements OnDestroy {
   updateCategory(catId: number, cat: string) {
     const newCategoryName = this.categoryForm.controls['categoryName'].value;
     this.category.updateCategory(catId, newCategoryName).subscribe((res: any) => {
-    this.fetchCategories();
+    this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
     this.cancelForm();
     });
   }
@@ -88,7 +90,7 @@ export class AdminCategoryComponent implements OnDestroy {
     const categoryId = this.categories[index]._id;
     this.categories.splice(index, 1); // delete from table ui
     this.category.deleteCategory(categoryId).subscribe((res: any) => {
-      this.fetchCategories();
+      this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
     });
   }
 
@@ -97,7 +99,7 @@ export class AdminCategoryComponent implements OnDestroy {
     this.deleteCategoryFromTabel(i);
     console.log(catId);
     this.category.deleteCategory(catId).subscribe((res: any) => {
-      this.fetchCategories();
+      this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
     });
   }
 
@@ -122,5 +124,25 @@ export class AdminCategoryComponent implements OnDestroy {
 
 
   isNewCategory = false;
+
+
+  currentPage = 1;
+  totalPages = 3;
+  selectedItemsPerPage = 4;
+ 
+
+  nextPage() {
+    this.currentPage++;
+   console.log(this.currentPage)
+    this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
+  }
+
+  prevPage() {
+    this.currentPage--;
+    this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
+  }
+  onItemsPerPageChange(){
+    this.fetchCategories(this.currentPage,this.selectedItemsPerPage);
+  }
 }
 

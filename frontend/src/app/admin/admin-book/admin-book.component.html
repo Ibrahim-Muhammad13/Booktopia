@@ -92,7 +92,10 @@
               </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <button (click)="addBook($event)" type="submit" class="btn btn-primary me-3">Save</button>
+                    <form id="myForm">
+                      <button (click)="addBook($event)" type="submit" class="btn btn-primary me-3">Save</button>
+                    </form>
+                    
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
                     <button type="button" class="btn btn-primary me-1" [disabled]="bookForm.invalid && bookForm.touched"

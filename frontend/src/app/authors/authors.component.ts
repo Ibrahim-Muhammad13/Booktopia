@@ -10,10 +10,31 @@ import { AutherService } from '../services/auther.service';
 export class AuthorsComponent {
 Authors! : Author[]; 
 
+currentPage = 1;
+totalPages = 3;
+selectedItemsPerPage = 8;
   constructor(private auther: AutherService) { }
   ngOnInit(){
-    this.auther.getAllauther().subscribe((res: any) =>this.Authors = res)
+    this.getauther(this.currentPage,this.selectedItemsPerPage);
   }
 
+getauther(page:number,limit:number){
+  this.auther.getAllauther(page,limit).subscribe((res: any) =>{this.Authors = res.authors, this.totalPages = res.totalPages;});
+
+}
+  
+nextPage() {
+  this.currentPage++;
+ console.log(this.currentPage)
+  this.getauther(this.currentPage,this.selectedItemsPerPage);
 }
 
+prevPage() {
+  this.currentPage--;
+  this.getauther(this.currentPage,this.selectedItemsPerPage);
+}
+onItemsPerPageChange(){
+  this.getauther(this.currentPage,this.selectedItemsPerPage);
+}
+
+}
