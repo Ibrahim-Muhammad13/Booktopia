@@ -31,7 +31,10 @@ rating:number=1
   books:any;
   id_user!:any
   Auther!:[{}]
-
+  selectedOption: string = "";
+  showAlert: boolean = false;
+  alertMessage: string = "";
+  index!:any
 
   ngOnInit(){
     this.id_user=this.auth.getTokenID()
@@ -46,6 +49,11 @@ rating:number=1
     });
 
   }
+
+ 
+
+ 
+
 
 
 
@@ -71,6 +79,53 @@ rating:number=1
   wanttoread(){this.user_book.getbooks(this.id_user,"wanttoread").subscribe((res:any)=>{
     this.books=res;
     });}
+
+    
+    showAlertMessage() {
+      if (this.auth.isAuth()) {
+        if (this.selectedOption) {
+          const selectedOptionName = this.getOptionName(this.selectedOption);
+          this.alertMessage = "Option selected: " + selectedOptionName;
+        } else {
+          this.alertMessage = "Please select an option.";
+        }
+        this.showAlert = true;
+      } else {
+        this.alertMessage = "Please log in before selecting an option.";
+        this.showAlert = true;
+      }
+    }
+  getOptionName(optionValue: string): string {
+    if (optionValue === "read") {
+        return "read";
+    } else if (optionValue === "currently") {
+        return "currently";
+    } else if (optionValue === "wanttoread") {
+        return "want to read";
+    } else {
+        return ""; 
+    }
+  }
+  
+    changestates(index: any, newStatus: string) {
+      const newData = {
+        "bookid":this.books[index].bookid._id,
+           "status":newStatus,
+           "UserId":this.books[index].UserId,
+           "rate":this.books[index].bookid.rate
+      };
+    
+      this.user_book.update(this.books[index]._id, newData).subscribe((res: any) => {
+        console.log(res);
+      });
+    
+    }
+     
+hideAlert() {
+  this.showAlert = false;
+  this.alertMessage = "";
+}
+
 
 changestates(index:any,newStutes:string){
 const newdata={
@@ -106,6 +161,7 @@ this.books[index].bookid.rate=(sum/res.length)
   })
 
  }   
+
 
 }
 

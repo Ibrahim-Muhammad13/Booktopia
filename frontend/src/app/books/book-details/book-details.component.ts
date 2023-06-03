@@ -16,6 +16,10 @@ export class BookDetailsComponent {
 book:any;
 id_book:any
 id_user:any
+
+showAlert: boolean = false;
+alertMessage: string = "";
+
 reviews:any
 
 
@@ -40,12 +44,15 @@ reviews:any
       UserId:this.id_user
     }
     this.user_book.addBook(add_book)
-    alert("this book is  find in your profile  or add secessing")
-
+   
+    this.showAlert = true;
+    this.alertMessage = "This book is found in your profile or added successfully.";
     }
     // if login 
     if (login!=true){
-      alert("Please login first")
+     
+      this.showAlert = true;
+this.alertMessage = "Please login first";
     }
   }
 
@@ -64,7 +71,13 @@ reviews:any
     }) 
   }
     else{
-      alert("Please login first to add review")
+      
+      this.showAlert = true;
+this.alertMessage = "Please login first to add review";
     }
   }
+  hideAlert() {
+    this.showAlert = false;
+    this.alertMessage = "";
+    }
 }

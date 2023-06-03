@@ -1,5 +1,17 @@
-<app-navbar></app-navbar>
 
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ alertMessage }}
+  <button type="button" class="btn-close" aria-label="Close" (click)="hideAlert()"></button>
+  <div class="text-danger" *ngIf="emailDuplicateMessage">{{ emailDuplicateMessage }}</div>
+  </div>
+  </div>
+  </div>
+  </div>
+  
 
 <body class="bg-gray-100 text-gray-900 flex justify-center">
   <div class="m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
