@@ -38,5 +38,6 @@ if(this.auth.isAuth()){
     setTimeout(() => {
       this.router.navigate(['/admin']);
     }, 200);
+    
   }
 }
