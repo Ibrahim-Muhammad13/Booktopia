@@ -36,33 +36,29 @@ router.get('/author/:id',(req, res) => {
 //Title mainSpeaker speakers  students
 
 
+
 router.post('/',uplaod.any(),(req, res) => {
+
 const errors = validationResult(req);
   if(errors.isEmpty()){
-
-     controller.creation(req.body,res)
+res.json(req.body)
+    //  controller.creation(req.body,res)
     }
       else{
       return res.json(errors) 
     }
 });
 
-router.put( '/:id',
-[
-  body('name',"plz must lenth =3 or more").isLength({ min: 3 }),
-],
-(req, res) => {
-  const errors = validationResult(req);
-  if(errors.isEmpty()){
-    const {id} =req.params
-    const data= req.body
-    controller.edit(id,data,res)
-    }
-      else{
-      return res.json(errors) 
-    }
- 
-});
+
+
+
+router.put( '/:id',(req, res) => {
+  const id =req.params
+  const data= req.body
+  controller.edit(id,data,res)
+})
+
+
 router.delete('/:id',(req, res) => {
   const {id} =req.params
   controller.remove(id,res)
