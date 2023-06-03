@@ -152,4 +152,3 @@ this.bookServices.updateBook(this.books[index].bookid._id,this.books[index].book
 
 
 }
-
