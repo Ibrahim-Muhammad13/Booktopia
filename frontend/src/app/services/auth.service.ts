@@ -80,7 +80,7 @@ export class AuthService {
 
   }
   register(data:any){
-    return this.http.post('http://localhost:3000/auth/register',data).subscribe((res:any)=>console.log(res))
+    return this.http.post('http://localhost:3000/auth/register',data)
   }
   login(data:any){
     // console.log(data)
