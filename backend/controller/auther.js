@@ -10,13 +10,18 @@ async function creation (data, res){
     res.status(500).json(e)
   }}
 
-async function getting (res){
+async function getting (req,res){
   try {
-    const respons=  await auther.find()    
-  // const respons=  await usermodel.find({firstName:"John"})    
-    console.log(respons)
-    res.status(201).json(respons)
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 3;
+    const respons=  await auther.find()
+    .skip((page - 1) * limit)
+    .limit(limit)    
+    const autherCount = respons.length;
+    const count = await auther.countDocuments();
+    res.status(201).json({currentPage:page,count:autherCount,totalPages: Math.ceil(count / limit),authors:respons})
   } catch (e) {
+    console.log(e.message)
     res.status(500).json(e)
   }}
 

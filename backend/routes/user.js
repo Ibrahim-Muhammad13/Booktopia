@@ -36,8 +36,8 @@ const errors=validationResult(req);
 router.put( '/:id',
 [
   body('email',"this is not email").isEmail(),
-  body('password').isLength({ min: 8 }),
-  body('fullname','this length  less than 8 ').isLength({ min: 8 }),
+  body('password').isLength({ min: 4 }),
+  body('fullname','this length  less than 8 ').isLength({ min: 4 }),
 
 ],(req, res) => {
 const errors=validationResult(req);

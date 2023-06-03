@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,8 +7,10 @@ import { Injectable } from '@angular/core';
 export class AutherService {
 
   constructor(private http:HttpClient) { }
-getAllauther(){
-  return this.http.get('http://localhost:3000/auther')
+getAllauther(page:number,limit:number){
+  return this.http.get('http://localhost:3000/auther',
+  { params: new HttpParams().set('page', page).set('limit', limit)}
+  );
 }
 getAllautherbyid(id:any){
   return this.http.get('http://localhost:3000/auther/'+id)

@@ -7,33 +7,39 @@ import { AutherService } from 'src/app/services/auther.service';
   styleUrls: ['./auther.component.css']
 })
 export class AutherComponent {
-  Auther!:any
+  Auther!:any[]
   constructor(private auther:AutherService) { }
 
+  currentPage = 1;
+  totalPages = 3;
+  selectedItemsPerPage = 2;
+
+
   ngOnInit() {
-  this.auther.getAllauther().subscribe(
-
-res=>{
-      console.log(res)
-      this.Auther=res
-      // this.Auther=this.Auther[0]
-      // this.Auther=this.Auther[1]
-      // console.log(this.x.length)
-      console.log(typeof( this.Auther))
-
-
- })
-
-
+    this.getauther(this.currentPage,this.selectedItemsPerPage);
   }
+getauther(page:number,limit:number){
+  this.auther.getAllauther(page,limit).subscribe((res : any)=>{this.Auther=res.authors,this.totalPages=res.totalPages}); 
 
+}
   delete(id: string) {
     this.auther.deletauther(id).subscribe(() => {
       this.Auther = this.Auther.filter((author: any) => author._id !== id);
     });
   }
   
+  nextPage() {
+    this.currentPage++;
+   console.log(this.currentPage)
+    this.getauther(this.currentPage,this.selectedItemsPerPage);
+  }
 
-  // console.log(x)
+  prevPage() {
+    this.currentPage--;
+    this.getauther(this.currentPage,this.selectedItemsPerPage);
+  }
+  onItemsPerPageChange(){
+    this.getauther(this.currentPage,this.selectedItemsPerPage);
+  }
 
 }

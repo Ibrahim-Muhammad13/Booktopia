@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators,  ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,11 +10,48 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent {
   rigester:FormGroup
-  submitlogin( ){
-   const respone= this.auth.register(this.rigester.value)
-   console.log(respone)
+  result: any
+  showAlert: boolean = false;
+  alertMessage: string = "";
+  emailDuplicateMessage: string = "";
+  // submitlogin( ){
+  //  const respone= this.auth.register(this.rigester.value)
+  //  console.log(respone)
 
+  // }
+  submitLogin(rigester: any) {
+    this.auth.register(rigester).subscribe({
+      next: (res: any) => {
+        this.result = res;
+        // Registration successful
+        this.showAlert = true;
+        this.alertMessage = "Registration successful!";
+        this.emailDuplicateMessage = "";
+  
+        // Redirect to the login page 
+        this.router.navigate(['/login']);
+      },
+      error: (error: any) => {
+        // Registration failed
+        this.showAlert = true;
+        this.alertMessage = "Registration failed!";
+  
+        // Check if the error is due to duplicate email
+        if (error.error && error.error.message === "Duplicate email") {
+          this.emailDuplicateMessage = "Email already exists!";
+        } else {
+          this.emailDuplicateMessage = "";
+        }
+      }
+    });
   }
+  
+  
+  
+  hideAlert() {
+    this.showAlert = false;
+    this.alertMessage = "";
+  } 
   logingithub(){
     console.log("done google")
   }
@@ -25,7 +63,7 @@ export class RegisterComponent {
     this.auth.google()
   }
 
- constructor(private fb:FormBuilder ,private auth:AuthService){ 
+ constructor(private fb:FormBuilder ,private auth:AuthService ,private router:Router){ 
   this.rigester=fb.group({
     fullname:[null,[Validators.required, Validators.minLength(4)]],
     email:[null,[Validators.email,Validators.required]],

@@ -52,15 +52,15 @@ constructor(private fb:FormBuilder, private http:HttpClient, private auther:Auth
   }
 
   getauthers(){
-    this.auther.getAllauther().subscribe((res:any)=>this.authers=res);
+    this.auther.getAllauther(1,100).subscribe((res:any)=>this.authers=res.authors);
   }
 
   getbooks(){
-  this.book.getBooks(1,10).subscribe((res:any)=>this.books=res.books);
+  this.book.getBooks(1,100).subscribe((res:any)=>this.books=res.books);
   }
 
   getcategories(){
-  this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
+  this.category.getCategories(1,100).subscribe((res:any)=>this.categories=res.categories);
   }
 
 

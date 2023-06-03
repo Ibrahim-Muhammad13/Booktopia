@@ -27,7 +27,7 @@ const upload = multer({
 
 // const auth = require("../middlware/auth");
 router.get('/',(req, res) => {
-  controller.getting(res)
+  controller.getting(req,res)
   // res.send("done")
 });
 

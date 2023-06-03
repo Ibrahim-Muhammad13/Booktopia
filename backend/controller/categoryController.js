@@ -1,14 +1,18 @@
 const Category = require('../models/category');
 
-function getAllCategories(req, res) {
-    Category.find({}).then(function(categories,err) {
-        if (err) {
-          res.json(err);
-        }
-        res.json({
-            categories
-        }) 
-    });
+async function getAllCategories(req, res) {
+    try {
+        const page = parseInt(req.query.page) || 1; 
+        const limit = parseInt(req.query.limit) || 3; 
+        const respons=  await Category.find()
+        .skip((page - 1) * limit)
+        .limit(limit)
+        const catCount = respons.length;
+        const count = await Category.countDocuments();
+        res.status(200).json({currentPage:page,count:catCount,totalPages: Math.ceil(count / limit),categories:respons})
+      } catch (e) {
+        res.status(500).json(e.message)
+      }
 }
 
 function createCategory(req, res) {

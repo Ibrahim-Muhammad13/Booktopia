@@ -1,4 +1,4 @@
-<h1 class="p-3">Admin Category</h1>
+<h1 class="p-3" style=" color: rgba(255, 183, 0, 0.926);  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Admin Category</h1>
 <h2 class="p-2"  *ngIf="showForm && isNewCategory"> Add Your Category</h2>
 <h2 class="p-2"  *ngIf="showForm && !isNewCategory"> Edit Your Category</h2>
 
@@ -63,6 +63,33 @@
         </tbody>
       </table>
     </form>
+    </div>
+    
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <nav>
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <button class="page-link" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+            </li>
+            <li class="page-item">
+              <span class="page-link">{{ currentPage }} / {{ totalPages }}</span>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <button class="page-link" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+            </li>
+          </ul>
+        </nav>
+      </div> 
+       <div class="items-per-page">
+        <label for="itemsPerPage">Items per Page:</label>
+        <select id="itemsPerPage" [(ngModel)]="selectedItemsPerPage" (change)="onItemsPerPageChange()">
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="16">16</option>
+        </select>
+      </div>
+    
     </div>
   </div>
 </div>

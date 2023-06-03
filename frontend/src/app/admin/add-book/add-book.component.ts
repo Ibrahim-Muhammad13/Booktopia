@@ -37,18 +37,18 @@ export class AddBookComponent {
   get description() { return this.addbook.get('description') }
   get image() { return this.addbook.get('image') }
   ngOnInit(){
-    this.auther.getAllauther().subscribe((res:any)=>{this.authers=res
+    this.auther.getAllauther(1,100).subscribe((res:any)=>{this.authers=res
     console.log(this.authers)
   });
-  this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
+  this.category.getCategories(1,100).subscribe((res:any)=>this.categories=res.categories);
 
 
   }
   getauthers(){
-    this.auther.getAllauther().subscribe((res:any)=>this.authers=res);
+    this.auther.getAllauther(1,100).subscribe((res:any)=>this.authers=res);
   }
   getcategories(){
-    this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
+    this.category.getCategories(1,100).subscribe((res:any)=>this.categories=res.categories);
     }
 
   addBook(event: Event) {

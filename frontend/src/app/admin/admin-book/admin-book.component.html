@@ -127,7 +127,7 @@
             <ng-template #bookList>
               <tr *ngFor="let book of books; let i = index">
                 <td scope="row">{{book.name}}</td>
-                <td scope="row">{{book._id}}</td>
+                <!-- <td scope="row">{{book._id}}</td> -->
                 <td>
                   <button type="button" class="btn btn-primary me-4" routerLink="/admin/books/update/{{book._id}}">Edit</button>
                   <button type="button" class="btn btn-danger" (click)="deleteBook(book._id, i)">Delete</button>

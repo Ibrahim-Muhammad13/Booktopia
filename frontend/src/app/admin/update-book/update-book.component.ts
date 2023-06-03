@@ -40,9 +40,9 @@ export class UpdateBookComponent {
   get description() { return this.addbook.get('description') }
   get image() { return this.addbook.get('image') }
   ngOnInit(){
-    this.auther.getAllauther().subscribe((res:any)=>{this.authers=res
+    this.auther.getAllauther(1,100).subscribe((res:any)=>{this.authers=res
   });
-  this.category.getCategories().subscribe((res:any)=>this.categories=res.categories);
+  this.category.getCategories(1,100).subscribe((res:any)=>this.categories=res.categories);
 
   let id: number = this.activeRouter.snapshot.params['id'];
   this.book.getBookByID(id).subscribe((res) => {
