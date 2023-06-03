@@ -9,26 +9,39 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  result:any
-  constructor(private auth:AuthService ,private router:Router)
-{}
-  submitlogin(login:any){
+  result: any
+  showAlert: boolean = false;
+  alertMessage: string = "";
+  emailDuplicateMessage: string = "";
+
+  constructor(private auth: AuthService, private router: Router) { }
+  submitlogin(login: any) {
 
 
-   this.auth.login(login).subscribe((res:any)=>{
-    this.result=res
-    if (this.result=="Invalid data"){
-      alert("username or password incorrect")
-    }
-    else{
-      alert("login seccessfully")
-      this.auth.setToken(this.result.token)
-      this.auth.setTokenID(this.result.user._id)
-      this.router.navigate(['books'])
-    // console.log(this.result.user._id)
-    }
-    // this.auth.setiduser(this.result.user._id)  
-  })
+    this.auth.login(login).subscribe((res: any) => {
+      this.result = res
+      if (this.result == "Invalid data") {
 
- }
+        this.showAlert = true;
+        this.alertMessage = "username or password incorrect";
+      } else if (this.result == "Email already exists") {
+        this.emailDuplicateMessage = "The email is already duplicated.";
+      }
+      else {
+
+        this.showAlert = true;
+        this.alertMessage = "login seccessfully";
+        this.auth.setToken(this.result.token)
+        this.auth.setTokenID(this.result.user._id)
+        this.router.navigate(['books'])
+        // console.log(this.result.user._id)
+      }
+      // this.auth.setiduser(this.result.user._id)  
+    })
+
+  }
+  hideAlert() {
+    this.showAlert = false;
+    this.alertMessage = "";
+  }
 }

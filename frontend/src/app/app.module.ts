@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,9 +13,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SidebarComponent } from './admin/sidebar/sidebar.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
-
 import { CategoryValidationPipe } from './pipes/category-validation.pipe';
-
 import { AutherComponent } from './admin/auther/auther.component';
 import { AutherUpdateComponent } from './admin/auther-update/auther-update.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,15 +26,16 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { AuthorBookDetailsComponent } from './author-book-details/author-book-details.component';
 import { StarRatingPipe } from './pipes/star-rating.pipe';
-
 import { HomePart2Component } from './home-part2/home-part2.component';
-
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
-
 import { SearchComponent } from './search/search.component';
 import { HomeQuoteComponent } from './home-quote/home-quote.component';
+
 import { FooterComponent } from './footer/footer.component';
+
+
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -66,14 +64,11 @@ import { FooterComponent } from './footer/footer.component';
     CategoryBooksComponent,
     AdminLoginComponent,
     BookDetailsComponent,
-
     AuthorBookDetailsComponent,
     StarRatingPipe,
     HomePart2Component,
-
     ProfileComponent,
     HeaderComponent,
-
     SearchComponent,
       HomeQuoteComponent,
       FooterComponent,
@@ -88,8 +83,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
-
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

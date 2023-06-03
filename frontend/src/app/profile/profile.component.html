@@ -1,12 +1,23 @@
 <app-navbar></app-navbar>
 
+<div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ alertMessage }}
+  <button type="button" class="btn-close" aria-label="Close" (click)="hideAlert()"></button>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
 <div class="yellow">
   <button class="btn-lg px-5" type="button" (click)="filterBooks('all'); setTitle('all')" [ngClass]="activeButton === 'all' ? 'active-all' : ''">all</button>
   <button class="btn-lg px-5" type="button" (click)="filterBooks('read'); setTitle('read')" [ngClass]="activeButton === 'read' ? 'active-all' : ''">read</button>
   <button class="btn-lg px-5" type="button" (click)="filterBooks('currently'); setTitle('currently')" [ngClass]="activeButton === 'currently' ? 'active-all' : ''">currently</button>
   <button class="btn-lg px-5" type="button" (click)="filterBooks('want to read'); setTitle('want to read')" [ngClass]="activeButton === 'want to read' ? 'active-all' : ''">want to read</button>
 </div>
-
 <br>
 <br>
 
@@ -27,8 +38,11 @@
           </tr>
           <tr *ngFor= "let book of books let i=index">
             <td><img [src]="book.bookid.image" alt="test" width="100" height="100"></td>
-            <td><a href="">{{book.bookid.name}}</a></td>
-            <td><a href="">{{
+            <td><a routerLink="/book/{{book?.bookid?._id}}">{{book.bookid.name}}</a></td>
+            <td>
+              <a
+              routerLink="/author-details/{{book?.bookid?.authorId?._id}}"
+              >{{
             book.bookid.authorId.firstName+" "+book.bookid.authorId.LastName
               }}</a></td>
             <td>
@@ -47,22 +61,41 @@
                <span class = "fa fa-star"(click)="changerating(5,i)"  [ngClass]="{'checked': this.book?.rate== 5}"></span>
               <span>{{book?.rate}}</span>
             </td>
+<!-- 
 
-            <!-- <td><input type="text"> [(ngModel)]="autherId"</td> -->
-            <td>  <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><button (click)="changestates(i,'reedy')" class="dropdown-item" >reedy </button></li>
-              <li><button (click)="changestates(i,'currently')" class="dropdown-item"> currently</button></li>
-              <li><button (click)="changestates(i,'wanttoread')" class="dropdown-item" >wanttoread</button></li>
-            </ul></td>
-            <td>{{book.status}}</td>
-
-          </tr>
-
-        </table>
+      <td>{{book.bookid.rate}}</td>
+      <td> rate<input type="text"></td> -->
+      <!-- <td><input type="text"> [(ngModel)]="autherId"</td> -->
+      <td>
+          <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu"  (change)="showAlertMessage()" name="selectedOption">
+        <li><button (click)="changestates(i,'reedy')" class="dropdown-item" >reedy </button></li>
+        <li><button (click)="changestates(i,'currently')" class="dropdown-item"> currently</button></li>
+        <li><button (click)="changestates(i,'wanttoread')" class="dropdown-item" >wanttoread</button></li>
+      </ul> 
+ 
+      <!-- <form>
+      <div class="input-group">
+        <select class="form-control" [(ngModel)]="selectedOption" (change)="showAlertMessage()" name="selectedOption">
+          <option value="">Select an option</option>
+          <option (click)="changestates(i,'reedy')" value="read">read</option>
+          <option (click)="changestates(i,'currently')"value="currently">currently</option>
+          <option (click)="changestates(i,'wanttoread')"value="wanttoread">wanttoread</option>
+        </select>
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="bi bi-caret-down"></i></span>
+        </div>
       </div>
+    </form>  -->
+      
+    </td>
+   
+      <td>{{book.status}}</td>
 
-    </div>
-  </div>
+    </tr>
+
+  </table>
+    
+

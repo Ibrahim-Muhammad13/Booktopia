@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book';
 import { Observable } from 'rxjs';
@@ -10,8 +10,10 @@ export class BookService {
 
   constructor(private http:HttpClient) { }
 
-  getBooks(){
-    return this.http.get('http://localhost:3000/books');
+  getBooks(page:number,limit:number){
+    return this.http.get('http://localhost:3000/books',
+   { params: new HttpParams().set('page', page).set('limit', limit)}
+    );
   }
 
   searchBooks(searchTerm: string){
@@ -34,9 +36,9 @@ export class BookService {
     return this.http.post('http://localhost:3000/books', newBook).subscribe((res: any)=>console.log(res));
   }
 
-  updateBook(bookId: number, Name: string, rate: number, authorId: number, categoryId: number) {
+  updateBook(bookId: any, Name: string, rate: number, authorId: number, categoryId: number) {
     const book = { name: Name, rate: rate, authorId: authorId, categoryId: categoryId };
-    console.log("this book",book);
+    // console.log("this book",book);
     return this.http.put('http://localhost:3000/books/'+bookId, book);
   }
 
