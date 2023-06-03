@@ -3,3 +3,26 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
+.card{
+  width: 50%;
+  height: 100px;
+  box-shadow: 2px 2px 7px #385A64;
+
+}
+.card-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card h5{
+  font-weight: 700;
+}
+.container-fluid{
+  min-height: 90vh;
+  background-image: url(../../assets/images/bgcat.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+
+
