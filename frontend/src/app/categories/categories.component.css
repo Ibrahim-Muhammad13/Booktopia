@@ -5,7 +5,7 @@ a{
 }
 .card{
   width: 50%;
-  height: 100px;
+  height: 140px;
   box-shadow: 2px 2px 7px #385A64;
 
 }
@@ -24,5 +24,7 @@ a{
   background-repeat: no-repeat;
   background-position: top;
 }
-
-
+.card:hover{
+  box-shadow: 2px 2px 7px #FCD02D;
+  transition: 0.3s;
+}
