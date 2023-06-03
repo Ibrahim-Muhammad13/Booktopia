@@ -37,6 +37,7 @@ import { HeaderComponent } from './header/header.component';
 
 import { SearchComponent } from './search/search.component';
 import { HomeQuoteComponent } from './home-quote/home-quote.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -75,6 +76,7 @@ import { HomeQuoteComponent } from './home-quote/home-quote.component';
 
     SearchComponent,
       HomeQuoteComponent,
+      FooterComponent,
 
 
 
