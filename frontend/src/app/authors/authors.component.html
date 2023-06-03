@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
-<div class="row">
-    <div class="col-md-3 my-3" *ngFor= "let author of Authors">
+<div class="container p-5">
+  <div class="row">
+    <div class="col-md-4 my-3" *ngFor= "let author of Authors">
        <app-authors-card [oneOfAuthors] = "author" ></app-authors-card>
           </div>
     </div>
-
+</div>
