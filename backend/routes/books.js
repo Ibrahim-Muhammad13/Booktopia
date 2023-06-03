@@ -18,6 +18,15 @@ router.get('/:id',(req, res) => {
   controller.gettingbyId (id,res)
 
 });
+
+router.get('/admin/:id',(req, res) => {
+  const {id} =req.params
+  controller.gettingbyID (id,res)
+
+});
+
+
+
 router.get('/search/:name',(req, res) => {
   const {name} =req.params
   controller.search (name,res)
@@ -41,8 +50,7 @@ router.post('/',uplaod.any(),(req, res) => {
 
 const errors = validationResult(req);
   if(errors.isEmpty()){
-res.json(req.body)
-    //  controller.creation(req.body,res)
+     controller.creation(req.body,res)
     }
       else{
       return res.json(errors) 
@@ -52,7 +60,7 @@ res.json(req.body)
 
 
 
-router.put( '/:id',(req, res) => {
+router.put( '/:id',uplaod.any(),(req, res) => {
   const id =req.params
   const data= req.body
   controller.edit(id,data,res)

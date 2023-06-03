@@ -61,11 +61,23 @@ async function gettingbyId (id,res){
 
   try {
     const respons=  await books.find({_id:id}).populate("authorId")
-    .populate("categoryId");  ;    
+    .populate("categoryId");  
     res.status(201).json(respons )
   } catch (e) {
     res.status(500).json("error")
     }}
+
+
+    async function gettingbyID (id,res){
+
+      try {
+        const respons=  await books.find({_id:id})   
+        res.status(201).json(respons )
+      } catch (e) {
+        res.status(500).json("error")
+        }}
+    
+
 
 async function getBooksByCatId (id,res){
   try {
@@ -101,7 +113,7 @@ async function remove (id,res){
 }}
 
 module.exports={
-  creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId,search
+  creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId,search,gettingbyID
   // ,gettingbyid,edit ,remove
       // add,edit,remove,parse2 ,checked,show
   }
