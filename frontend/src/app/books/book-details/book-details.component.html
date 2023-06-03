@@ -1,28 +1,13 @@
 <app-navbar></app-navbar>
-
 <div class="container my-4">
     <div class="row">
       <div class="col-md-3">
         <img  [src] = "book?.image" class="card-img-top">
             <div class="btn-group mt-3 mb-3 w-100">
               <button class="btn btn-success btn-lg px-5" type="button" (click)="addToProfile()">want to read</button>
-              <!-- <button type="button" class="btn btn-lg btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"> -->
-                <!-- <span class="visually-hidden">Toggle Dropdown</span> -->
-              <!-- </button> -->
-              <!-- <ul class="dropdown-menu"> -->
-                <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
-                <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
-                <!-- <li><a class="dropdown-item" href="#">Something else here</a></li> -->
-              <!-- </ul> -->
             </div>
             <br>
-            <!-- <div>
-              <span class = "fa fa-star checked"></span>
-              <span class = "fa fa-star checked"></span>
-              <span class = "fa fa-star checked"></span>
-              <span class = "fa fa-star checked"></span>
-              <span class = "fa fa-star unchecked me-4"></span>
-            </div> -->
+
       </div>
       <div class="col-md-8">
         <h2>{{book?.name}}</h2>
@@ -87,9 +72,6 @@
 </form>
     </div>
   </div>
-<!-- </div> -->
-
-</div>
 
 
 
@@ -101,44 +83,23 @@
 
 
 
+  <div class="border border-dark p-3 mt-5" style="position: relative;">
+    <h4 class="mb-4" style="position: absolute; top: -20px; left: 10px; background-color: white; padding: 0 10px;">related books</h4>
+    <div class="row px-4 py-3">
 
-
-
-
-
-
-
-<div class="border border-dark p-3 mt-5" style="position: relative;">
-  <h4 class="mb-4" style="position: absolute; top: -20px; left: 10px; background-color: white; padding: 0 10px;">releated books</h4>
-  <div class="row px-4 py-3">
-    <div class="col-md-4">
-      <img src="../../../assets/images/img1.jpg" width="100px" alt="Reviewer Name" class="img-fluid rounded-circle">
-      <h6 class="mt-2">Reviewer Name</h6>
-    </div>
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="tit-stars d-flex align-items-center">
-            <h4 class="me-4">Book Name</h4>
-            <div class="d-flex ms-auto">
-              <!-- <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star unchecked ms-1"></span>
-            </div> -->
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
+      <div class="col-md-3 my-3" *ngFor= "let book of booksralated let i=index">
+        <div class="card h-100" >
+          <img [src] = "book.image" class="card-img-top">
+          <div class="card-body" (click)="goToBook(i)">
+              <h5 class="card-title"> {{book.name}} </h5>
+              <h5 class="card-title"> {{book.rate}} </h5>
+              <p class="card-text"></p>
           </div>
-          <p>Review body</p>
-        </div>
+            </div>
+
+
       </div>
     </div>
-  </div>
-</div>
 
 </div>
 
@@ -152,28 +113,18 @@
 
 
 
-<!--
 
-  <div class="container my-5">
-  <div class="row">
-    <div class="col-md-4">
-      <img [src]="book.image" class="img-fluid">
-    </div>
-    <div class="col-md-8">
-      <h2>{{book.name}}</h2>
-      <h5>Category: {{book.category}}</h5>
-      <h5>Author: {{book.author}}</h5>
-      <h5>Rate: {{book.rate}}</h5>
-      <p>{{book.description}}</p>
-      <hr>
-      <h4>Reviews</h4>
-      <div *ngFor="let review of book.reviews">
-        <h5>{{review.title}}</h5>
-        <p>{{review.body}}</p>
-        <hr>
-      </div>
-    </div>
-  </div>
+
+ 
+
+
 </div>
 
- -->
+
+
+
+
+
+
+
+
