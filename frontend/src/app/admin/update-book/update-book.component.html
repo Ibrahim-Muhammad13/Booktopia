@@ -1,107 +1,84 @@
-<h1 class="p-2">Admin Books</h1>
-<h2 class="p-2"> Add Your Book</h2>
-<div class="container">
-    <div class="row">
-      <div class="table-container">
-        <!-- <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Book Name</th>
-                <th scope="col" >Rate</th>
-                <th scope="col" >Author Name</th>
-                <th scope="col" >Category Name</th>
-                <th scope="col" >Image</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead> -->
-            <!-- <tbody></tbody> -->
-        <form [formGroup]="addbook" enctype="multipart/form-data"  (ngSubmit)="addBook($event)" >
-                 <tr>
-              <td>
-                    <input type="text" class="form-control" aria-describedby="BookNameHelp"
-                      name="name" formControlName="name"/>
-                    <div id="BookNameHelp" class="form-text text-danger"*ngIf="Name?.touched && Name?.invalid">
-                     <span *ngIf="Name?.errors?.['required']">
-                        This Field Is Required
-                      </span>
-                      <span *ngIf="Name?.errors?.['minlength']">the minlength is 3 character</span>
-                    </div>
-                 </td>
 
 
-                 <td>
-                    <input type="number" class="form-control" aria-describedby="BookRateHelp"
-                      name="rate"  formControlName="rate"  max="5" min="0"/>
-                      <!-- required min=0 max=5 -->
-                    <div id="BookRateHelp" class="form-text text-danger"*ngIf="Rate?.touched && Rate?.invalid" >
-                        <span *ngIf="Rate?.errors?.['required']">
-                            This Field Is Required
-                          </span>
-                          <span *ngIf="Rate?.errors?.['min']">
-                            min value is 0
-                          </span>
-                          <span *ngIf="Rate?.errors?.['max']">
-                            max value is 5
-                          </span>
-                      </div>
-                  </td>
+<h1 class="p-2" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Admin Books</h1>
+<h2 class="p-2" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Edit Your Book</h2>
+<div class="container shadow">
+  <div class="row">
+    <div class="table-container">
+      <form [formGroup]="addbook" enctype="multipart/form-data" (ngSubmit)="addBook($event)">
+        <div class="row mb-3">
+          <div class="col">
+            <label for="name" class="form-label">Book Name</label>
+            <input type="text" class="form-control" aria-describedby="BookNameHelp" name="name" formControlName="name" />
+            <div id="BookNameHelp" class="form-text text-danger" *ngIf="Name?.touched && Name?.invalid">
+              <span *ngIf="Name?.errors?.['required']">This Field Is Required</span>
+              <span *ngIf="Name?.errors?.['minlength']">The minimum length is 3 characters</span>
+            </div>
+          </div>
 
-                  <td>
-                    <select aria-label="Default select example" class="form-select" 
-                      aria-describedby="authorBookHelp" name="authorId"required  formControlName="Author" >
-                      <option disabled selected>Choose Your Auther Name</option>
-                      <option *ngFor="let auther of authers" value="{{ auther._id }}">
-                        {{ auther.firstName }} {{ auther.LastName }}
-                      </option>
-                    </select>
+          <div class="col">
+            <label for="rate" class="form-label">Rate</label>
+            <input type="number" class="form-control" aria-describedby="BookRateHelp" name="rate" formControlName="rate" min="0" max="5" />
+            <div id="BookRateHelp" class="form-text text-danger" *ngIf="Rate?.touched && Rate?.invalid">
+              <span *ngIf="Rate?.errors?.['required']">This Field Is Required</span>
+              <span *ngIf="Rate?.errors?.['min']">The minimum value is 0</span>
+              <span *ngIf="Rate?.errors?.['max']">The maximum value is 5</span>
+            </div>
+          </div>
+        </div>
 
-                    <div id="authorBookHelp" class="form-text text-danger"*ngIf="Author?.touched && Author?.invalid">
-                      <span *ngIf="Author?.errors?.['required']">
-                        This Field Is Required
-                      </span>
-                    </div>
-                  </td>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="authorId" class="form-label">Author Name</label>
+            <select aria-label="Default select example" class="form-select" aria-describedby="authorBookHelp" name="authorId" required formControlName="Author">
+              <option disabled selected>Choose Your Author Name</option>
+              <option *ngFor="let author of authers" [value]="author._id">
+                {{ author.firstName }} {{ author.LastName }}
+              </option>
+            </select>
+            <div id="authorBookHelp" class="form-text text-danger" *ngIf="Author?.touched && Author?.invalid">
+              <span *ngIf="Author?.errors?.['required']">This Field Is Required</span>
+            </div>
+          </div>
 
-                  <td>
-                    <select  aria-label="Default select example" name="categoryId"
-                      class="form-select" aaria-describedby="authorcategoryHelp" required formControlName="Category" >
-                      <option disabled selected>Choose Your Category Name</option>
-                      <option *ngFor="let category of categories" value="{{ category._id }}">
-                        {{ category.cat_Name }}
-                      </option>
-                    </select>
-                    <div id="authorcategoryHelp" class="form-text text-danger"*ngIf="Category?.touched && Category?.invalid">
-                      <span *ngIf="Category?.errors?.['required']">
-                        This Field Is Required
-                      </span>
-                    </div>
-                  </td>
+          <div class="col">
+            <label for="categoryId" class="form-label">Category Name</label>
+            <select aria-label="Default select example" class="form-select" aria-describedby="authorcategoryHelp" name="categoryId" required formControlName="Category">
+              <option disabled selected>Choose Your Category Name</option>
+              <option *ngFor="let category of categories" [value]="category._id">
+                {{ category.cat_Name }}
+              </option>
+            </select>
+            <div id="authorcategoryHelp" class="form-text text-danger" *ngIf="Category?.touched && Category?.invalid">
+              <span *ngIf="Category?.errors?.['required']">This Field Is Required</span>
+            </div>
+          </div>
+        </div>
 
-                  <td>
-                    <input      formControlName="image"
-                    name="image"
-                    type="file"
-                    class="form-control"
-                    id="Inputfile"
-                    aria-describedby="fileHelp"
-                  /> select image
-                  <div id="fileHelp" class="form-text text-danger"*ngIf="image?.touched && image?.invalid">
-                    <span *ngIf="image?.errors?.['required']">
-                        This Field Is Required
-                      </span>
-                    </div>
-                </td>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="image" class="form-label">Image</label>
+            <input formControlName="image" name="image" type="file" class="form-control" id="Inputfile" aria-describedby="fileHelp" />
+            <div id="fileHelp" class="form-text text-danger" *ngIf="image?.touched && image?.invalid">
+              <span *ngIf="image?.errors?.['required']">This Field Is Required</span>
+            </div>
+          </div>
 
+          <div class="col">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" aria-describedby="descriptionHelp" name="description" required formControlName="description" />
+            <div id="BookNameHelp" class="form-text text-danger" *ngIf="description?.touched && description?.invalid">
+              <span *ngIf="description?.errors?.['required']">This Field Is Required</span>
+            </div>
+          </div>
+        </div>
 
-
-                <td>
-                    <input type="text" class="form-control" aria-describedby="descriptionHelp"
-                      name="description"  required   formControlName="description"/>
-                    <div id="BookNameHelp" class="form-text text-danger"*ngIf="description?.touched && description?.invalid">
-                    <span *ngIf="description?.errors?.['required']">
-                        This Field Is Required
-                      </span>
-                    </div>
-                 </td>
-
-<button type="submit" class="btn btn-primary me-3">Save</button>
+        <div class="row mt-4">
+          <div class="col">
+            <button type="submit" class="btn btn-primary me-3">Update</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
