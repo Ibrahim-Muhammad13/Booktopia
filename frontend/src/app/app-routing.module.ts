@@ -22,6 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { authuserGuard } from './guard/authuser.guard';
 import { SearchComponent } from './search/search.component';
+import { WelcomeComponent } from './admin/welcome/welcome.component';
 
 const routes: Routes = [
   {
@@ -76,6 +77,11 @@ const routes: Routes = [
     canActivate:[authGuard],
     component:DashboardComponent,
     children:[
+      {
+        path: 'welcome',
+        component:WelcomeComponent
+
+      },
       {
         path: 'categories',
         component:AdminCategoryComponent
