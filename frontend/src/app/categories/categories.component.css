@@ -27,4 +27,5 @@ a{
 .card:hover{
   box-shadow: 2px 2px 7px #FCD02D;
   transition: 0.3s;
+  cursor: pointer;
 }
