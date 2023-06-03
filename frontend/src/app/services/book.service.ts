@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book';
 import { Observable } from 'rxjs';
@@ -10,8 +10,10 @@ export class BookService {
 
   constructor(private http:HttpClient) { }
 
-  getBooks(){
-    return this.http.get('http://localhost:3000/books');
+  getBooks(page:number,limit:number){
+    return this.http.get('http://localhost:3000/books',
+   { params: new HttpParams().set('page', page).set('limit', limit)}
+    );
   }
 
   searchBooks(searchTerm: string){

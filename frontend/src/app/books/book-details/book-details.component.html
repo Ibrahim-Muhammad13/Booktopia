@@ -1,4 +1,15 @@
 <app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+  {{ alertMessage }}
+  <button type="button" class="btn-close" aria-label="Close" (click)="hideAlert()"></button>
+  </div>
+  </div>
+  </div>
+  </div>
 <div class="container my-4">
     <div class="row">
       <div class="col-md-3">

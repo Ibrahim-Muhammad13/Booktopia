@@ -14,6 +14,10 @@ export class BookDetailsComponent {
 book:any;
 id_book:any
 id_user:any
+
+showAlert: boolean = false;
+alertMessage: string = "";
+
 reviews:any
 booksralated:any
 ngOnInit(){
@@ -34,12 +38,15 @@ this.Review.getReview(this.id_book).subscribe((res:any)=>{this.reviews=res;})
       UserId:this.id_user
     }
     this.user_book.addBook(add_book)
-    alert("this book is  find in your profile  or add secessing")
-
+   
+    this.showAlert = true;
+    this.alertMessage = "This book is found in your profile or added successfully.";
     }
     // if login 
     if (login!=true){
-      alert("Please login first")
+     
+      this.showAlert = true;
+this.alertMessage = "Please login first";
     }
   }
 
@@ -58,9 +65,12 @@ this.Review.getReview(this.id_book).subscribe((res:any)=>{this.reviews=res;})
     }) 
   }
     else{
-      alert("Please login first to add review")
+      
+      this.showAlert = true;
+this.alertMessage = "Please login first to add review";
     }
   }
+
   goToBook(index:number){
     this.router.navigate(['/book/'+this.booksralated[index]?._id]);
     this.books.getBookById(this.booksralated[index]?._id).subscribe((res:any)=>{this.book=res[0]
@@ -71,4 +81,9 @@ this.Review.getReview(this.id_book).subscribe((res:any)=>{this.reviews=res;})
         })
       
   }
+
+  hideAlert() {
+    this.showAlert = false;
+    this.alertMessage = "";
+    }
 }
