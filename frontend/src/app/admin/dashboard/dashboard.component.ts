@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+  
 constructor(private auth:AuthService, private router:Router){}
 
 logout(){

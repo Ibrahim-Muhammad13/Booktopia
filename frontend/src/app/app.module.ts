@@ -31,6 +31,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { HomeQuoteComponent } from './home-quote/home-quote.component';
+import { WelcomeComponent } from './admin/welcome/welcome.component';
 
 import { FooterComponent } from './footer/footer.component';
 
@@ -72,10 +73,13 @@ import { UpdateBookComponent } from './admin/update-book/update-book.component';
     ProfileComponent,
     HeaderComponent,
     SearchComponent,
+
+      WelcomeComponent,
     HomeQuoteComponent,
     AddBookComponent,
     UpdateBookComponent,
     FooterComponent,
+
 
 
 
