@@ -1,45 +1,49 @@
+<div class="container-fluid shadow">
+    <div class="row justify-content-center py-5">
 
-<style>
-  section {
-    background-color: rgba(195, 195, 239, 0.264);
-  }
 
-  .card {
-    overflow: hidden;
-    height: 22rem;
-    width: 22rem;
-  }
+      <div class="col-md-3">
+        <div class="card shadow my-5">
+          <img [src]="image1">
+          <div class="intro">
+            <h2>Popular Author</h2>
+            <p>Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="authors" class="btn">See All Authors</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow my-5">
+          <img [src]="image2">
+          <div class="intro">
+            <h2 >Popular Book</h2>
+            <p >Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="books" class="btn">See All Books</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow my-5">
+          <img [src]="image3" class="card-img-top">
+          <div class="intro">
+            <h2>Popular Category</h2>
+            <p>Cupiditate ab dolores natus error necessitatibus minus
+              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
+              <a routerLink="categories" class="btn">See All Categories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  .card img {
-    height: 100%;
-    width: 100%;
-    transition: transform 0.3s ease;
-  }
 
-  .card .intro {
-    color: white;
-    padding: 10px;
-    box-sizing: border-box;
-    transform: translateY(-25%);
-    transition: transform 0.3s ease;
-  }
 
-  .card:hover .intro {
-    transform: translateY(-100%);
-  }
 
-  .row .col-md-3 {
-    margin-left: 2rem;
-    margin-right: 3rem;
-  }
-</style>
 
-<section>
-  <div class="container shadow">
-    <div class="row ">
 
-      <!-- <img [src]="image1" class=" mt-5" style="height:25rem ;width: 100%;border-radius: 22px;"> -->
-      <div id="carouselExampleDark" class="carousel carousel-dark slide mt-5"   data-bs-ride="carousel">
+      <!-- <div id="carouselExampleDark" class="carousel carousel-dark slide mt-5"   data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -76,41 +80,4 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card shadow my-5">
-          <img [src]="image3">
-          <div class="intro">
-            <h2>Popular Author</h2>
-            <p>Cupiditate ab dolores natus error necessitatibus minus
-              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
-              <a routerLink="authors" class="btn btn-danger">See All Authors</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 ">
-        <div class="card shadow my-5">
-          <img [src]="image2">
-          <div class="intro">
-            <h2 >Popular Book</h2>
-            <p >Cupiditate ab dolores natus error necessitatibus minus
-              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
-              <a routerLink="books" class="btn btn-danger">See All Books</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 ">
-        <div class="card shadow my-5">
-          <img [src]="image3">
-          <div class="intro">
-            <h2>Popular Category</h2>
-            <p>Cupiditate ab dolores natus error necessitatibus minus
-              Sunt tenetur sequi eaque <span>doloribus</span> doloribus, ullam quibusdam quam?</p>
-              <a routerLink="categories" class="btn btn-danger">See All Categories</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </div> -->

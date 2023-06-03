@@ -13,7 +13,7 @@ books!:any[]
   constructor(private book:BookService) { }
 
   ngOnInit(){
-  
+
   this.getbooks();
   }
 
