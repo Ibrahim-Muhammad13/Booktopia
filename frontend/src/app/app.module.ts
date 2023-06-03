@@ -31,9 +31,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { HomeQuoteComponent } from './home-quote/home-quote.component';
+
+import { FooterComponent } from './footer/footer.component';
+
+
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AddBookComponent } from './admin/add-book/add-book.component';
 import { UpdateBookComponent } from './admin/update-book/update-book.component';
+
 
 
 
@@ -67,9 +72,11 @@ import { UpdateBookComponent } from './admin/update-book/update-book.component';
     ProfileComponent,
     HeaderComponent,
     SearchComponent,
-      HomeQuoteComponent,
-      AddBookComponent,
-      UpdateBookComponent,
+    HomeQuoteComponent,
+    AddBookComponent,
+    UpdateBookComponent,
+    FooterComponent,
+
 
 
 
