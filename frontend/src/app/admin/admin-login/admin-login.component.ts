@@ -35,5 +35,8 @@ if(this.auth.isAuth()){
     const { email, password } = this.loginForm.value;
     const data = { email, password };
     this.auth.login(data).subscribe((res: any) => this.auth.setToken(res.token));
+    setTimeout(() => {
+      this.router.navigate(['/admin']);
+    }, 200);
   }
 }
