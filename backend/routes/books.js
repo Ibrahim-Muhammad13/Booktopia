@@ -18,6 +18,15 @@ router.get('/:id',(req, res) => {
   controller.gettingbyId (id,res)
 
 });
+
+router.get('/admin/:id',(req, res) => {
+  const {id} =req.params
+  controller.gettingbyID (id,res)
+
+});
+
+
+
 router.get('/search/:name',(req, res) => {
   const {name} =req.params
   controller.search (name,res)
@@ -51,7 +60,7 @@ const errors = validationResult(req);
 
 
 
-router.put( '/:id',(req, res) => {
+router.put( '/:id',uplaod.any(),(req, res) => {
   const id =req.params
   const data= req.body
   controller.edit(id,data,res)
