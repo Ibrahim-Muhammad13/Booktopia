@@ -23,11 +23,9 @@ export class ProfileComponent {
   }
 
 
-
-
-
-  constructor(private activeRouter:ActivatedRoute,private book:BookService,private auth:AuthService,private user_book:UserInfoService ,private auther:AutherService){}
+constructor(private auth:AuthService,private user_book:UserInfoService ,private bookServices:BookService) {}
 rating:number=1
+
   books:any;
   id_user!:any
   Auther!:[{}]
@@ -126,6 +124,7 @@ hideAlert() {
   this.alertMessage = "";
 }
 
+
  changerating(rate:number,index:any){
 this.rating=rate
 const newdata={
@@ -142,8 +141,11 @@ this.user_book.update(this.books[index]._id,newdata).subscribe((res:any)=>{
 for (let index = 0; index < res.length; index++) {
   if(res[index]?.rate) sum=sum+res[index]?.rate
 }
+
 this.books[index].bookid.rate=(sum/res.length)
-   })
+this.bookServices.updateBook(this.books[index].bookid._id,this.books[index].bookid.name, this.books[index].bookid.rate,this.books[index].bookid.authorId._id,this.books[index].bookid.categoryId)
+.subscribe((res:any)=>console.log(res))
+})
   })
 
  }   
