@@ -7,12 +7,12 @@
 </ul> -->
 <div class="container p-5">
 <div class="row">
-  <div class="col-md-4  my-2" *ngFor="let category of categories">
+  <div class="col-md-4  my-2 " *ngFor="let category of categories">
 
-    <div class="card">
+    <div class="card shadow rounded-pill" style="background-color: rgb(75, 75, 194);">
         <div class="card-body">
 
-          <a [routerLink]="['/category',category._id]"><h5 class="card-title">{{category.cat_Name}}</h5></a>
+          <a [routerLink]="['/category',category._id]"><h4 class="card-title text-white text-center" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);">{{category.cat_Name}}</h4></a>
         </div>
       </div>
     </div>
