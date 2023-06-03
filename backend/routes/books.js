@@ -7,8 +7,9 @@ const jwt=require("jsonwebtoken");
 const { body, validationResult } = require('express-validator');
 const auth = require("../middlware/auth");
 const uplaod =require("../upload")
+
 router.get('/',(req, res) => {
-  controller.getting(res)
+  controller.getting(req,res)
 
 });
 
@@ -35,10 +36,7 @@ router.get('/author/:id',(req, res) => {
 //Title mainSpeaker speakers  students
 
 
-router.post('/',
-[
-  body('name',"plz must lenth =3 or more").isLength({ min: 3 }),  
-],uplaod.any(),(req, res) => {
+router.post('/',uplaod.any(),(req, res) => {
 const errors = validationResult(req);
   if(errors.isEmpty()){
 

@@ -14,6 +14,7 @@ const auth = require('./routes/auth');
 const profile=require("./routes/user_books")
 const cookieSession = require('cookie-session')
 app.use('/images/',express.static('images'))
+
 app.use(express.json());
 app.use(cors({
   origin: '*'
@@ -36,7 +37,7 @@ require('./config/passpordfacebook')
 require('./config/passpordgoogle')
 app.use(passport.initialize())
 app.use(passport.session())
-
+// app.use(queryParser());
 
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {

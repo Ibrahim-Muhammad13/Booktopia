@@ -1,6 +1,8 @@
 const books = require("../models/books");// for database
 const author = require("../models/author");
 const category = require("../models/category");
+
+
 async function creation (data, res){
   try {
     const respons=  await books.create(data)
@@ -8,13 +10,23 @@ async function creation (data, res){
   } catch (e) {
     res.status(500).json(e)
   }}
-
-async function getting (res){
+  
+async function getting (req,res){
+  const q =req.query
+  console.log(q)
   try {
-    const respons=  await books.find().populate("authorId").populate("categoryId");    
-    res.status(201).json(respons)
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 3; 
+    const respons=  await books.find()
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .populate("authorId").populate("categoryId"); 
+    
+    const booksCount = respons.length;
+    const count = await books.countDocuments();
+    res.status(200).json({currentPage:page,count:booksCount,totalPages: Math.ceil(count / limit),books:respons})
   } catch (e) {
-    res.status(500).json("error")
+    res.status(500).json(e.message)
   }}
 
 
