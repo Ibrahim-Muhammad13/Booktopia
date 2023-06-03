@@ -71,12 +71,12 @@ async function getBookByAuthorId (id,res){
     res.status(500).json("error")
 }}
 
-    async function edit (id,data,res){
+async function edit (id,data,res){
   try {
-   const respons=  await books.findByIdAndUpdate(id,data)    
-    res.status(201).json(respons )
+   const respons=  await books.findByIdAndUpdate(id.id ,data)  
+    res.json(respons )
     } catch (e) {
-    res.status(500).json("error")
+    res.json(e)
   }}
 
 
