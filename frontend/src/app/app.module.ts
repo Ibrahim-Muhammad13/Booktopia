@@ -32,6 +32,7 @@ import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
 import { HomeQuoteComponent } from './home-quote/home-quote.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AddBookComponent } from './admin/add-book/add-book.component';
 
 
 
@@ -66,6 +67,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HeaderComponent,
     SearchComponent,
       HomeQuoteComponent,
+      AddBookComponent,
 
 
 

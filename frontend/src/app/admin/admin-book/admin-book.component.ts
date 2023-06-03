@@ -56,7 +56,7 @@ constructor(private fb:FormBuilder, private http:HttpClient, private auther:Auth
   }
 
   getbooks(){
-  this.book.getBooks(1,10).subscribe((res:any)=>this.books=res);
+  this.book.getBooks(1,10).subscribe((res:any)=>this.books=res.books);
   }
 
   getcategories(){

@@ -22,6 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { authuserGuard } from './guard/authuser.guard';
 import { SearchComponent } from './search/search.component';
+import { AddBookComponent } from './admin/add-book/add-book.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,10 @@ const routes: Routes = [
       },{
         path: 'books',
         component:AdminBookComponent,
+      },
+      {
+        path: 'books/add',
+        component:AddBookComponent,
       }
 
     ]
