@@ -30,6 +30,12 @@ export class BookService {
     return this.http.get<Book[]>('http://localhost:3000/books/'+id);
   }
 
+
+  getBookByID(id:any): Observable<Book[]>{//for update book
+    return this.http.get<Book[]>('http://localhost:3000/books/admin/'+id);
+  }
+
+
   // addBook(bookName: string,  rate: number,authorId: number, categoryId: number){
   //   const newBook = { name: bookName, rate: rate, authorId: authorId, categoryId: categoryId };
   //   // console.log(newBook);
@@ -45,6 +51,12 @@ export class BookService {
     // console.log("this book",book);
     return this.http.put('http://localhost:3000/books/'+bookId, book);
   }
+
+  UpdateBook(book: any, bookId:any) {
+    // console.log("this book",book);
+    return this.http.put('http://localhost:3000/books/'+bookId, book);
+  }
+
 
   deleteBook(bookId: number): Observable<Book[]> {
     return this.http.delete<Book[]>('http://localhost:3000/books/' + bookId);
