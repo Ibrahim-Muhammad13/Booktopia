@@ -1,10 +1,14 @@
-<p>search works!</p>
+<app-navbar></app-navbar>
 
-<form action="">
+<div class="container-fluid">
+  <div class="row">
+    <form class="d-flex justify-content-center shadow py-3">
+      <input class="px-4 py-2 me-3" type="text" name="search" placeholder="Search.." [(ngModel)]="word">
+      <button type="submit" (click)="searchBooks(word)" class="btn btn-danger py-2">Search</button>
+    </form>
+  </div>
+</div>
 
-    <input type="text" name="search" placeholder="Search.." [(ngModel)]="word">
-    <button type="submit" (click)="searchBooks(word)">Submit</button>
-</form>
 
 <div class="container">
     <div class="row">
