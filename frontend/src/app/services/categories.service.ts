@@ -13,11 +13,12 @@ export class CategoriesService {
   constructor(private http: HttpClient) { }
 
   getCategories(page: number, limit: number){
-    return this.http.get('http://localhost:3000/admin/category',{
-      params: {
+    return this.http.get('http://localhost:3000/admin/category',
+    {params: {
         page: page.toString(),
         limit: limit.toString()
-    }});
+    }}
+    );
   }
 
 

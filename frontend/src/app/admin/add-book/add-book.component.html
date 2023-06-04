@@ -85,7 +85,7 @@
             <label for="description" class="form-label">Description</label>
             <input type="text" class="form-control" aria-describedby="descriptionHelp" name="description" required
               formControlName="description" />
-            <div id="BookNameHelp" class="form-text text-danger" *ngIf="description?.touched && description?.invalid">
+            <div id="descriptionHelp" class="form-text text-danger" *ngIf="description?.touched && description?.invalid">
               <span *ngIf="description?.errors?.['required']">
                 This Field Is Required
               </span>
@@ -95,7 +95,7 @@
 
         <div class="row mt-4">
           <div class="col">
-            <button type="submit" class="btn btn-primary me-3">Save</button>
+            <button type="submit" class="btn btn-warning me-3 mb-3"  [disabled]="addbook.invalid">Save</button>
           </div>
         </div>
       </form>
