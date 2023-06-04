@@ -51,8 +51,4 @@ async function remove (id,res){
     res.status(500).json(e)
 }}
 
-      module.exports={
-        creation,getting,gettingbyId,remove,edit
-        // ,gettingbyid,edit ,remove
-            // add,edit,remove,parse2 ,checked,show
-        }
+module.exports={       creation,getting,gettingbyId,remove,edit }

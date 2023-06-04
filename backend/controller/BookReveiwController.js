@@ -54,8 +54,4 @@ async function remove (id,res){
 // }
 }
 
-      module.exports={
-        creation,getting,remove,edit,reviewsForOneBook
-        // ,gettingbyid,edit ,remove
-            // add,edit,remove,parse2 ,checked,show
-        }
+module.exports={ creation,getting,remove,edit,reviewsForOneBook        }

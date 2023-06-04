@@ -3,7 +3,7 @@ const Auther = require("../models/author");// for database
 async function creation (data, res){
   try {
     const exist = await user.findOne({ bookid:data.bookid,UserId:data.UserId });
-    console.log(exist);
+    // console.log(exist);
     if (exist) {return res.json("this book is found in user profile");}
   else{
 const respons=  await user.create(data)

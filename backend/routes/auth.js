@@ -101,10 +101,5 @@ router.get("/google/coolback",passport.authenticate('google'),(req, res) => {
 res.json(req.user);
 });
 
-// router.get("/welcome", auth, (req, res) => {
-// console.log(req.params)
-//   res.status(200).send("Welcome 🙌 ");
-
-// });
 
 module.exports = router

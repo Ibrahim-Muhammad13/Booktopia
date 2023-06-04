@@ -4,8 +4,6 @@ async function creation (data, res){
   try {
     const respons=  await auther.create(data)
     res.status(201).json(respons)
-    // res.status(201).json(data)
-    // res.status(201).json("create accout seccessful "+respons )
   } catch (e) {
     res.status(500).json(e)
   }}
@@ -21,18 +19,15 @@ async function getting (req,res){
     const count = await auther.countDocuments();
     res.status(201).json({currentPage:page,count:autherCount,totalPages: Math.ceil(count / limit),authors:respons})
   } catch (e) {
-    console.log(e.message)
+    // console.log(e.message)
     res.status(500).json(e)
   }}
 
 async function gettingbyId (id,res){
 
   try {
-    // const respons= await auther.findById(id)   ;
 const respons=await auther.findById(id)
-    // const respons=  await auther.find()    
-
-    console.log(respons)
+    // console.log(respons)
     res.status(201).json(respons )
   } catch (e) {
     res.status(500).json(e)
@@ -57,8 +52,4 @@ async function remove (id,res){
     res.status(500).json(e)
 }}
 
-      module.exports={
-        creation,getting,gettingbyId,remove,edit
-        // ,gettingbyid,edit ,remove
-            // add,edit,remove,parse2 ,checked,show
-        }
+module.exports={  creation,getting,gettingbyId,remove,edit}

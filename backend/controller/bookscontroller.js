@@ -1,6 +1,6 @@
 const books = require("../models/books");// for database
-const author = require("../models/author");
-const category = require("../models/category");
+// const author = require("../models/author");
+// const category = require("../models/category");
 
 
 async function creation (data, res){
@@ -13,7 +13,7 @@ async function creation (data, res){
   
 async function getting (req,res){
   const q =req.query
-  console.log(q)
+  // console.log(q)
   try {
     const page = parseInt(req.query.page) || 1; 
     const limit = parseInt(req.query.limit) || 3; 
@@ -114,6 +114,4 @@ async function remove (id,res){
 
 module.exports={
   creation,getting,gettingbyId,remove,edit,getBooksByCatId,getBookByAuthorId,search,gettingbyID
-  // ,gettingbyid,edit ,remove
-      // add,edit,remove,parse2 ,checked,show
   }

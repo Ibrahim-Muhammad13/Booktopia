@@ -19,11 +19,6 @@ app.use(express.json());
 app.use(cors({
   origin: '*'
 }));
-// httpNodeCors: {
-//   origin: "*",
-//   methods: "GET,PUT,POST,DELETE"
-// },
-
 
 app.use(cookieSession({
   name: 'session',
@@ -37,7 +32,6 @@ require('./config/passpordfacebook')
 require('./config/passpordgoogle')
 app.use(passport.initialize())
 app.use(passport.session())
-// app.use(queryParser());
 
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
