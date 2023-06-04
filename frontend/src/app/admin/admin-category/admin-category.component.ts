@@ -108,12 +108,12 @@ export class AdminCategoryComponent implements OnDestroy {
     this.newCategoryName = '';
     this.showForm = false;
     this.isNewCategory = false;
-    if (this.hasChanges) {
-      const confirmDiscardChanges = confirm('Are you sure you want to discard your changes?');
-      if (!confirmDiscardChanges) {
-        return;
-      }
-    }
+    // if (this.hasChanges) {
+    //   const confirmDiscardChanges = confirm('Are you sure you want to discard your changes?');
+    //   if (!confirmDiscardChanges) {
+    //     return;
+    //   }
+    // }
   }
 
   ngOnDestroy() {

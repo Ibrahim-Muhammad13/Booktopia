@@ -9,7 +9,11 @@ export class AutherService {
   constructor(private http:HttpClient) { }
 getAllauther(page:number,limit:number){
   return this.http.get('http://localhost:3000/auther',
-  { params: new HttpParams().set('page', page).set('limit', limit)}
+  // { params: new HttpParams().set('page', page).set('limit', limit)}
+  {params: {
+    page: page.toString(),
+    limit: limit.toString()
+}}
   );
 }
 getAllautherbyid(id:any){

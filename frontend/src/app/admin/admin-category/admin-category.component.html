@@ -1,7 +1,9 @@
-<h1 class="p-3" style=" color: rgba(255, 183, 0, 0.926);  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Admin Category</h1>
-<h2 class="p-2"  *ngIf="showForm && isNewCategory"> Add Your Category</h2>
-<h2 class="p-2"  *ngIf="showForm && !isNewCategory"> Edit Your Category</h2>
-
+<h1 class="p-3" style=" color: rgba(255, 183, 0, 0.926);  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);">Admin Category</h1>
+<h2 class="p-2"  style=" text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);" *ngIf="showForm && isNewCategory"> Add Your Category</h2>
+<h2 class="p-2"  style=" text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);" *ngIf="showForm && !isNewCategory"> Edit Your Category</h2>
+<div class="flex justify-content-end me-4 mb-4" *ngIf="!showForm">
+  <button type="button" class="btn btn-warning"  (click)="showForm=true; isNewCategory=true">Add New Category</button>
+</div>
 <div class="container">
   <div class="row">
     <div class="table-container">
@@ -12,9 +14,9 @@
             <th scope="col" *ngIf="!showForm">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Action</th>
-            <th scope="col" *ngIf="!showForm">
-              <button type="button" class="btn btn-success" (click)="showForm=true; isNewCategory=true">Add</button>
-            </th>
+            <!-- <th scope="col" *ngIf="!showForm">
+              <button type="button" class="btn btn-warning" (click)="showForm=true; isNewCategory=true">Add New Category</button>
+            </th> -->
           </tr>
         </thead>
         <tbody>
@@ -40,10 +42,10 @@
               </td>
               <td>
                 <ng-container *ngIf="isNewCategory">
-                  <button type="submit" class="btn btn-primary me-4" [disabled]="categoryForm.controls['categoryName'].invalid || !categoryForm.controls['categoryName'].dirty">Save</button>
+                  <button type="submit" class="btn btn-warning me-4" [disabled]="categoryForm.controls['categoryName'].invalid || !categoryForm.controls['categoryName'].dirty">Save</button>
                 </ng-container>
                 <ng-container *ngIf="!isNewCategory">
-                  <button type="button" class="btn btn-primary me-4" (click)="selectedCategory && updateCategory(selectedCategory._id, newCategoryName)">Update</button>
+                  <button type="button" class="btn btn-warning me-4" (click)="selectedCategory && updateCategory(selectedCategory._id, newCategoryName)">Update</button>
                 </ng-container>
                 <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
               </td>
@@ -55,7 +57,7 @@
                 <th scope="row">{{i + 1}}</th>
                 <td>{{category.cat_Name}}</td>
                 <td>
-                  <button type="button" class="btn btn-primary me-4" (click)="editCategory(category)">Edit</button>
+                  <button type="button" class="btn btn-warning me-4" (click)="editCategory(category)">Edit</button>
                   <button type="button" class="btn btn-danger" (click)="deleteCategory(category._id,i)">Delete</button>
                 </td>
               </tr>

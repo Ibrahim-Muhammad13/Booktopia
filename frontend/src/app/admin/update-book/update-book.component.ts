@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router } from '@angular/router';
 import { Author } from 'src/app/models/author';
 import { Category } from 'src/app/models/category';
 import { AutherService } from 'src/app/services/auther.service';
@@ -21,13 +21,13 @@ export class UpdateBookComponent {
   addbook: FormGroup
   olddata:any
 
-  constructor( private fb: FormBuilder,private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService,private activeRouter: ActivatedRoute) {
+  constructor( private fb: FormBuilder,private http:HttpClient, private auther:AutherService, private book:BookService, private category:CategoriesService,private activeRouter: ActivatedRoute,private router: Router) {
 // name  rate   authorId  categoryId   image   description
     this.addbook = fb.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
-      rate: [0, [Validators.required, Validators.min(0),Validators.max(5)]],
-      Author: ["Choose Your Auther Name", [Validators.required]],
-      Category: ["Choose Your category Name", [Validators.required]],
+      rate: [null, [Validators.required, Validators.min(0),Validators.max(5)]],
+      Author: [null, [Validators.required]],
+      Category: [null, [Validators.required]],
       description: [null, [Validators.required]],
       image: [null, [Validators.required]],
     })
@@ -40,8 +40,10 @@ export class UpdateBookComponent {
   get description() { return this.addbook.get('description') }
   get image() { return this.addbook.get('image') }
   ngOnInit(){
-    this.auther.getAllauther(1,100).subscribe((res:any)=>{this.authers=res
-  });
+    this.auther.getAllauther(1, 100).subscribe((res: any) => {
+      this.authers = res.authors;
+      // console.log(this.authers);
+    });
   this.category.getCategories(1,100).subscribe((res:any)=>this.categories=res.categories);
 
   let id: number = this.activeRouter.snapshot.params['id'];
@@ -66,14 +68,16 @@ export class UpdateBookComponent {
     // console.log(this.addbook.value)
     // this.book.addBook(fd) 
     this.book.UpdateBook(fd,this.olddata._id).subscribe((res:any)=>console.log(res));
-
+    this.router.navigate(['/admin/books']);
   }  
   updateBook(event: Event) {
     event.preventDefault();
     let fd = new FormData(event.target as HTMLFormElement);
-        this.book.UpdateBook(this.olddata._id,fd).subscribe((res:any)=>console.log(res));
-    // console.log(fd)
-    // console.log(this.addbook.value)
-    };
-
+    this.book.UpdateBook(this.olddata._id, fd).subscribe((res: any) => {
+      console.log(res);
+      this.router.navigate(['/admin/books']);
+    });
+  }
 }
+
+

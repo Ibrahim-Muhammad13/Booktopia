@@ -1,9 +1,9 @@
 <div class="card h-100 shadow">
-  <img [src]="oneOfAuthors.image" class="card-img-top h-100">
+  <img [src]="oneOfAuthors.image" class="card-img-top "style="height: 15rem;">
   <div class="card-body">
     <h5 class="card-title">{{oneOfAuthors.firstName}}</h5>
 
-    <a (click)="goToAuthorDetails(oneOfAuthors._id)" class="btn btn-primary my-3">Author Details</a>
+    <p (click)="goToAuthorDetails(oneOfAuthors._id)" class="btn my-3" style="background-color: rgb(95, 95, 180);">Author Details</p>
 
   </div>
 </div>
