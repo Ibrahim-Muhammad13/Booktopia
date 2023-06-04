@@ -13,10 +13,10 @@
 
 
 <div class="yellow">
-  <button class="btn-lg px-5" type="button" (click)="filterBooks('all'); setTitle('all')" [ngClass]="activeButton === 'all' ? 'active-all' : ''">all</button>
-  <button class="btn-lg px-5" type="button" (click)="filterBooks('read'); setTitle('read')" [ngClass]="activeButton === 'read' ? 'active-all' : ''">read</button>
-  <button class="btn-lg px-5" type="button" (click)="filterBooks('currently'); setTitle('currently')" [ngClass]="activeButton === 'currently' ? 'active-all' : ''">currently</button>
-  <button class="btn-lg px-5" type="button" (click)="filterBooks('want to read'); setTitle('want to read')" [ngClass]="activeButton === 'want to read' ? 'active-all' : ''">want to read</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('all');all(); setTitle('all')" [ngClass]="activeButton === 'all' ? 'active-all' : ''">all</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('read');  read(); setTitle('read')" [ngClass]="activeButton === 'read' ? 'active-all' : ''">read</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('currently'); currently(); setTitle('currently')" [ngClass]="activeButton === 'currently' ? 'active-all' : ''">currently</button>
+  <button class="btn-lg px-5" type="button" (click)="filterBooks('want to read');wanttoread(); setTitle('want to read')" [ngClass]="activeButton === 'want to read' ? 'active-all' : ''">want to read</button>
 </div>
 <br>
 <br>

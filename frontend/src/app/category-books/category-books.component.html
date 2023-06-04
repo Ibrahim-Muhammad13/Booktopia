@@ -6,7 +6,7 @@
 
       <div class="card h-100" >
         <img [src] = "book.image" class="card-img-top h-100">
-        <div class="card-body" routerLink="/book/:id">
+        <div class="card-body" routerLink="/book/{{book._id}}">
 
             <h5 class="card-title"> {{book.name}} </h5>
             <h5 class="card-title"> {{book.rate}} </h5>

@@ -114,7 +114,7 @@ rating:number=1
       };
     
       this.user_book.update(this.books[index]._id, newData).subscribe((res: any) => {
-        console.log(res);
+        this.books[index].status=newStatus
       });
     
     }

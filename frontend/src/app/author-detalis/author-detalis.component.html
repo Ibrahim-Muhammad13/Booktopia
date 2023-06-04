@@ -19,7 +19,7 @@
     <h5 class="card-title my-2">Author's Books</h5>
   </div>
 <div class="row">
-  <div class="col-md-12" *ngFor= "let oneBook of books" routerLink="/book/:id">
+  <div class="col-md-12" *ngFor= "let oneBook of books" routerLink="/book/{{oneBook._id}}">
      <app-author-book-details [oneOfBook] = "oneBook" ></app-author-book-details>
         </div>
   </div>

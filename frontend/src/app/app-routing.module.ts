@@ -74,7 +74,7 @@ const routes: Routes = [
     component:AdminLoginComponent
   },
   {path:'myProfile',
-  canActivate:[authuserGuard],
+  // canActivate:[authuserGuard],
     component: ProfileComponent
   },
   {
