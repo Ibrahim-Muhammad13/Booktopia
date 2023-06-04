@@ -1,8 +1,8 @@
-<h1 class="p-2">Admin Books</h1>
-<h2 class="p-2"  *ngIf="showForm && !isNewBook"> Edit Your Book</h2>
-<h2 class="p-2"  *ngIf="showForm && isNewBook"> Add Your Book</h2>
+<h1 class="p-2"style=" color: rgba(255, 183, 0, 0.926);  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">Admin Books</h1>
+<h2 class="p-2"  style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" *ngIf="showForm && !isNewBook"> Edit Your Book</h2>
+<h2 class="p-2"  style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);" *ngIf="showForm && isNewBook"> Add Your Book</h2>
 <div class="flex justify-content-end me-4 mb-4">
-  <button type="button" class="btn btn-success"  routerLink="/admin/books/add">Add</button>
+  <button type="button" class="btn btn-warning"  routerLink="/admin/books/add">Add New Book</button>
 </div>
 
 
@@ -92,10 +92,10 @@
               </td>
                 <td>
                   <ng-container *ngIf="isNewBook">
-                    <button type="submit" class="btn btn-primary me-3">Save</button>
+                    <button type="submit" class="btn btn-warning me-3">Save</button>
                   </ng-container>
                   <ng-container *ngIf="!isNewBook">
-                    <button type="button" class="btn btn-primary me-1" [disabled]="bookForm.invalid && bookForm.touched"
+                    <button type="button" class="btn btn-warning me-1" [disabled]="bookForm.invalid && bookForm.touched"
                       (click)="selectedBook && updateBook(selectedBook._id, newBookName, selectedBook.rate, selectedBook.authorId, categoryId)">Update</button>
                   </ng-container>
                   <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
@@ -129,7 +129,7 @@
                 <td scope="row">{{book.name}}</td>
                 <!-- <td scope="row">{{book._id}}</td> -->
                 <td>
-                  <button type="button" class="btn btn-primary me-4" routerLink="/admin/books/update/{{book._id}}">Edit</button>
+                  <button type="button" class="btn btn-warning me-4" routerLink="/admin/books/update/{{book._id}}">Edit</button>
                   <button type="button" class="btn btn-danger" (click)="deleteBook(book._id, i)">Delete</button>
                 </td>
               </tr>
