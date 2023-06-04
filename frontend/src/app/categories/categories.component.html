@@ -1,43 +1,15 @@
 <app-navbar></app-navbar>
 
-<div class="container p-5">
+<div class="container-fluid p-5">
 <div class="row">
-  <div class="col-md-4  my-2 " *ngFor="let category of categories">
-
-    <div class="card shadow h-100 w-100 rounded-pill" style="background-color: rgb(103, 103, 218);">
-
+  <div class="col-md-4 big my-2 mb-5" *ngFor="let category of categories">
+    <div class="card c h-100 w-100">
+    <div class="card card2 my-3 shadow">
         <div class="card-body">
-
-          <a [routerLink]="['/category',category._id]"><h4 class="card-title text-white text-center" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);">{{category.cat_Name}}</h4></a>
+          <a [routerLink]="['/category',category._id]"><h5 class="card-title">{{category.cat_Name}}</h5></a>
         </div>
       </div>
     </div>
 </div>
 </div>
 
-<div class="container">
-  <div class="d-flex justify-content-center">
-    <nav>
-      <ul class="pagination">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <button class="page-link" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-        </li>
-        <li class="page-item">
-          <span class="page-link">{{ currentPage }} / {{ totalPages }}</span>
-        </li>
-        <li class="page-item" [class.disabled]="currentPage === totalPages">
-          <button class="page-link" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-        </li>
-      </ul>
-    </nav>
-  </div> 
-   <div class="items-per-page">
-    <label for="itemsPerPage">Items per Page:</label>
-    <select id="itemsPerPage" [(ngModel)]="selectedItemsPerPage" (change)="onItemsPerPageChange()">
-      <option value="8">8</option>
-      <option value="16">16</option>
-      <option value="32">32</option>
-    </select>
-  </div>
-
-</div>
