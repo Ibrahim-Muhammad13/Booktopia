@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <div class="row">
+    <form class="d-flex justify-content-center py-3">
+      <input class="px-4 py-2 me-3" type="text" name="search" placeholder="Search.." [(ngModel)]="word">
+      <button type="submit" (click)="searchBooks(word)" class="btn btn-danger py-2">Search</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-4" *ngFor="let book of books">
+      <div class="card mb-3" routerLink="/book/{{book._id}}">
+        <div class="card-body">
+          <h5 class="card-title">{{book.name}}</h5>
+          <p class="card-text">Author: {{book.authorId['firstName']}}</p>
+          <p class="card-text">Category: {{book.categoryId['cat_Name']}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

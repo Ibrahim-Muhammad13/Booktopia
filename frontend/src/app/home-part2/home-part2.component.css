@@ -1,0 +1,42 @@
+.container-fluid {
+  /* background-color: rgba(255, 255, 255, 0.264); */
+  /* background-color: #385A64; */
+  /* background-color: #d1c7a3ba; */
+  /* background-color: #E57C7D; */
+  background-color: white;
+}
+
+.card {
+  overflow: hidden;
+  width: 22rem;
+  height: 200px;
+}
+
+.card img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+}
+
+.card .intro {
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #385a644b;
+  transform: translateY(-27%);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .intro {
+  transform: translateY(-100%);
+}
+
+.btn
+{
+  background-color: #E45F4E;
+  color: white;
+}
+
+.card {
+  margin: 0 10px ;
+}

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const books = new mongoose.Schema({
 name: {
     type: String,
@@ -9,7 +8,7 @@ name: {
     type: Number,
   },
   authorId: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'auther',
   },
   categoryId: {
@@ -18,9 +17,13 @@ name: {
   },
   image: {
     type: String,
+},
+description:{
+  type: String,
 }
 });
 
 const booksModel = mongoose.model('books', books);
 
 module.exports = booksModel;
+

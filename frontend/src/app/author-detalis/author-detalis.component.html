@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+ <div class="container">
+  <h2 class="m-3">Author Details</h2>
+
+<div class="card my-4">
+  <div class="row">
+    <div class="col-md-4"*ngIf="author">
+      <img [src]="author.image" style="width:100%;height: 20rem;">
+    </div>
+    <div class="card-body col-md-8"*ngIf="author">
+      <h3>{{author.firstName}} {{author.LastName}}</h3>
+      <p>{{author.birthDate}}</p>
+    </div>
+  </div>
+</div>
+ </div>
+<div class="card container">
+  <div class="card-header my-2">
+    <h5 class="card-title my-2">Author's Books</h5>
+  </div>
+<div class="row">
+  <div class="col-md-12" *ngFor= "let oneBook of books" routerLink="/book/{{oneBook._id}}">
+     <app-author-book-details [oneOfBook] = "oneBook" ></app-author-book-details>
+        </div>
+  </div>
+</div>

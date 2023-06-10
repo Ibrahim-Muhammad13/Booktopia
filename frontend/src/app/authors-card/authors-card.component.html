@@ -1,0 +1,9 @@
+<div class="card h-100">
+  <img [src]="oneOfAuthors.image" class="card-img-top "style="height: 20rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{oneOfAuthors.firstName}}</h5>
+
+    <button (click)="goToAuthorDetails(oneOfAuthors._id)" class="btn btn-warning my-3">Author Details</button>
+
+  </div>
+</div>

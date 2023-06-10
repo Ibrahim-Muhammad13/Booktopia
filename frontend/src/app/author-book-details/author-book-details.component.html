@@ -1,0 +1,32 @@
+
+    <div class="container">
+      <div class="row">
+      <div class="col-md-12">
+      <div *ngIf="showAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ alertMessage }}
+      <button type="button" class="btn-close" aria-label="Close" (click)="hideAlert()"></button>
+      </div>
+      </div>
+      </div>
+      </div>
+    <div class="card my-2 container">
+
+    <div class="row">
+
+        <div class="col-lg-5" style="width:150px; height: 100px;">
+            <img [src]="oneOfBook.image" style="width:100%; height:100%;">
+        </div>
+
+        <div class="col-lg-7 my-3">
+            <h3>{{oneOfBook.name}}</h3>
+            <p>{{ oneOfBook.rate | starRating }}</p>
+
+        </div>
+
+        <div class="col-lg-3 my-3">
+
+                
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<h1 class="p-3" style=" color: rgba(255, 183, 0, 0.926);  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);">Admin Category</h1>
+<h2 class="p-2"  style=" text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);" *ngIf="showForm && isNewCategory"> Add Your Category</h2>
+<h2 class="p-2"  style=" text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);" *ngIf="showForm && !isNewCategory"> Edit Your Category</h2>
+<div class="flex justify-content-end me-4 mb-4" *ngIf="!showForm">
+  <button type="button" class="btn btn-warning"  (click)="showForm=true; isNewCategory=true">Add New Category</button>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="table-container">
+      <form [formGroup]="categoryForm" (ngSubmit)="saveCategory(newCategoryName)">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" *ngIf="!showForm">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+            <!-- <th scope="col" *ngIf="!showForm">
+              <button type="button" class="btn btn-warning" (click)="showForm=true; isNewCategory=true">Add New Category</button>
+            </th> -->
+          </tr>
+        </thead>
+        <tbody>
+
+          <ng-container *ngIf="showForm; else categoryList">
+            <tr>
+              <td>
+                <input type="text" class="form-control" formControlName="categoryName"
+                [ngClass]="{'is-invalid': categoryForm.controls['categoryName'].invalid && (categoryForm.controls['categoryName'].dirty || categoryForm.controls['categoryName'].touched)}"
+                required
+                minlength="4"
+                maxlength="20"
+                pattern="^[^0-9].*"
+                id="cat" placeholder="Enter Category Name" [(ngModel)]="newCategoryName"
+                (input)="hasChanges = true">
+              <div *ngIf="categoryForm.controls['categoryName'].invalid && (categoryForm.controls['categoryName'].dirty || categoryForm.controls['categoryName'].touched)"
+                class="invalid-feedback">
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['required']">Category name is required.</div>
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['minlength'] && !categoryForm.controls['categoryName'].errors?.['pattern']">Category name must be at least 4 characters.</div>
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['maxlength']">Category name can't be more than 20 characters.</div>
+                <div *ngIf="categoryForm.controls['categoryName'].errors?.['pattern'] && categoryForm.controls['categoryName'].errors?.['minlength']">Category name can't start with a number.</div>
+              </div>
+              </td>
+              <td>
+                <ng-container *ngIf="isNewCategory">
+                  <button type="submit" class="btn btn-warning me-4" [disabled]="categoryForm.controls['categoryName'].invalid || !categoryForm.controls['categoryName'].dirty">Save</button>
+                </ng-container>
+                <ng-container *ngIf="!isNewCategory">
+                  <button type="button" class="btn btn-warning me-4" (click)="selectedCategory && updateCategory(selectedCategory._id, newCategoryName)">Update</button>
+                </ng-container>
+                <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+              </td>
+            </tr>
+          </ng-container>
+
+          <ng-template #categoryList>
+              <tr *ngFor="let category of categories; let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>{{category.cat_Name}}</td>
+                <td>
+                  <button type="button" class="btn btn-warning me-4" (click)="editCategory(category)">Edit</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteCategory(category._id,i)">Delete</button>
+                </td>
+              </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </form>
+    </div>
+    
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <nav>
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <button class="page-link" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+            </li>
+            <li class="page-item">
+              <span class="page-link">{{ currentPage }} / {{ totalPages }}</span>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <button class="page-link" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+            </li>
+          </ul>
+        </nav>
+      </div> 
+       <div class="items-per-page">
+        <label for="itemsPerPage">Items per Page:</label>
+        <select id="itemsPerPage" [(ngModel)]="selectedItemsPerPage" (change)="onItemsPerPageChange()">
+          <option value="4">4</option>
+          <option value="8">8</option>
+          <option value="16">16</option>
+        </select>
+      </div>
+    
+    </div>
+  </div>
+</div>

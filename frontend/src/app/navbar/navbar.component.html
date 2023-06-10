@@ -1,42 +1,43 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/"><img src="../../assets/images/book1.png" alt=""></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid px-3 px-lg-5">
+
+      <a class="navbar-brand" routerLink="/"><img src="../../assets/images/book2.png" alt=""></a>
+
+      <button class="navbar-toggler order-first" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <form class="d-flex" role="search">
+      <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      </form>
+      </form> -->
+
+
 
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
+            <a class="nav-link active" style="color: white;" aria-current="page" routerLink="">Home</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" routerLink="categories" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                categories
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="#">Action</a></li>
-              <li><a class="dropdown-item" routerLink="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" routerLink="#">Something else here</a></li>
-            </ul>
+          <li class="nav-item ">
+            <a class="nav-link active" style="color: white;" aria-current="page" routerLink="/categories">categories</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="books">books</a>
+            <a class="nav-link active" style="color: white;" aria-current="page" routerLink="/books">books</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="authors">authors</a>
+            <a class="nav-link active" style="color: white;" aria-current="page" routerLink="/authors">authors</a>
+          </li>
+          <li class="nav-item">
+              <button type="submit" style="color: white;" class="py-2 nav-link active" routerLink="/search"><i class="bi bi-search"></i></button>
           </li>
         </ul>
 
 
-          <a class="nav-item nav-link active my-1 me-2"  routerLink="register">register</a>
-          <a class="nav-item nav-link active my-1 me-2"  routerLink="login">login</a>
+        <a class="nav-item nav-link active my-1 me-2"  *ngIf="!loggin" routerLink="/register">register</a>
+        <a class="nav-item nav-link active my-1 me-2"   *ngIf="loggin"routerLink="/myProfile">profile</a>
+          <a class="nav-item nav-link active my-1 me-2"  *ngIf="!loggin" routerLink="/login">login</a>
+          <button class="nav-item nav-link active my-1 me-2"  *ngIf="loggin"(click)="logaut()">logout</button>
 
       </div>
     </div>

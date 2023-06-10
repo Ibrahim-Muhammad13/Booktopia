@@ -1,7 +1,15 @@
-<p>categories works!</p>
+<app-navbar></app-navbar>
 
-<ul>
-    <li *ngFor="let item of categories">
-        {{item.cat_Name}}
-    </li>
-</ul>
+<div class="container-fluid p-5">
+<div class="row">
+  <div class="col-md-4 big my-2 mb-5" *ngFor="let category of categories">
+    <div class="card c h-100 w-100">
+    <div class="card card2 my-3 shadow">
+        <div class="card-body">
+          <a [routerLink]="['/category',category._id]"><h5 class="card-title">{{category.cat_Name}}</h5></a>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
